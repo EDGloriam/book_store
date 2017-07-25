@@ -4,7 +4,6 @@
     %meta{charset: "UTF-8"}
     %meta{name: "viewport", content: "width=device-width"}
     %link{href: "https://fonts.googleapis.com/css?family=Open+Sans", rel: "stylesheet"}
-    / %link{href: "../css/style.css", rel: "stylesheet"}
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %title Bookstore
     = csrf_meta_tags
@@ -43,7 +42,8 @@
                   %li
                     %a.collapse-link{href: "#"} Web design
               %li
-                %a{href: "#"} My account
+                - if user_signed_in?
+                  = link_to('My account')
           .hidden-xs
             %ul.nav.navbar-nav
               %li
@@ -59,7 +59,10 @@
                     %a{href: "#"} Web design
                   %li.divider{role: "separator"}
                   %li
-                    %a{href: "#"} Log out
+                    - if user_signed_in?
+                      =link_to("Log out", destroy_user_session_path, method: :delete)
+                    - else
+                      =link_to("Log in",  new_user_session_path)
               %li
                 %a{href: "#"} My account
     = yield
