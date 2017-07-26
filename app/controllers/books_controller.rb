@@ -1,6 +1,6 @@
 class BooksController < ApplicationController
   def index   # GET /posts
-    @user = current_user
+    #catalog
   end
 
   def show    # GET /posts/:id

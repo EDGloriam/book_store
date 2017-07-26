@@ -31,7 +31,7 @@
               %span{'aria-hidden': "true"} &times;
             %ul.nav.navbar-nav
               %li
-                %a{href: "#"} Home
+                =link_to('Home', root_path)
               %li
                 %a{type: "button", 'data-toggle': "collapse", href: "#menu", 'aria-expanded': "false", 'aria-controls': "menu"} Shop
                 %ul#menu.collapse.list-unstyled.pl-30.mb-10{'aria-expanded': "false"}
@@ -44,7 +44,7 @@
           .hidden-xs
             %ul.nav.navbar-nav
               %li
-                %a{href: "#"} Home
+                =link_to('Home', root_path)
               %li.dropdown
                 %a.dropdown-toggle{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"} Shop
                 %ul.dropdown-menu
@@ -78,10 +78,11 @@
                 %a.nav-link{href: "#"} Home
               %li
                 %a.nav-link{href: "#"} Shop
-              %li
-                %a.nav-link{href: "#"} Orders
-              %li
-                %a.nav-link{href: "#"} Settings
+              -if user_signed_in?
+                %li
+                  %a.nav-link{href: "#"} Orders
+                %li
+                  %a.nav-link{href: "#"} Settings
           .col-sm-3
             %p.general-nav-mail support@bookstore.com
             %p.general-nav-number (555)-555-5555
