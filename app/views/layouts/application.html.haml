@@ -41,9 +41,6 @@
                     %a.collapse-link{href: "#"} Photo
                   %li
                     %a.collapse-link{href: "#"} Web design
-              %li
-                - if user_signed_in?
-                  = link_to('My account')
           .hidden-xs
             %ul.nav.navbar-nav
               %li
@@ -64,7 +61,13 @@
                     - else
                       =link_to("Log in",  new_user_session_path)
               %li
-                %a{href: "#"} My account
+                - if user_signed_in?
+                  = link_to('My account', edit_user_registration_path)
+                - else
+                  = link_to("Sign up", new_user_registration_path, class: 'in-gold-500')
+                  %li
+                    = link_to("Log in",  new_user_session_path, class: 'in-gold-500')
+
     = yield
     %footer.navbar-inverse
       .container

@@ -4,13 +4,13 @@
     %a.general-login-icon{href: "#"}
       %i.fa.fa-facebook-official
     %p.general-login-text or
-  = form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: 'general-form'}) do |f|
+  = form_for(resource, as: resource_name, url: session_path(resource_name), method: :post, html: {class: 'general-form'}) do |f|
     .form-group.mb-30
     = f.label :email, value: 'Enter Email', class: 'control-label input-label'
-    = f.email_field :email, autofocus: true, id: 'email', class: 'form-control', name:"email", type: "email", placeholder: "Enter Email"
+    = f.email_field :email, autofocus: true, id: 'email', class: 'form-control', name:"user[email]", type: "email", placeholder: "Enter Email"
     .form-group.mb-30
     = f.label :password, value: 'Password', class: 'control-label input-label'
-    = f.password_field :password, autocomplete: "off", id: 'password', class: 'form-control', name:"password", type: "password", placeholder: "Password"
+    = f.password_field :password, autocomplete: "off", id: 'password', class: 'form-control', name:"user[password]", type: "password", placeholder: "Password"
     = link_to "Forgot your password?", new_password_path(resource_name), class: 'help-block in-gold-500'
     .form-group.checkbox.text-center.mb-30
       - if devise_mapping.rememberable?
