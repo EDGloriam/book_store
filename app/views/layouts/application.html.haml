@@ -69,6 +69,8 @@
                     = link_to("Log in",  new_user_session_path, class: 'in-gold-500')
 
     = yield
+    - if current_user
+      = current_user.inspect
     %footer.navbar-inverse
       .container
         .row
