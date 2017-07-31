@@ -25,6 +25,15 @@ Rails.application.configure do
   # Raise exceptions instead of rendering exception templates.
   config.action_dispatch.show_exceptions = false
 
+
+
+  # #Added by meself
+  # config.action_view.automatically_disable_submit_tag = false
+
+
+
+
+
   # Disable request forgery protection in test environment.
   config.action_controller.allow_forgery_protection = false
   config.action_mailer.perform_caching = false

@@ -26,6 +26,13 @@ Rails.application.configure do
     config.cache_store = :null_store
   end
 
+
+
+  #Added by myself
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  ENV['FACEBOOK_APP_ID'] = '284766715332448'
+  ENV['FACEBOOK_SECRET'] = '13e2b60e04275c75e253350ec6588900'
+
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
 
