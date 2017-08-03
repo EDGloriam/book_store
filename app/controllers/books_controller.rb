@@ -1,6 +1,9 @@
 class BooksController < ApplicationController
   def index   # GET /posts
-    #catalog
+    @batch_of_books = []
+    Book.find_each(batch_size: 8) do |book|
+      @batch_of_books << book
+    end
   end
 
   def show    # GET /posts/:id

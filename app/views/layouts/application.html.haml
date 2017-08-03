@@ -54,17 +54,16 @@
                     %a{href: "#"} Photo
                   %li
                     %a{href: "#"} Web design
-                  %li.divider{role: "separator"}
-                  %li
-                    - if user_signed_in?
-                      =link_to("Log out", destroy_user_session_path, method: :delete)
-                    - else
-                      =link_to("Log in",  new_user_session_path)
-              %li
                 - if user_signed_in?
-                  = link_to('My account', edit_user_registration_path)
+                  %li.dropdown
+                    %a.dropdown-toggle{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"} My account
+                    %ul.dropdown-menu
+                      %li.divider{role: "separator"}
+                        %li
+                          =link_to("Log out", destroy_user_session_path, method: :delete)
                 - else
-                  = link_to("Sign up", new_user_registration_path, class: 'in-gold-500')
+                  %li
+                    = link_to("Sign up", new_user_registration_path, class: 'in-gold-500')
                   %li
                     = link_to("Log in",  new_user_session_path, class: 'in-gold-500')
 
