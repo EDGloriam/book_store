@@ -31,7 +31,7 @@
   .mb-35
     %h3 Best Sellers
     .row
-      = @books.each do |book|
+      - @books.each do |book|
         .col-sm-6.col-md-3
           .general-thumb-wrap
             .thumbnail.general-thumbnail

@@ -7,8 +7,7 @@ class BooksController < ApplicationController
   end
 
   def show    # GET /books/:id
-    @book = Book.find_by(id: params[:id])
-    puts @book
+    @book = Book.find(params[:id])
   end
 
   def new     # GET /posts/new
