@@ -1,7 +1,22 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+require 'ffaker'
+
+SECTION = ['Mobile Development', 'Photo', 'Web Design']
+def rand_float
+  rand(0.1..1.0).round 1
+end
+
+100.times { Author.create(name: FFaker::Book.author) }  #creation Authors
+200.times do |i|
+  Author.find_by(id: rand(1..100)).books.create(  #creation Books
+    name: FFaker::Book.title,
+    photo: FFaker::Book.cover,
+    description: FFaker::Book.description,
+    price: 50.00,
+    section: SECTION[rand(0..2)],
+    publication: FFaker::Vehicle.year,
+    materials: 'Hardcove, glossy paper')
+  Book.find_by(id: i+1).create_dimension(
+    h: rand_float,
+    w: rand_float,
+    d: rand_float)
+end
