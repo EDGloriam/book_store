@@ -34,14 +34,7 @@
       - @books.each do |book|
         .col-sm-6.col-md-3
           .general-thumb-wrap
-            .thumbnail.general-thumbnail
-              %img.img-shadow.general-thumbnail-img{src: "http://jonathantweedy.com/resources/thumbs/SmashingBook5ResponsiveWebDesign.jpg", alt: "design-book"}
-              .thumb-hover
-                .general-thumb-link-wrap
-                  %a.thumb-hover-link{href: "#"}
-                    %i.fa.fa-eye.thumb-icon{'aria-hidden': "true"}
-                  %a.thumb-hover-link{href: "#"}
-                    %i.fa.fa-shopping-cart.thumb-icon
+            = render partial: 'thumbnail_with_links', locals: {book: book}
           .mb-35
             .clearfix
               %p.pull-right.font-16.in-gold-500
@@ -50,3 +43,4 @@
                 = book.name
             %span.divider-sm
             %p.lead.small
+              = prepare_for_view(book.authors)
