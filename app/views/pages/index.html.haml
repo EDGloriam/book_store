@@ -34,7 +34,8 @@
       - @books.each do |book|
         .col-sm-6.col-md-3
           .general-thumb-wrap
-            = render partial: 'thumbnail_with_links', locals: {book: book}
+            / = render partial: 'thumbnail_with_links', object: book
+            = render partial: '/shared/thumbnail_with_links', locals: {book: book}
           .mb-35
             .clearfix
               %p.pull-right.font-16.in-gold-500

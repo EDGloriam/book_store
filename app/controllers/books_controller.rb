@@ -1,8 +1,10 @@
 class BooksController < ApplicationController
-  def index   # GET /books
-    @batch_of_books = []
-    Book.find_each(batch_size: 8) do |book|
-      @batch_of_books << book
+  def index
+    if params[:section].present?
+      @batch_of_books = Book.where(nil)
+      @batch_of_books = @batch_of_books.section(params[:section])
+    else
+      @batch_of_books = Book.all
     end
   end
 
