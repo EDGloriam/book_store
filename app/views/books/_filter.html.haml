@@ -1,0 +1,5 @@
+%li.mr-35
+  = link_to books_path(section: section), class: 'filter-link' do
+    = section || 'All'
+    %span.badge.general-badge
+      = category_size(section)

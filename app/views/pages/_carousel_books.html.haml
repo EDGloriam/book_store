@@ -1,0 +1,15 @@
+.item{class: "#{index.zero? ? 'active' : '' }"}
+  .row
+    .col-sm-5
+      .general-img-wrap
+        = image_tag book.photo, class: 'img, img-shadow, general-thumbnail-img', alt: "design-book"
+    .col-sm-7
+      .mb-60
+        %h1
+          = book.name
+        %p.lead
+          = book.description
+        %p.lead.small
+          = prepare_for_view(book.authors)
+        .general-align
+          %button.disabled.btn Buy Now

@@ -1,6 +1,7 @@
 require 'ffaker'
 
 SECTION = ['Mobile Development', 'Photo', 'Web Design']
+
 def rand_float
   rand(0.1..1.0).round 1
 end
