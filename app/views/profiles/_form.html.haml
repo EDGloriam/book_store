@@ -1,0 +1,29 @@
+= form_for settings_path, method: "patch" do |f|
+  = f.text_field :type, hidden: true, name: "profile[type]", value: "#{address_type}"
+  .visible-xs.visible-sm
+    %h3.general-subtitle.mt-0
+      = "#{address_type.capitalize} Address"
+  .form-group.has-error
+    = f.label :firstName, value: 'First Name', class: 'control-label input-label'
+    = f.text_field :firstName, id: 'firstName', class: 'form-control', name:"profile[first_name]", type: "text", placeholder: "#{find_attribute_in(:first_name, address_type)}"
+    %span.help-block Please enter your first name
+  .form-group
+    = f.label :lastName, value: 'Last Name', class: 'control-label input-label'
+    = f.text_field :lastName, id: 'lastName', class: 'form-control', name:"profile[last_name]", type: "text", placeholder: "#{find_attribute_in(:last_name, address_type)}"
+  .form-group
+    = f.label :address, value: 'Address', class: 'control-label input-label'
+    = f.text_field :address, id: 'address', class: 'form-control', name:"profile[address]", type: "text", placeholder: "#{find_attribute_in(:address, address_type)}"
+  .form-group
+    = f.label :city, value: 'City', class: 'control-label input-label'
+    = f.text_field :city, id: 'city', class: 'form-control', name:"profile[city]", type: "text", placeholder: "#{find_attribute_in(:city, address_type)}"
+  .form-group
+    = f.label :zip, value: 'Zip', class: 'control-label input-label'
+    = f.text_field :zip, id: 'zip', class: 'form-control', name:"profile[zip]", type: "text", placeholder: "#{find_attribute_in(:zip, address_type)}"
+  .form-group
+    = f.label :country, value: 'Country', class: 'control-label input-label'
+    = f.text_field :country, id: 'country', class: 'form-control', name:"profile[country]", type: "text", placeholder: "#{find_attribute_in(:country, address_type)}"
+  .form-group.mb-60
+    = f.label :phone, value: 'Phone', class: 'control-label input-label'
+    = f.text_field :phone, id: 'phone', class: 'form-control', name:"profile[phone]", type: "tel", placeholder: "#{find_attribute_in(:phone, address_type)}"
+  .text-center.general-text-align
+    = f.submit :save, class: 'btn btn-default', value: 'Save'
