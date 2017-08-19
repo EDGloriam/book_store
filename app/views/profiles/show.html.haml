@@ -15,18 +15,19 @@
             %h3.general-subtitle.mt-0 Shipping Address
       .row
         .col-md-5.mb-40
-          = render partial: 'form', locals: { address_type: 'billing'}
+          = render partial: 'form', locals: { address_type: 'billing_address'}
         .col-md-5.col-md-offset-1.mb-25
-          = render partial: 'form', locals: { address_type: 'shipping'}
+          = render partial: 'form', locals: { address_type: 'shipping_address'}
     #privacy.tab-pane.fade{role: "tabpanel"}
       .row.mb-60
         .col-sm-5
           %p.in-gold-500.font-18.mb-25 Email
           %form.general-form-md
-          = form_for(:user, class: 'general-form-md') do |f|
+          = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }, class: 'general-form-md') do |f|
+            = f.password_field :password, hidden: true, name: "user[password]", value: current_user.current_password
             .form-group.mb-35
               = f.label :email, 'Enter Email', class: 'control-label input-label'
-              = f.email_field :email, autofocus: true, class: 'form-control', id: 'email', name:"user[email]", type: "email", placeholder: "Enter your email"
+              = f.email_field :email, autofocus: true, class: 'form-control', id: 'email', name:"user[email]", type: "email"
             .general-text-align
               = f.submit "Save", class: 'btn btn-default mb-35'
         .col-sm-5.col-sm-offset-1
@@ -47,7 +48,7 @@
           %p.in-gold-500.font-18.mb-25 Remove Account
           %form
             .general-settings-btn
-              %button.btn.disabled.mb-20 Please Remove My Account
+              = button_to "Please Remove My Account", registration_path(@user), class: 'btn mb-20', data: { confirm: "Are you sure?" }, method: :delete
             .form-group.checkbox.general-settings-checkbox
               %label.checkbox-label
                 %input.checkbox-input{type: "checkbox", hidden: "true"}

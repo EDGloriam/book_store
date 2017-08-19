@@ -1,6 +1,7 @@
 module ProfilesHelper
   def find_attribute_in(attr, address_type)
-    @user.send(address_type.to_sym)[attr] || default_placeholder(attr)
+    return @user.send(address_type.to_sym)[attr] unless @user.send(address_type.to_sym).nil?
+    default_placeholder(attr)
   end
 
   def default_placeholder(attr)

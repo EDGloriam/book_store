@@ -31,7 +31,7 @@
             %a.input-link{href: "#"}
               %i.fa.fa-plus.line-height-40
         .col-xs-7.col-md-5
-          %button.btn.btn-default.pull-right.general-position Add to Cart
+          = link_to 'Add to Cart', orders_path, method: :post, class: 'btn btn-default pull-right general-position'
       .general-info-wrap.divider-lg
         %p Description
         %p.lead.small.line-height-2
