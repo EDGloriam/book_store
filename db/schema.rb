@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170815213508) do
+ActiveRecord::Schema.define(version: 20170820041112) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,7 +47,6 @@ ActiveRecord::Schema.define(version: 20170815213508) do
     t.string   "name"
     t.string   "photo"
     t.string   "description"
-    t.string   "authors"
     t.float    "price"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
@@ -64,6 +63,40 @@ ActiveRecord::Schema.define(version: 20170815213508) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["book_id"], name: "index_dimensions_on_book_id", using: :btree
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.string   "number"
+    t.string   "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "user_id"
+  end
+
+  create_table "payments", force: :cascade do |t|
+    t.string  "number"
+    t.date    "mm_yy"
+    t.integer "cvv"
+    t.integer "order_id"
+    t.index ["order_id"], name: "index_payments_on_order_id", using: :btree
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.string   "text"
+    t.boolean  "verified",   default: false
+    t.integer  "rate_stars", default: 0
+    t.integer  "user_id"
+    t.integer  "book_id"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.index ["book_id"], name: "index_reviews_on_book_id", using: :btree
+    t.index ["user_id"], name: "index_reviews_on_user_id", using: :btree
+  end
+
+  create_table "shipments", force: :cascade do |t|
+    t.string  "method"
+    t.integer "order_id"
+    t.index ["order_id"], name: "index_shipments_on_order_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -88,4 +121,8 @@ ActiveRecord::Schema.define(version: 20170815213508) do
   end
 
   add_foreign_key "dimensions", "books"
+  add_foreign_key "payments", "orders"
+  add_foreign_key "reviews", "books"
+  add_foreign_key "reviews", "users"
+  add_foreign_key "shipments", "orders"
 end

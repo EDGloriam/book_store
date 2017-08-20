@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_one :billing_address
   has_one :shipping_address
   has_many :orders
+  has_many :reviews
 
   def self.new_with_session(params, session)
     super.tap do |user|

@@ -53,36 +53,42 @@
           %p.lead.small.pull-right
             = @book.materials
   .mb-80
-    %h3.in-gold-500.mb-25 Reviews (3)
-    .general-message-wrap.divider-lg
-      .clearfix
-        %img.img-circle.logo-size.inlide-block.pull-left{src: "https://www.smashingmagazine.com/wp-content/uploads/2015/09/smashing-book-5-2-large.jpg"}
-        .ml-70
-          %div
-            .general-message-date.hidden-xs 11/11/16
-            .max-240
-              .general-message-verified Verified Reviewer
-              .general-message-name Rita J. Lewis
-          .mb-15
-            %i.fa.fa-star.rate-star
-            %i.fa.fa-star.rate-star
-            %i.fa.fa-star.rate-star
-            %i.fa.fa-star.rate-star
-            %i.fa.fa-star.rate-star
-          %p Thank you BookStore, I was very pleased to receive my order for the Moleskine diary so soon after placing the order.
-    .general-message-wrap.divider-lg
-      .clearfix
-        %span.img-circle.logo-size.inlide-block.pull-left.logo-empty M
-        .ml-70
-          %div
-            .general-message-date.hidden-xs 11/11/16
-            .max-240
-              .general-message-verified.pull-right Verified Reviewer
-              .general-message-name May J. Novoa
-          .mb-15
-            %i.fa.fa-star.rate-star
-            %i.fa.fa-star.rate-star
-            %i.fa.fa-star.rate-star
-            %i.fa.fa-star.rate-star
-            %i.fa.fa-star.rate-star.rate-empty
-          %p If ‘Get a better job’ had landed on my desk a year ago, I might have been dismissive of it. Instead I was prepared to be open-minded. There have been many occasions where I turned to career books with practical activities to look for some inspiration when developing education activities for learners or assessment.
+    %h3.in-gold-500.mb-25
+      = "#{reviews_count(@reviews)}"
+    - @reviews.each do |review|
+      .general-message-wrap.divider-lg
+        .clearfix
+          %img.img-circle.logo-size.inlide-block.pull-left{src: "https://www.smashingmagazine.com/wp-content/uploads/2015/09/smashing-book-5-2-large.jpg"}
+          .ml-70
+            %div
+              .general-message-date.hidden-xs
+
+              .max-240
+                .general-message-verified Verified Reviewer
+                .general-message-name
+                  = "#{review.user.billing_address[:first_name]}, #{review.user.billing_address[:last_name]}"
+            .mb-15
+              %i.fa.fa-star.rate-star
+              %i.fa.fa-star.rate-star
+              %i.fa.fa-star.rate-star
+              %i.fa.fa-star.rate-star
+              %i.fa.fa-star.rate-star
+            %p
+              = review.text
+    = form_for @review, method: "post" do |f|
+      = f.text_field :user_id, hidden: true, name: "review[user_id]", value: current_user.id, type: 'text'
+      = f.text_field  :book_id, hidden: true, name: "review[book_id]", value: @book.id, type: 'text'
+      .form-group
+        = f.label :score, value: 'Score', class: 'control-label input-label'
+        .mb-15
+          %i.fa.fa-star
+          %i.fa.fa-star
+          %i.fa.fa-star
+          %i.fa.fa-star
+          %i.fa.fa-star
+        = f.text_field :rate_stars,  hidden: true, id: 'score', name:"review[rate_stars]"
+      .form-group
+        = f.label :review, value: 'Review', class: 'control-label input-label'
+        = f.text_area :text, rows: '4', id: 'review', class: 'form-control', name:"review[text]", type: "text"
+      .text-center.general-text-align
+        = f.submit  class: 'btn btn-default pull-right', value: 'Post'

@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get '/settings', to: 'profiles#show'
   match '/settings', to: 'profiles#update', via: 'patch'
   devise_for :users, controllers: {omniauth_callbacks: 'users/omniauth_callbacks'}
-  resources :books, :orders
+  resources :books, :orders, :reviews
 
 end
 

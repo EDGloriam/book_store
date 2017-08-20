@@ -8,27 +8,9 @@ class BooksController < ApplicationController
     end
   end
 
-  def show    # GET /books/:id
+  def show
     @book = Book.find(params[:id])
-  end
-
-  def new     # GET /posts/new
-    # ...
-  end
-
-  def edit    # GET /posts/:id/edit
-    # ...
-  end
-
-  def create  # POST /posts/
-    # ...
-  end
-
-  def update  # PATCH /posts/:id PUT /posts/:id
-    # ...
-  end
-
-  def destroy # DELETE /posts/:id
-    # ...
+    @reviews = Review.where(book_id: params[:id], verified: true).order(created_at: :desc)
+    @review = Review.new
   end
 end
