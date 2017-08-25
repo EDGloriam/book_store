@@ -4,7 +4,8 @@ class CreateBooks < ActiveRecord::Migration[5.0]
       t.string :name
       t.string :photo
       t.string :description
-      t.float :price
+      t.decimal :price, precision: 6, scale: 2
+      t.boolean :active
 
       t.timestamps
     end

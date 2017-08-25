@@ -4,4 +4,8 @@ module ApplicationHelper
     return authors.map { |author| "#{author.name}" }.join(', ') if authors.size > 1
     'error from books_helper.rb'
   end
+
+  def books_in_cart(items)
+    items.collect { |item| item.quantity }.sum
+  end
 end

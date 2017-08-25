@@ -20,18 +20,21 @@
       %p.lead.small
         = prepare_for_view(@book.authors)
       .row
-        .col-xs-12.col-md-4
-          %p.h1.in-gold-500.mt-10
-            = @book.price
-        .col-xs-5.col-md-3
-          .input-group.general-position
-            %a.input-link{href: "#"}
-              %i.fa.fa-minus.line-height-40
-            %input.form-control.quantity-input{type: "text"}
-            %a.input-link{href: "#"}
-              %i.fa.fa-plus.line-height-40
-        .col-xs-7.col-md-5
-          = link_to 'Add to Cart', orders_path, method: :post, class: 'btn btn-default pull-right general-position'
+        = form_for @order_item do |f|
+          = f.hidden_field :book_id, value: @book.id
+          .col-xs-12.col-md-4
+            %p.h1.in-gold-500.mt-10
+              = f.label :unit_price, name: "order_item[unit_price]" do
+                = "#{@book.price}"
+          .col-xs-5.col-md-3
+            .input-group.general-position
+              %a.input-link{href: "#"}
+                %i.fa.fa-minus.line-height-40
+              = f.text_field :quantity, value: 1, class: "form-control quantity-input", min: 1
+              %a.input-link{href: "#"}
+                %i.fa.fa-plus.line-height-40
+          .col-xs-7.col-md-5
+            = f.submit "Add to Cart", class: 'btn btn-default pull-right general-position'
       .general-info-wrap.divider-lg
         %p Description
         %p.lead.small.line-height-2
@@ -75,20 +78,24 @@
               %i.fa.fa-star.rate-star
             %p
               = review.text
-    = form_for @review, method: "post" do |f|
-      = f.text_field :user_id, hidden: true, name: "review[user_id]", value: current_user.id, type: 'text'
-      = f.text_field  :book_id, hidden: true, name: "review[book_id]", value: @book.id, type: 'text'
-      .form-group
-        = f.label :score, value: 'Score', class: 'control-label input-label'
-        .mb-15
-          %i.fa.fa-star
-          %i.fa.fa-star
-          %i.fa.fa-star
-          %i.fa.fa-star
-          %i.fa.fa-star
-        = f.text_field :rate_stars,  hidden: true, id: 'score', name:"review[rate_stars]"
-      .form-group
-        = f.label :review, value: 'Review', class: 'control-label input-label'
-        = f.text_area :text, rows: '4', id: 'review', class: 'form-control', name:"review[text]", type: "text"
-      .text-center.general-text-align
-        = f.submit  class: 'btn btn-default pull-right', value: 'Post'
+    - if user_signed_in?
+      = form_for @review, method: "post" do |f|
+        = f.text_field :user_id, hidden: true, name: "review[user_id]", value: current_user.id, type: 'text'
+        = f.text_field  :book_id, hidden: true, name: "review[book_id]", value: @book.id, type: 'text'
+        .form-group
+          = f.label :score, value: 'Score', class: 'control-label input-label'
+          .mb-15
+            %i.fa.fa-star
+            %i.fa.fa-star
+            %i.fa.fa-star
+            %i.fa.fa-star
+            %i.fa.fa-star
+          = f.text_field :rate_stars,  hidden: true, id: 'score', name:"review[rate_stars]"
+        .form-group
+          = f.label :review, value: 'Review', class: 'control-label input-label'
+          = f.text_area :text, rows: '4', id: 'review', class: 'form-control', name:"review[text]", type: "text"
+        .text-center.general-text-align
+          = f.submit  class: 'btn btn-default pull-right', value: 'Post'
+    - else
+      %p Sign up in order to comment
+

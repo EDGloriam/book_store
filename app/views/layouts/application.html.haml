@@ -10,6 +10,7 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
+    = current_order.inspect
     %header.navbar.navbar-default
       .container
         .navbar-header
@@ -19,12 +20,14 @@
             %span.icon-bar
             %span.icon-bar
           %a.navbar-brand Bookstore
-          %a.shop-link.pull-right.visible-xs{href: "#"}
-            %span.shop-icon
-              %span.shop-quantity 3
-        %a.shop-link.pull-right.hidden-xs{href: "#"}
+        = link_to  cart_path, class: "shop-link pull-right visible-xs" do
           %span.shop-icon
-            %span.shop-quantity 3
+            %span.shop-quantity
+              = books_in_cart(current_order.order_items)
+        = link_to  cart_path, class: "shop-link pull-right hidden-xs" do
+          %span.shop-icon
+            %span.shop-quantity
+              = books_in_cart(current_order.order_items)
         #navbar.navbar-collapse.collapse.pl-30{'aria-expanded': "false"}
           .visible-xs
             %button.close{type: "button", 'aria-label': "Close"}
@@ -70,7 +73,7 @@
                     = link_to("Sign up", new_user_registration_path, class: 'in-gold-500')
                   %li
                     = link_to("Log in",  new_user_session_path, class: 'in-gold-500')
-
+    %h1.cart-text
     = yield
     - if current_user
       = current_user.inspect

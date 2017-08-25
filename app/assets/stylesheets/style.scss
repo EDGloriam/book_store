@@ -5,3 +5,7 @@
 @import "bookstore/utils/helpers";
 @import "variables";
 @import "overrides";
+
+button.thumb-hover-link {
+  background: none;
+}

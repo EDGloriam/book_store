@@ -4,5 +4,8 @@
     .general-thumb-link-wrap
       = link_to book_path(book), class: 'thumb-hover-link' do
         %i.fa.fa-eye.thumb-icon{'aria-hidden': "true"}
-      = link_to orders_path, method: :post, class: 'thumb-hover-link' do
-        %i.fa.fa-shopping-cart.thumb-icon
+      = form_for @order_item  do |f|
+        = f.text_field :book_id, hidden: true, name: "order_item[book_id]", value: "#{book.id}"
+        = f.text_field :quantity, hidden: true, name: "order_item[quantity]", value: 1
+        = f.button type: 'submit', class: 'thumb-hover-link' do
+          %i.fa.fa-shopping-cart.thumb-icon

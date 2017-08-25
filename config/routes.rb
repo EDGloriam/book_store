@@ -1,12 +1,15 @@
 Rails.application.routes.draw do
+  root 'pages#index'
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-  root 'pages#index'
-  get '/users/auth/facebook/callback', to: 'pages#index'
-  get '/settings', to: 'profiles#show'
-  match '/settings', to: 'profiles#update', via: 'patch'
   devise_for :users, controllers: {omniauth_callbacks: 'users/omniauth_callbacks'}
-  resources :books, :orders, :reviews
+  get '/users/auth/facebook/callback', to: 'pages#index'
 
+  match '/settings', to: 'profiles#show', via: 'get'
+  match '/settings', to: 'profiles#update', via: 'patch'
+
+  resources :books, :orders, :reviews
+  resource :cart, only: [:show]
+  resources :order_items, only: [:create, :update, :destroy]
 end
 
