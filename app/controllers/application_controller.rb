@@ -3,6 +3,6 @@ class ApplicationController < ActionController::Base
   helper_method :current_order
 
   def current_order
-    Order.find_or_create_by(id: 1, order_status_id: 1)
+    Order.find_or_create_by(id: 1)
   end
 end

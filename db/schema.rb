@@ -85,11 +85,11 @@ ActiveRecord::Schema.define(version: 20170821085640) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.decimal  "subtotal",        precision: 6,  scale: 2
-    t.decimal  "total",           precision: 12, scale: 3
+    t.decimal  "subtotal",        precision: 6, scale: 2
+    t.decimal  "total",           precision: 6, scale: 2
     t.integer  "order_status_id"
-    t.datetime "created_at",                               null: false
-    t.datetime "updated_at",                               null: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
     t.index ["order_status_id"], name: "index_orders_on_order_status_id", using: :btree
   end
 

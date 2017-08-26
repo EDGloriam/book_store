@@ -8,33 +8,34 @@ class OrderItem < ApplicationRecord
 
   before_save :finalize
 
-  def unit_price
-    if persisted?
-      self[:unit_price]
-    else
-      book.price
-    end
-  end
+  # def unit_price
+  #   puts "=================unit_price========="
+  #   book.price
+  # end
 
-  def total_price
-    unit_price * quantity
-  end
+  # def total_price
+  #   puts "=================total_price========="
+  #   unit_price * quantity
+  # end
 
 private
   def book_present
+    puts "=================book_present========="
     if book.nil?
       errors.add(:book, "is not valid or is not active.")
     end
   end
 
   def order_present
+    puts "=================order_present========="
     if order.nil?
       errors.add(:order, "is not a valid order.")
     end
   end
 
   def finalize
-    self[:unit_price] = unit_price
-    self[:total_price] = quantity * self[:unit_price]
+    puts "=================finalize========="
+    self.unit_price = book.price
+    self.total_price = self.quantity * self.unit_price
   end
 end
