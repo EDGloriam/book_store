@@ -11,12 +11,6 @@ class OrderItemsController < ApplicationController
     redirect_back(fallback_location: books_path)
   end
 
-  # def update
-  #   @order_item = @order.order_items
-  #   @order_item.update_attributes(order_item_params)
-  #   @order_items = @order.order_items
-  # end
-
   def destroy
     @order_item = @order.order_items.find(params[:id])
     @order_item.destroy
