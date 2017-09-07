@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root 'pages#index'
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-  devise_for :users, controllers: {omniauth_callbacks: 'users/omniauth_callbacks'}
+  devise_for :users, controllers: { omniauth_callbacks: "callbacks" }
   get '/users/auth/facebook/callback', to: 'pages#index'
 
   match '/settings', to: 'profiles#show', via: 'get'

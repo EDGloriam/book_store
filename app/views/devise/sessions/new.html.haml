@@ -1,8 +1,7 @@
 %main.container.general-main-wrap
   .text-center
     %h3.general-login-title Log In
-    = link_to user_facebook_omniauth_authorize_path do
-      %i.fa.fa-facebook-official
+    = render 'devise/shared/facebook_link'
     %p.general-login-text or
   = form_for(resource, as: resource_name, url: session_path(resource_name), method: :post, html: {class: 'general-form'}) do |f|
     .form-group.mb-30
