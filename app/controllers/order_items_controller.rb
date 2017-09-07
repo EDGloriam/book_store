@@ -1,13 +1,10 @@
 class OrderItemsController < ApplicationController
-  before_action :retrieve_order
-  after_action :save
+  include CurrentOrder
+  require 'json'
+  before_action :set_order, only: [:create, :destroy]
 
   def create
-    if book_already_chosen?(order_item_params[:book_id])
-      increment_quantity
-    else
-      @order_item = @order.order_items.create(order_item_params)
-    end
+    current_user ? handle_as_user : handle_as_guest
     redirect_back(fallback_location: books_path)
   end
 
@@ -20,21 +17,35 @@ class OrderItemsController < ApplicationController
 
 private
 
-  def book_already_chosen?(id)
-    @existing_order = @order.order_items.where(book_id: id)
-    @existing_order.count >= 1
+  def flash_msg(condition)
+    return flash[:success] = 'Added to the Cart' if condition
+    flash[:danger] = 'Something wrong'
   end
 
-  def  increment_quantity
-    @existing_order.last.update_column(:quantity, @existing_order.last.quantity + order_item_params[:quantity].to_i)
+  def handle_as_guest
+    cookies[:order] ||= '[]'
+    @new_item = [{ book_id: "#{order_item_params[:book_id]}", quantity: "#{order_item_params[:quantity]}" }]
+    @items_from_cookies = JSON.parse( cookies[:order] )
+    dublicate_index =  @items_from_cookies.index{ |item| item["book_id"] == @new_item[0][:book_id] }
+    cookies[:order] = JSON.generate( add_book_to_order(dublicate_index) )
+    flash_msg(true)
   end
 
-  def save
-    @order.save
+  def update_cookie_at_index!(cookie, dublicate_index)
+    result = cookie[dublicate_index]['quantity'].to_i
+    result += @new_item[0][:quantity].to_i
+    cookie[dublicate_index]['quantity'] = result
+    cookie
   end
 
-  def retrieve_order
-    @order = current_order
+  def add_book_to_order(dublicate_index)
+    return @new_item.concat(@items_from_cookies) unless dublicate_index
+    update_cookie_at_index!(@items_from_cookies, dublicate_index)
+  end
+
+  def handle_as_user
+    @order_item = @order.add_book(order_item_params)
+    flash_msg(@order_item.save)
   end
 
   def order_item_params

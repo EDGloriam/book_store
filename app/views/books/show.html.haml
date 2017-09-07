@@ -20,21 +20,21 @@
       %p.lead.small
         = prepare_for_view(@book.authors)
       .row
-        = form_for @order_item do |f|
-          = f.hidden_field :book_id, value: @book.id
+        = form_tag (order_items_path)  do
+          = hidden_field_tag "order_item[book_id]", @book.id
+          = hidden_field_tag 'order_item[unit_price]', @book.price
           .col-xs-12.col-md-4
             %p.h1.in-gold-500.mt-10
-              = f.label :unit_price, name: "order_item[unit_price]" do
-                = "#{@book.price}"
+              = label_tag nil, @book.price
           .col-xs-5.col-md-3
             .input-group.general-position
               %a.input-link{href: "#"}
                 %i.fa.fa-minus.line-height-40
-              = f.text_field :quantity, value: 1, class: "form-control quantity-input", min: 1
+              = text_field_tag 'order_item[quantity]', 1, class: "form-control quantity-input", min: 1
               %a.input-link{href: "#"}
                 %i.fa.fa-plus.line-height-40
           .col-xs-7.col-md-5
-            = f.submit "Add to Cart", class: 'btn btn-default pull-right general-position'
+            = button_tag "Add to Cart", {type: 'submit', class: 'btn btn-default pull-right general-position'}
       .general-info-wrap.divider-lg
         %p Description
         %p.lead.small.line-height-2

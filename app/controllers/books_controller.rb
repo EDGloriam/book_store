@@ -6,7 +6,6 @@ class BooksController < ApplicationController
     else
       @batch_of_books = Book.all
     end
-    @order_item = current_order.order_items.create
   end
 
   def show

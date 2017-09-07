@@ -8,16 +8,6 @@ class OrderItem < ApplicationRecord
 
   before_save :finalize
 
-  # def unit_price
-  #   puts "=================unit_price========="
-  #   book.price
-  # end
-
-  # def total_price
-  #   puts "=================total_price========="
-  #   unit_price * quantity
-  # end
-
 private
   def book_present
     puts "=================book_present========="

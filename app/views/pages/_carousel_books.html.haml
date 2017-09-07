@@ -12,8 +12,7 @@
         %p.lead.small
           = prepare_for_view(book.authors)
         .general-align
-          = form_for @order_item  do |f|
-            = f.text_field :book_id, hidden: true, name: "order_item[book_id]", value: "#{book.id}"
-            = f.text_field :quantity, hidden: true, name: "order_item[quantity]", value: 1
-            = f.button 'Buy Now', type: 'submit', class: 'btn btn-default'
-
+          = form_tag (order_items_path)  do
+            = hidden_field_tag "order_item[book_id]", "#{book.id}"
+            = hidden_field_tag "order_item[quantity]", 1
+            = button_tag 'Buy Now', type: 'submit', class: 'btn btn-default'
