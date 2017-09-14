@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   match '/settings', to: 'profiles#update', via: 'patch'
 
   resources :books, :orders, :reviews
-  resource :cart, only: [:show]
+  resource :cart, only: [:show, :update]
   resources :order_items, only: [:create, :update, :destroy]
 end
 

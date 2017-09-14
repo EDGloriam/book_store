@@ -10,7 +10,7 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
-    = console
+    / = console
     %header.navbar.navbar-default
       .container
         .navbar-header
@@ -23,11 +23,11 @@
         = link_to  cart_path, class: "shop-link pull-right visible-xs" do
           %span.shop-icon
             %span.shop-quantity
-              = books_in_cart(current_order)
+              = books_in_cart
         = link_to  cart_path, class: "shop-link pull-right hidden-xs" do
           %span.shop-icon
             %span.shop-quantity
-              = books_in_cart(current_order)
+              = books_in_cart
         #navbar.navbar-collapse.collapse.pl-30{'aria-expanded': "false"}
           .visible-xs
             %button.close{type: "button", 'aria-label': "Close"}
@@ -68,7 +68,7 @@
                       %li
                         = link_to "Settings", settings_path
                       %li
-                        = link_to "Orders", settings_path
+                        = link_to "Orders", orders_path
                       %li.divider{role: "separator"}
                         %li
                           =link_to("Log out", destroy_user_session_path, method: :delete)
@@ -91,7 +91,7 @@
                 %a.nav-link{href: "#"} Shop
               -if user_signed_in?
                 %li
-                  %a.nav-link{href: "#"} Orders
+                  = link_to "Orders", orders_path, class: 'nav-link'
                 %li
                   = link_to "Settings",  settings_path, class: 'nav-link'
           .col-sm-3

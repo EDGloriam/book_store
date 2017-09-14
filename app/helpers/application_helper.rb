@@ -6,8 +6,10 @@ module ApplicationHelper
     'error from books_helper.rb'
   end
 
-  def books_in_cart(order)
-    return 0 unless order
-    order.order_items.collect { |item| item.quantity }.sum
+  def books_in_cart
+    return 0 unless cookies[:order_id]
+    # order.order_items.collect { |item| item.quantity }.sum
+    Order.find_by(id: cookies[:order_id]).order_items.count
+    # order.order_items.count
   end
 end

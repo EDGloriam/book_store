@@ -1,11 +1,13 @@
 class Order < ApplicationRecord
+  enum order_status: [:in_progress, :in_queue, :in_delivery, :delivered, :canceled]
+
   belongs_to :user, optional: true
-  belongs_to :order_status
   has_many :order_items, dependent: :destroy
 
-  before_validation :set_order_status
   before_validation :update_subtotal
-  after_create :generate_order_number
+  after_create :generate_number, :set_order_status
+
+  scope :in_progress, -> {where(status_order: 'in_progress')}
 
   def subtotal
     self.order_items.collect { |oi|  oi.valid? ? (oi.quantity * oi.unit_price) : 0 }.sum
@@ -22,15 +24,19 @@ class Order < ApplicationRecord
   end
 
 private
-  def generate_order_number
-    self.number= "R#{(self[:id]+100220000)}"
+  def generate_number
+    puts "==========SETUPING NUMBER==============="
+    self.update(number: "R#{(self[:id].to_i + 100220000)}")
   end
 
   def set_order_status
-    self.order_status_id = 1
+    # debugger
+    puts "==========SETUPING STATUS==============="
+    self.in_progress! if order_status.nil?
   end
 
   def update_subtotal
+    puts "==========UP S U B T O T A L==============="
     self.subtotal = subtotal
   end
 end

@@ -93,13 +93,12 @@ ActiveRecord::Schema.define(version: 20170901053954) do
 
   create_table "orders", force: :cascade do |t|
     t.string   "number"
-    t.decimal  "subtotal",        precision: 6, scale: 2
-    t.decimal  "total",           precision: 6, scale: 2
-    t.integer  "order_status_id"
-    t.datetime "created_at",                              null: false
-    t.datetime "updated_at",                              null: false
+    t.decimal  "subtotal",     precision: 6, scale: 2
+    t.decimal  "total",        precision: 6, scale: 2
+    t.integer  "order_status"
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
     t.integer  "user_id"
-    t.index ["order_status_id"], name: "index_orders_on_order_status_id", using: :btree
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -137,7 +136,6 @@ ActiveRecord::Schema.define(version: 20170901053954) do
   add_foreign_key "dimensions", "books"
   add_foreign_key "order_items", "books"
   add_foreign_key "order_items", "orders"
-  add_foreign_key "orders", "order_statuses"
   add_foreign_key "reviews", "books"
   add_foreign_key "reviews", "users"
 end

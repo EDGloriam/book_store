@@ -12,6 +12,5 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
     @reviews = Review.where(book_id: params[:id], verified: true).order(created_at: :desc)
     @review = Review.new
-    @order_item = current_order.order_items.create
   end
 end

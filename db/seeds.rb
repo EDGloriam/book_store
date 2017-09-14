@@ -7,7 +7,7 @@ def rand_float
 end
 
 100.times { Author.create(name: FFaker::Book.author) }  #creation Authors
-200.times do |i|
+1.upto(200) do |i|
   Author.find_by(id: rand(1..100)).books.create(  #creation Books
     name: FFaker::Book.title,
     photo: FFaker::Book.cover,
@@ -17,9 +17,8 @@ end
     publication: FFaker::Vehicle.year,
     materials: 'Hardcove, glossy paper',
     active: 'true')
-  Book.find_by(id: i+1).create_dimension(
+  Book.find_by(id: i).create_dimension(
     h: rand_float,
     w: rand_float,
     d: rand_float)
-  OrderStatus.create(name:'in progress') if i == 0
 end

@@ -1,6 +1,6 @@
 class Book < ApplicationRecord
   has_one :dimension
-  has_and_belongs_to_many :authors
+  has_and_belongs_to_many :authors, optional: true
   has_many :reviews
   has_many :order_items
 

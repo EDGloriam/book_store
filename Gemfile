@@ -9,7 +9,7 @@ gem 'omniauth-facebook'
 gem 'rails_admin', '~> 1.2'
 gem 'ffaker'
 gem "letter_opener", :group => :development
-
+gem 'cancancan'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.0'
