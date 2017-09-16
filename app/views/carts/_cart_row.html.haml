@@ -1,24 +1,21 @@
-%tr
+%tr{order_item_id: "#{order_item.id}"}
   %td
     .general-img-wrap-table
-      %img.cart-img-shadow.pull-left{src: "#{book.photo}", alt: "design-book"}
+      %img.cart-img-shadow.pull-left{src: "#{order_item.book.photo}", alt: "design-book"}
   %td
     %p.title
-      = book.name
+      = order_item.book.name
   %td
-    %span.font-16.in-gold-500
-      = book.price
+    %span.font-16.in-gold-500 &euro;#{order_item.book.price}
   %td
     .input-group
       %a.input-link{href: "#"}
         %i.fa.fa-minus.line-heaght-40
-      = f.text_field :quantity, value: order_item.quantity, class: "form-control quantity-input", type: "text", min: 1
+      = text_field_tag :quantity, order_item.quantity, class: "form-control quantity-input", min: 1
       %a.input-link{href: "#"}
         %i.fa.fa-plus.line-heaght-40
   %td
-    %span.font-16.in-gold-500
-      = order_item[:total_price]
+    %span.font-16.in-gold-500#total_price &euro;#{order_item[:total_price]}
   %td
     = link_to order_item, { data: { confirm: "Are you sure you wish to delete the book '#{order_item.book.name}' from your cart?" }, method: :delete, class: "close general-cart-close" } do
       %span{'aria-hidden': "true"} &times;
-%tr

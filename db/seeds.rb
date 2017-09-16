@@ -22,3 +22,5 @@ end
     w: rand_float,
     d: rand_float)
 end
+
+Coupon.create(discount: 0.05)

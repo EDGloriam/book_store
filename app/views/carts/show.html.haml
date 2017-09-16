@@ -1,54 +1,32 @@
 %main.container.general-main-wrap
-  = form_tag (cart_path), method: :patch do
-    %h1.general-title-margin Cart
-    .hidden-xs
-      %table.table.table-hover
-        %tr.no-hover
-          %th.col-pic.pl-0
-            %span.in-grey-600 Product
-          %th.col-title
-          %th.col-price
-            %span.in-grey-600 Price
-          %th.col-quantity
-            %span.in-grey-600 Quantity
-          %th.col-total
-            %span.in-grey-600 SubTotal
-          %th.col-close
-        - if @order_items.size == 0
-          %p.text-center The cart is empty
-        - else
-          - @order_items.each do |order_item|
-            / = render 'carts/cart_row', order_item: order_item, show_total: true, f: f
-            %tr{order_item_id: "#{order_item.id}"}
-              %td
-                .general-img-wrap-table
-                  %img.cart-img-shadow.pull-left{src: "#{order_item.book.photo}", alt: "design-book"}
-              %td
-                %p.title
-                  = order_item.book.name
-              %td
-                %span.font-16.in-gold-500
-                  = order_item.book.price
-              %td
-                .input-group
-                  %a.input-link{href: "#"}
-                    %i.fa.fa-minus.line-heaght-40
-                  = text_field_tag :quantity, order_item.quantity, class: "form-control quantity-input", min: 1
-                  %a.input-link{href: "#"}
-                    %i.fa.fa-plus.line-heaght-40
-              %td
-                %span.font-16.in-gold-500#total_price
-                  = order_item[:total_price]
-              %td
-                = link_to order_item, { data: { confirm: "Are you sure you wish to delete the book '#{order_item.book.name}' from your cart?" }, method: :delete, class: "close general-cart-close" } do
-                  %span{'aria-hidden': "true"} &times;
-            %tr
-    .general-order-wrap
+  %h1.general-title-margin Cart
+  .hidden-xs
+    %table.table.table-hover
+      %tr.no-hover
+        %th.col-pic.pl-0
+          %span.in-grey-600 Product
+        %th.col-title
+        %th.col-price
+          %span.in-grey-600 Price
+        %th.col-quantity
+          %span.in-grey-600 Quantity
+        %th.col-total
+          %span.in-grey-600 SubTotal
+        %th.col-close
+      - if @order_items.size == 0
+        %p.text-center The cart is empty
+      - else
+        - @order_items.each do |order_item|
+          = render 'carts/cart_row', order_item: order_item, show_total: true
+  .general-order-wrap
+    = form_tag (cart_path), method: :patch do
       .row
         .col-sm-4
           .input-group.general-input-group
             %label.input-label Enter Your Coupon Code
             = text_field_tag "cart[coupon]", nil,class: 'form-control mb-30', type: "text", placeholder: "Enter Your Coupon Code "
+            - if @order.discount_applied
+              %p.in-gold-500.font-18 Your coupon successful applied
             %div
               %button.btn.btn-primary.mr-5.mb-15.visible-xs-inline-block Apply Coupon
               = button_tag "Update cart", {type: 'submit', class: 'btn btn-primary mb-15 res-block'}
@@ -60,17 +38,16 @@
                 %td
                   %p.font-16 Subtotal:
                 %td
-                  %p.font-16
-                    = @order.subtotal
+                  %p.font-16 &euro;#{@order.subtotal}
               %tr
                 %td
                   %p.font-16 Coupon:
                 %td
-                  %p.font-16 €0.00
+                  %p.font-16 &euro;#{@order.discount_amount}
               %tr
                 %td
                   %strong.font-18 Order Total:
                 %td
-                  %strong.font-18 €117.69
+                  %strong.font-18 &euro;#{@order.total}
             %button.btn.btn-default.mb-20.visible-xs-inline-block Checkout
     %button.btn.btn-default.mb-20.hidden-xs.center-block Checkout

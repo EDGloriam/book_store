@@ -18,7 +18,7 @@ class OrderItemsController < ApplicationController
   end
 
   def update
-    order_item = OrderItem.find_by(id: order_item_params[:oi_id])
+    order_item = OrderItem.find(params[:id])
     order_item.update(quantity: order_item_params[:quantity])
     render json: order_item
   end
@@ -32,6 +32,6 @@ private
 
 
   def order_item_params
-    params.require(:order_item).permit(:book_id, :quantity, :oi_id)
+    params.require(:order_item).permit(:book_id, :quantity)
   end
 end

@@ -1,5 +1,4 @@
 class CartsController < ApplicationController
-  # include CurrentOrder
   before_action :set_order
 
   def show
@@ -7,9 +6,19 @@ class CartsController < ApplicationController
   end
 
   def update
-    @order.update_column( :subtotal, @order.subtotal)
-    coupon = Coupon.find_by( code: cart_params[:coupon] )
-    @order.update_column( :total, subtotal - subtotal * coupon.try_to_use_) if coupon
+    @order.update_attribute(:subtotal, @order.subtotal)
+    coupon = Coupon.find_by(code: cart_params[:coupon])
+
+    if (coupon.present? && coupon.used)
+      flash[:danger] = "This coupon has been already used"
+    elsif @order.discount_applied
+      flash[:danger] = "You can apply one coupon only"
+    elsif coupon.present?
+      @order.apply_coupon(coupon.apply)
+    end
+
+    @order.update_attribute(:total, @order.total)
+    redirect_to cart_path
   end
 
   private

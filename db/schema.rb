@@ -58,7 +58,8 @@ ActiveRecord::Schema.define(version: 20170901053954) do
 
   create_table "coupons", force: :cascade do |t|
     t.string   "code"
-    t.decimal  "subtotal",   precision: 6, scale: 2
+    t.boolean  "used", degault: false
+    t.decimal  "discount",   precision: 6, scale: 3
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
   end
@@ -76,9 +77,9 @@ ActiveRecord::Schema.define(version: 20170901053954) do
   create_table "order_items", force: :cascade do |t|
     t.integer  "book_id"
     t.integer  "order_id"
-    t.decimal  "unit_price",  precision: 6, scale: 2
+    t.decimal  "unit_price",  precision: 6, scale: 3
     t.integer  "quantity"
-    t.decimal  "total_price", precision: 6, scale: 2
+    t.decimal  "total_price", precision: 6, scale: 3
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.index ["book_id"], name: "index_order_items_on_book_id", using: :btree
@@ -93,11 +94,13 @@ ActiveRecord::Schema.define(version: 20170901053954) do
 
   create_table "orders", force: :cascade do |t|
     t.string   "number"
-    t.decimal  "subtotal",     precision: 6, scale: 2
-    t.decimal  "total",        precision: 6, scale: 2
+    t.decimal  "subtotal",         precision: 6, scale: 3, default: "0.0"
+    t.decimal  "total",            precision: 6, scale: 3, default: "0.0"
+    t.boolean  "discount_applied"
+    t.decimal  "discount_amount",  precision: 6, scale: 3, default: "0.0"
     t.integer  "order_status"
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
+    t.datetime "created_at",                                               null: false
+    t.datetime "updated_at",                                               null: false
     t.integer  "user_id"
   end
 
