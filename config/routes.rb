@@ -8,8 +8,10 @@ Rails.application.routes.draw do
   match '/settings', to: 'profiles#show', via: 'get'
   match '/settings', to: 'profiles#update', via: 'patch'
 
+  resources :check_out_pages
   resources :books, :orders, :reviews
   resource :cart, only: [:show, :update]
   resources :order_items, only: [:create, :update, :destroy]
+  resources :after_signup, only: [:show, :new, :create]
 end
 

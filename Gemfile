@@ -10,6 +10,9 @@ gem 'rails_admin', '~> 1.2'
 gem 'ffaker'
 gem "letter_opener", :group => :development
 gem 'cancancan'
+gem 'wicked'
+# gem 'carrierwave', '~> 1.0'
+# gem 'fog'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.0'

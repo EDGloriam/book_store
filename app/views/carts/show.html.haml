@@ -1,53 +1,53 @@
 %main.container.general-main-wrap
   %h1.general-title-margin Cart
-  .hidden-xs
-    %table.table.table-hover
-      %tr.no-hover
-        %th.col-pic.pl-0
-          %span.in-grey-600 Product
-        %th.col-title
-        %th.col-price
-          %span.in-grey-600 Price
-        %th.col-quantity
-          %span.in-grey-600 Quantity
-        %th.col-total
-          %span.in-grey-600 SubTotal
-        %th.col-close
-      - if @order_items.size == 0
-        %p.text-center The cart is empty
-      - else
+  - if @order_items.size == 0
+    %p.text-center The cart is empty
+  - else
+    .hidden-xs
+      %table.table.table-hover
+        %tr.no-hover
+          %th.col-pic.pl-0
+            %span.in-grey-600 Product
+          %th.col-title
+          %th.col-price
+            %span.in-grey-600 Price
+          %th.col-quantity
+            %span.in-grey-600 Quantity
+          %th.col-total
+            %span.in-grey-600 SubTotal
+          %th.col-close
         - @order_items.each do |order_item|
           = render 'carts/cart_row', order_item: order_item, show_total: true
-  .general-order-wrap
-    = form_tag (cart_path), method: :patch do
-      .row
-        .col-sm-4
-          .input-group.general-input-group
-            %label.input-label Enter Your Coupon Code
-            = text_field_tag "cart[coupon]", nil,class: 'form-control mb-30', type: "text", placeholder: "Enter Your Coupon Code "
-            - if @order.discount_applied
-              %p.in-gold-500.font-18 Your coupon successful applied
-            %div
-              %button.btn.btn-primary.mr-5.mb-15.visible-xs-inline-block Apply Coupon
-              = button_tag "Update cart", {type: 'submit', class: 'btn btn-primary mb-15 res-block'}
-        .col-sm-8
-          .res-mr-200.text-center.general-text-right
-            %p.in-gold-500.font-18 Order Summary
-            %table.general-summary-table.general-summary-table-right.general-text-right
-              %tr
-                %td
-                  %p.font-16 Subtotal:
-                %td
-                  %p.font-16 &euro;#{@order.subtotal}
-              %tr
-                %td
-                  %p.font-16 Coupon:
-                %td
-                  %p.font-16 &euro;#{@order.discount_amount}
-              %tr
-                %td
-                  %strong.font-18 Order Total:
-                %td
-                  %strong.font-18 &euro;#{@order.total}
-            %button.btn.btn-default.mb-20.visible-xs-inline-block Checkout
-    %button.btn.btn-default.mb-20.hidden-xs.center-block Checkout
+    .general-order-wrap
+      = form_tag (cart_path), method: :patch do
+        .row
+          .col-sm-4
+            .input-group.general-input-group
+              %label.input-label Enter Your Coupon Code
+              = text_field_tag "cart[coupon]", nil,class: 'form-control mb-30', type: "text", placeholder: "Enter Your Coupon Code "
+              - if @order.discount_applied
+                %p.in-gold-500.font-18 Your coupon successful applied
+              %div
+                %button.btn.btn-primary.mr-5.mb-15.visible-xs-inline-block Apply Coupon
+                = button_tag "Update cart", {type: 'submit', class: 'btn btn-primary mb-15 res-block'}
+          .col-sm-8
+            .res-mr-200.text-center.general-text-right
+              %p.in-gold-500.font-18 Order Summary
+              %table.general-summary-table.general-summary-table-right.general-text-right
+                %tr
+                  %td
+                    %p.font-16 Subtotal:
+                  %td
+                    %p.font-16 &euro;#{@order.subtotal}
+                %tr
+                  %td
+                    %p.font-16 Coupon:
+                  %td
+                    %p.font-16 &euro;#{@order.discount_amount}
+                %tr
+                  %td
+                    %strong.font-18 Order Total:
+                  %td
+                    %strong.font-18 &euro;#{@order.total}
+              = link_to 'Checkout', check_out_pages_path, class: 'btn btn-default mb-20 visible-xs-inline-block'
+      = link_to 'Checkout', check_out_pages_path, class: 'btn btn-default mb-20 hidden-xs-inline-block'
