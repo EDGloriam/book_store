@@ -1,29 +1,35 @@
-= form_for settings_path, method: "patch" do |f|
-  = f.text_field :type, hidden: true, name: "profile[type]", value: "#{address_type}"
-  .visible-xs.visible-sm
-    %h3.general-subtitle.mt-0
-      = "#{address_type.capitalize} Address"
-  .form-group.has-error
-    = f.label :firstName, value: 'First Name', class: 'control-label input-label'
-    = f.text_field :firstName, id: 'firstName', class: 'form-control', name:"profile[first_name]", type: "text", value: "#{find_attribute_in(:first_name, address_type)}"
-    %span.help-block Please enter your first name
-  .form-group
-    = f.label :lastName, value: 'Last Name', class: 'control-label input-label'
-    = f.text_field :lastName, id: 'lastName', class: 'form-control', name:"profile[last_name]", type: "text", value: "#{find_attribute_in(:last_name, address_type)}"
-  .form-group
-    = f.label :address, value: 'Address', class: 'control-label input-label'
-    = f.text_field :address, id: 'address', class: 'form-control', name:"profile[address]", type: "text", value: "#{find_attribute_in(:address, address_type)}"
-  .form-group
-    = f.label :city, value: 'City', class: 'control-label input-label'
-    = f.text_field :city, id: 'city', class: 'form-control', name:"profile[city]", type: "text", value: "#{find_attribute_in(:city, address_type)}"
-  .form-group
-    = f.label :zip, value: 'Zip', class: 'control-label input-label'
-    = f.text_field :zip, id: 'zip', class: 'form-control', name:"profile[zip]", type: "text", value: "#{find_attribute_in(:zip, address_type)}"
-  .form-group
-    = f.label :country, value: 'Country', class: 'control-label input-label'
-    = f.text_field :country, id: 'country', class: 'form-control', name:"profile[country]", type: "text", value: "#{find_attribute_in(:country, address_type)}"
-  .form-group.mb-60
-    = f.label :phone, value: 'Phone', class: 'control-label input-label'
-    = f.text_field :phone, id: 'phone', class: 'form-control', name:"profile[phone]", type: "tel", value: "#{find_attribute_in(:phone, address_type)}"
+= form_for @user, url: settings_path do |f|
+  = f.fields_for address_obj do |addr|
+    .visible-xs.visible-sm
+      %h3.general-subtitle.mt-0
+        = "#{address_obj.class.to_s.split('A')[0]} Address"
+    .form-group{ class: "#{address_obj.errors.messages[:first_name].empty? ? '' : 'has-error'}" }
+      = addr.label :first_name, value: 'First Name', class: 'control-label input-label'
+      = addr.text_field :first_name, class: 'form-control', type: "text", placeholder: "#{find_attribute_in(:first_name, address_obj)}"
+      %span.help-block= error_msg(:first_name, address_obj)
+    .form-group{ class: "#{address_obj.errors.messages[:last_name].empty? ? '' : 'has-error'}" }
+      = addr.label :last_name, value: 'Last Name', class: 'control-label input-label'
+      = addr.text_field :last_name, class: 'form-control', type: "text", placeholder: "#{find_attribute_in(:last_name, address_obj)}"
+      %span.help-block= error_msg(:last_name, address_obj)
+    .form-group{ class: "#{address_obj.errors.messages[:address].empty? ? '' : 'has-error'}" }
+      = addr.label :address, value: 'Address', class: 'control-label input-label'
+      = addr.text_field :address, class: 'form-control', type: "text", placeholder: "#{find_attribute_in(:address, address_obj)}"
+      %span.help-block= error_msg(:address, address_obj)
+    .form-group{ class: "#{address_obj.errors.messages[:city].empty? ? '' : 'has-error'}" }
+      = addr.label :city, value: 'City', class: 'control-label input-label'
+      = addr.text_field :city, class: 'form-control', type: "text", placeholder: "#{find_attribute_in(:city, address_obj)}"
+      %span.help-block= error_msg(:city, address_obj)
+    .form-group{ class: "#{address_obj.errors.messages[:zip].empty? ? '' : 'has-error'}" }
+      = addr.label :zip, value: 'Zip', class: 'control-label input-label'
+      = addr.text_field :zip, class: 'form-control', type: "text", placeholder: "#{find_attribute_in(:zip, address_obj)}"
+      %span.help-block= error_msg(:zip, address_obj)
+    .form-group{ class: "#{address_obj.errors.messages[:country].empty? ? '' : 'has-error'}" }
+      = addr.label :country, value: 'Country', class: 'control-label input-label'
+      = addr.text_field :country, class: 'form-control', type: "text", placeholder: "#{find_attribute_in(:country, address_obj)}"
+      %span.help-block= error_msg(:country, address_obj)
+    .form-group{ class: "#{address_obj.errors.messages[:phone].empty? ? '' : 'has-error'}" }
+      = addr.label :phone, value: 'Phone', class: 'control-label input-label'
+      = addr.text_field :phone, class: 'form-control', type: "text", placeholder: "#{find_attribute_in(:phone, address_obj)}"
+      %span.help-block= error_msg(:phone, address_obj)
   .text-center.general-text-align
     = f.submit :save, class: 'btn btn-default', value: 'Save'

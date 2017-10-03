@@ -9,4 +9,9 @@ module BooksHelper
     "Reviews (#{reviews.count})"
   end
 
+  def reviewer_name(review)
+    profile = review.user.billing_address
+    return "#{profile[:first_name]}, #{profile[:last_name]}" if profile
+    "#{review.user.email.split('@')[0]}"
+  end
 end

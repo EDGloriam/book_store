@@ -69,7 +69,7 @@
               .max-240
                 .general-message-verified Verified Reviewer
                 .general-message-name
-                  = "#{review.user.billing_address[:first_name]}, #{review.user.billing_address[:last_name]}"
+                  = reviewer_name(review)
             .mb-15
               %i.fa.fa-star.rate-star
               %i.fa.fa-star.rate-star

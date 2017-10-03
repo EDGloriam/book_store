@@ -15,9 +15,9 @@
             %h3.general-subtitle.mt-0 Shipping Address
       .row
         .col-md-5.mb-40
-          = render partial: 'form', locals: { address_type: 'billing_address'}
+          = render partial: 'form', locals: { address_obj: @billing_address}
         .col-md-5.col-md-offset-1.mb-25
-          = render partial: 'form', locals: { address_type: 'shipping_address'}
+          = render partial: 'form', locals: { address_obj: @shipping_address}
     #privacy.tab-pane.fade{role: "tabpanel"}
       .row.mb-60
         .col-sm-5

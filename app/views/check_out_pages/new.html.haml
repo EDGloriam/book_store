@@ -16,49 +16,49 @@
           %p.general-info-text all fields are required
         .form-group
           = f.label :billing_first_name, value: 'First Name', class: 'control-label input-label'
-          = f.text_field :billing_first_name, id: 'first_name', class: 'form-control', type: "text", placeholder: 'First Name'
+          = f.text_field :billing_first_name, id: 'billing_first_name', class: 'form-control', name:"billing_first_name", type: "text", placeholder: 'First Name'
         .form-group
           = f.label :billing_last_name, value: 'Last Name', class: 'control-label input-label'
-          = f.text_field :billing_last_name, id: 'last_name', class: 'form-control', type: "text", placeholder: 'Last Name'
+          = f.text_field :billing_last_name, id: 'billing_last_name', class: 'form-control', name:"billing_last_name", type: "text", placeholder: 'Last Name'
         .form-group
           = f.label :billing_address, value: 'Address', class: 'control-label input-label'
-          = f.text_field :billing_address, id: 'address', class: 'form-control', type: "text", placeholder: "Address"
+          = f.text_field :billing_address, id: 'billing_address', class: 'form-control', name:"billing_address", type: "text", placeholder: "Address"
         .form-group
           = f.label :billing_city, value: 'City', class: 'control-label input-label'
-          = f.text_field :billing_city, id: 'city', class: 'form-control', type: "text", placeholder: "City"
+          = f.text_field :billing_city, id: 'billing_city', class: 'form-control', name:"billing_city", type: "text", placeholder: "City"
         .form-group
           = f.label :billing_zip, value: 'Zip', class: 'control-label input-label'
-          = f.text_field :billing_zip, id: 'zip', class: 'form-control', type: "text", placeholder: "Zip"
+          = f.text_field :billing_zip, id: 'billing_zip', class: 'form-control', name:"billing_zip", type: "text", placeholder: "Zip"
         .form-group
           = f.label :billing_сountry, value: 'Country', class: 'control-label input-label'
-          = f.text_field :billing_сountry, id: 'сountry', class: 'form-control', type: "text", placeholder: "Country"
+          = f.text_field :billing_сountry, id: 'billing_сountry', class: 'form-control', name:"billing_сountry", type: "text", placeholder: "Country"
         .form-group
           = f.label :billing_phone, value: 'Phone', class: 'control-label input-label'
-          = f.text_field :billing_phone, id: 'phone', class: 'form-control', type: "text", placeholder: "Example +355 66 123 4567"
+          = f.text_field :billing_phone, id: 'billing_phone', class: 'form-control', name:"billing_phone", type: "text", placeholder: "Phone", placeholder: "Example +355 66 123 4567"
       .col-md-5.col-md-offset-1.mb-60
         .visible-xs.visible-sm
           %h3.general-subtitle Shipping Address
         .form-group
           = f.label :shipping_first_name, value: 'First Name', class: 'control-label input-label'
-          = f.text_field :shipping_first_name, id: 'shipping_first_name', class: 'form-control', type: "text", placeholder: 'First Name'
+          = f.text_field :shipping_first_name, id: 'shipping_first_name', class: 'form-control', name:"shipping_first_name", type: "text", placeholder: 'First Name'
         .form-group
           = f.label :shipping_last_name, value: 'Last Name', class: 'control-label input-label'
-          = f.text_field :shipping_last_name, id: 'shipping_last_name', class: 'form-control', type: "text", placeholder: 'Last Name'
+          = f.text_field :shipping_last_name, id: 'shipping_last_name', class: 'form-control', name:"shipping_last_name", type: "text", placeholder: 'Last Name'
         .form-group
           = f.label :shipping_address, value: 'Address', class: 'control-label input-label'
-          = f.text_field :shipping_address, id: 'shipping_address', class: 'form-control', type: "text", placeholder: "Address"
+          = f.text_field :shipping_address, id: 'shipping_address', class: 'form-control', name:"shipping_address", type: "text", placeholder: "Address"
         .form-group
           = f.label :shipping_city, value: 'City', class: 'control-label input-label'
-          = f.text_field :shipping_city, id: 'shipping_city', class: 'form-control', type: "text", placeholder: "City"
+          = f.text_field :shipping_city, id: 'shipping_city', class: 'form-control', name:"shipping_city", type: "text", placeholder: "City"
         .form-group
           = f.label :shipping_zip, value: 'Zip', class: 'control-label input-label'
-          = f.text_field :shipping_zip, id: 'shipping_zip', class: 'form-control', type: "text", placeholder: "Zip"
+          = f.text_field :shipping_zip, id: 'shipping_zip', class: 'form-control', name:"shipping_zip", type: "text", placeholder: "Zip"
         .form-group
           = f.label :shipping_сountry, value: 'Country', class: 'control-label input-label'
-          = f.text_field :shipping_сountry, id: 'shipping_сountry', class: 'form-control', type: "text", placeholder: "Country"
+          = f.text_field :shipping_сountry, id: 'shipping_сountry', class: 'form-control', name:"shipping_сountry", type: "text", placeholder: "Country"
         .form-group
           = f.label :shipping_phone, value: 'Phone', class: 'control-label input-label'
-          = f.text_field :shipping_phone, id: 'shipping_phone', class: 'form-control', type: "text", placeholder: "Example +355 66 123 4567"
+          = f.text_field :shipping_phone, id: 'shipping_phone', class: 'form-control', name:"shipping_phone", type: "text", placeholder: "Phone", placeholder: "Example +355 66 123 4567"
         .form-group.checkbox
           %label.checkbox-label
             %input.checkbox-input{type: "checkbox", hidden: "true"}

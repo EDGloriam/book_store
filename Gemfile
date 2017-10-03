@@ -11,6 +11,8 @@ gem 'ffaker'
 gem "letter_opener", :group => :development
 gem 'cancancan'
 gem 'wicked'
+gem 'virtus'
+gem "reform-rails"
 # gem 'carrierwave', '~> 1.0'
 # gem 'fog'
 
