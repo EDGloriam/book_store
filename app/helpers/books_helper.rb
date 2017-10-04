@@ -9,6 +9,14 @@ module BooksHelper
     "Reviews (#{reviews.count})"
   end
 
+  def show_stars(number)
+    content_tag(:div, class: 'mb-15') do
+     1.upto(number) do
+        concat content_tag(:i, '',class: %w(fa fa-star rate-star))
+      end
+    end
+  end
+
   def reviewer_name(review)
     profile = review.user.billing_address
     return "#{profile[:first_name]}, #{profile[:last_name]}" if profile

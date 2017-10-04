@@ -17,7 +17,6 @@ class CheckOutPagesController < ApplicationController
     # debugger
     @form = form_object.new(current_user, permitted_params)
     render_wizard @form
-    puts "#{@form}=================================="
   end
 
 
@@ -32,6 +31,7 @@ class CheckOutPagesController < ApplicationController
   private
 
     def permitted_params
-      params.require(:address_form).permit(:billing_first_name, :billing_last_name, :billing_address, :billing_city, :billing_zip, :billing_сountry, :billing_phone, :shipping_first_name, :shipping_last_name,  :shipping_address,  :shipping_city,  :shipping_zip, :shipping_сountry, :shipping_phone)
+      params.require(:user).permit(:billing_address => Address::ADDRESS_ATTRIBUTES,
+        :shipping_address => Address::ADDRESS_ATTRIBUTES )
     end
 end

@@ -70,12 +70,7 @@
                 .general-message-verified Verified Reviewer
                 .general-message-name
                   = reviewer_name(review)
-            .mb-15
-              %i.fa.fa-star.rate-star
-              %i.fa.fa-star.rate-star
-              %i.fa.fa-star.rate-star
-              %i.fa.fa-star.rate-star
-              %i.fa.fa-star.rate-star
+            = show_stars(review.rate_stars)
             %p
               = review.text
     - if user_signed_in?
@@ -85,12 +80,7 @@
         .form-group
           = f.label :score, value: 'Score', class: 'control-label input-label'
           .mb-15
-            %i.fa.fa-star
-            %i.fa.fa-star
-            %i.fa.fa-star
-            %i.fa.fa-star
-            %i.fa.fa-star
-          = f.text_field :rate_stars,  hidden: true, id: 'score', name:"review[rate_stars]"
+            = f.select :rate_stars, (1..5)
         .form-group
           = f.label :review, value: 'Review', class: 'control-label input-label'
           = f.text_area :text, rows: '4', id: 'review', class: 'form-control', name:"review[text]", type: "text"

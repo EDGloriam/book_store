@@ -1,6 +1,7 @@
 class ReviewsController < ApplicationController
 
   def create
+    # debugger
     review = Review.new(permitted_params)
     if review.save
       flash[:success] = "Thanks for Review. It will be published as soon as Admin will approve it"

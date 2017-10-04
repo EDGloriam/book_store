@@ -1,7 +1,7 @@
 %main.container
   %h1.general-title-margin Checkout
   = progress_bar
-  = form_for @form, url: wizard_path, method: "patch", class: 'res-mb-100' do |f|
+  = form_for current_user, url: wizard_path, method: "patch", class: 'res-mb-100' do |form|
     .hidden-xs.hidden-sm
       .row
         .col-md-5
@@ -14,51 +14,11 @@
         .visible-xs.visible-sm
           %h3.general-subtitle Billing Address
           %p.general-info-text all fields are required
-        .form-group
-          = f.label :billing_first_name, value: 'First Name', class: 'control-label input-label'
-          = f.text_field :billing_first_name, id: 'first_name', class: 'form-control', type: "text", placeholder: 'First Name'
-        .form-group
-          = f.label :billing_last_name, value: 'Last Name', class: 'control-label input-label'
-          = f.text_field :billing_last_name, id: 'last_name', class: 'form-control', type: "text", placeholder: 'Last Name'
-        .form-group
-          = f.label :billing_address, value: 'Address', class: 'control-label input-label'
-          = f.text_field :billing_address, id: 'address', class: 'form-control', type: "text", placeholder: "Address"
-        .form-group
-          = f.label :billing_city, value: 'City', class: 'control-label input-label'
-          = f.text_field :billing_city, id: 'city', class: 'form-control', type: "text", placeholder: "City"
-        .form-group
-          = f.label :billing_zip, value: 'Zip', class: 'control-label input-label'
-          = f.text_field :billing_zip, id: 'zip', class: 'form-control', type: "text", placeholder: "Zip"
-        .form-group
-          = f.label :billing_сountry, value: 'Country', class: 'control-label input-label'
-          = f.text_field :billing_сountry, id: 'сountry', class: 'form-control', type: "text", placeholder: "Country"
-        .form-group
-          = f.label :billing_phone, value: 'Phone', class: 'control-label input-label'
-          = f.text_field :billing_phone, id: 'phone', class: 'form-control', type: "text", placeholder: "Example +355 66 123 4567"
+        = render 'shared/addresses',  address_obj: @form.billing, f: form
       .col-md-5.col-md-offset-1.mb-60
         .visible-xs.visible-sm
           %h3.general-subtitle Shipping Address
-        .form-group
-          = f.label :shipping_first_name, value: 'First Name', class: 'control-label input-label'
-          = f.text_field :shipping_first_name, id: 'shipping_first_name', class: 'form-control', type: "text", placeholder: 'First Name'
-        .form-group
-          = f.label :shipping_last_name, value: 'Last Name', class: 'control-label input-label'
-          = f.text_field :shipping_last_name, id: 'shipping_last_name', class: 'form-control', type: "text", placeholder: 'Last Name'
-        .form-group
-          = f.label :shipping_address, value: 'Address', class: 'control-label input-label'
-          = f.text_field :shipping_address, id: 'shipping_address', class: 'form-control', type: "text", placeholder: "Address"
-        .form-group
-          = f.label :shipping_city, value: 'City', class: 'control-label input-label'
-          = f.text_field :shipping_city, id: 'shipping_city', class: 'form-control', type: "text", placeholder: "City"
-        .form-group
-          = f.label :shipping_zip, value: 'Zip', class: 'control-label input-label'
-          = f.text_field :shipping_zip, id: 'shipping_zip', class: 'form-control', type: "text", placeholder: "Zip"
-        .form-group
-          = f.label :shipping_сountry, value: 'Country', class: 'control-label input-label'
-          = f.text_field :shipping_сountry, id: 'shipping_сountry', class: 'form-control', type: "text", placeholder: "Country"
-        .form-group
-          = f.label :shipping_phone, value: 'Phone', class: 'control-label input-label'
-          = f.text_field :shipping_phone, id: 'shipping_phone', class: 'form-control', type: "text", placeholder: "Example +355 66 123 4567"
+        = render 'shared/addresses',  address_obj: @form.shipping, f: form
         .form-group.checkbox
           %label.checkbox-label
             %input.checkbox-input{type: "checkbox", hidden: "true"}
@@ -67,7 +27,7 @@
             %span.checkbox-text Use Billing Adress
     = render 'order_summary'
     .text-center
-      = f.submit :save, class: 'btn btn-default mb-20', value: 'Save and Continue'
+      = form.submit :save, class: 'btn btn-default mb-20', value: 'Save and Continue'
 
 
 
