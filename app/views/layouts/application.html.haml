@@ -21,13 +21,9 @@
             %span.icon-bar
           %a.navbar-brand Bookstore
         = link_to  cart_path, class: "shop-link pull-right visible-xs" do
-          %span.shop-icon
-            %span.shop-quantity
-              = books_in_cart
+          %span.shop-icon= books_in_cart
         = link_to  cart_path, class: "shop-link pull-right hidden-xs" do
-          %span.shop-icon
-            %span.shop-quantity
-              = books_in_cart
+          %span.shop-icon= books_in_cart
         #navbar.navbar-collapse.collapse.pl-30{'aria-expanded': "false"}
           .visible-xs
             %button.close{type: "button", 'aria-label': "Close"}
@@ -77,6 +73,7 @@
                     = link_to("Sign up", new_user_registration_path, class: 'in-gold-500')
                   %li
                     = link_to("Log in",  new_user_session_path, class: 'in-gold-500')
+    = @order.inspect
     %h1.cart-text
     = render './layouts/flash'
     = yield

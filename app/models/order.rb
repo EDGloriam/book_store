@@ -1,13 +1,15 @@
 class Order < ApplicationRecord
   enum order_status: [:in_progress, :in_queue, :in_delivery, :delivered, :canceled]
 
+  belongs_to :credit_card, optional: true
   belongs_to :user, optional: true
+  belongs_to :delivery, optional: true
   has_many :order_items, dependent: :destroy
 
   before_validation :update_subtotal
   after_create :generate_number, :set_order_status
 
-  scope :in_progress, -> {where(status_order: 'in_progress')}
+  scope :in_progress, -> {where(order_status: 'in_progress')}
 
   def subtotal
     self.order_items.collect { |oi|  oi.valid? ? (oi.quantity * oi.unit_price) : 0 }.sum

@@ -2,50 +2,8 @@
   %h1.general-title-margin Checkout
   = progress_bar
   %h3.general-subtitle Credit Card
-  .visible-xs
-    .general-cart-item.divider-lg-bottom
-      %table.table
-        %tr
-          %td.col-half
-            %span.in-grey-600 Method
-          %td.col-half
-            .form-group.radio.mt-0.mb-0
-              %label.radio-label
-                %input.radio-input{type: "radio", hidden: "true"}
-                %span.radio-icon
-                %span.radio-text Delivery Next Day!
-        %tr
-          %td
-            %span.in-grey-600 Days
-          %td
-            %span.font-16.fw-300 3 to 7 days
-        %tr
-          %td
-            %span.in-grey-600 Price
-          %td
-            %span.font-16.in-gold-500 €5.00
-    .general-cart-item.divider-lg-bottom.mb-30
-      %table.table
-        %tr
-          %td.col-half
-            %span.in-grey-600 Method
-          %td.col-half
-            .form-group.radio.mt-0.mb-0
-              %label.radio-label
-                %input.radio-input{type: "radio", hidden: "true"}
-                %span.radio-icon
-                %span.radio-text Delivery Next Day!
-        %tr
-          %td
-            %span.in-grey-600 Days
-          %td
-            %span.font-16.fw-300 3 to 7 days
-        %tr
-          %td
-            %span.in-grey-600 Price
-          %td
-            %span.font-16.in-gold-500 €5.00
   .hidden-xs.mb-res-50
+  = form_for @order, url: wizard_path do |f|
     %table.table.table-hover
       %thead
         %tr
@@ -56,28 +14,18 @@
           %th
             %span.in-grey-600 Price
       %tbody
-        %tr
-          %td
-            .form-group.radio.mt-0.mb-0
-              %label.radio-label
-                %input.radio-input{type: "radio", hidden: "true"}
-                %span.radio-icon
-                %span.radio-text Delivery Next Day!
-          %td
-            %span 3 to 7 days
-          %td
-            %span.font-16.in-gold-500 €28.50
-        %tr
-          %td
-            .form-group.radio.mt-0.mb-0
-              %label.radio-label
-                %input.radio-input{type: "radio", hidden: "true"}
-                %span.radio-icon
-                %span.radio-text Delivery Next Day!
-          %td
-            %span 3 to 7 days
-          %td
-            %span.font-16.in-gold-500 €28.50
-  = render 'order_summary'
-  .text-center
-    %button.btn.btn-default.mb-20 Save and Continue
+        = f.collection_radio_buttons :delivery_id, Delivery.all, :id, :id do |b|
+          %tr
+            %td
+              .form-group.radio.mt-0.mb-0
+                = b.label(class: 'radio-label') do
+                  = b.radio_button(class: 'radio-input', hidden: "true", checked: true)
+                  %span.radio-icon
+                  %span.radio-text= b.object.method
+            %td
+              %span= b.object.days
+            %td
+              %span.font-16.in-gold-500 &euro;#{b.object.price}
+    = render 'order_summary', order: @order
+    .text-center
+      = f.submit "Save and Continue", class: 'btn btn-default mb-20'

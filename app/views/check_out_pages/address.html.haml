@@ -14,18 +14,18 @@
         .visible-xs.visible-sm
           %h3.general-subtitle Billing Address
           %p.general-info-text all fields are required
-        = render 'shared/addresses',  address_obj: @form.billing, f: form
+        = render 'shared/addresses',  address_obj: @form_object.billing, f: form
       .col-md-5.col-md-offset-1.mb-60
         .visible-xs.visible-sm
           %h3.general-subtitle Shipping Address
-        = render 'shared/addresses',  address_obj: @form.shipping, f: form
+        = render 'shared/addresses',  address_obj: @form_object.shipping, f: form
         .form-group.checkbox
-          %label.checkbox-label
-            %input.checkbox-input{type: "checkbox", hidden: "true"}
+          = form.label :user_use_billing, class: 'checkbox-label' do
+            = form.check_box :user_use_billing, class: 'checkbox-input', name: "use_billing", type: "checkbox", hidden: "true", checked: false
             %span.checkbox-icon
               %i.fa.fa-check
             %span.checkbox-text Use Billing Adress
-    = render 'order_summary'
+    = render 'order_summary', order: @order
     .text-center
       = form.submit :save, class: 'btn btn-default mb-20', value: 'Save and Continue'
 

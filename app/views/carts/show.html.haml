@@ -17,7 +17,7 @@
             %span.in-grey-600 SubTotal
           %th.col-close
         - @order_items.each do |order_item|
-          = render 'carts/cart_row', order_item: order_item, show_total: true
+          = render 'carts/cart_row', order_item: order_item
     .general-order-wrap
       = form_tag (cart_path), method: :patch do
         .row

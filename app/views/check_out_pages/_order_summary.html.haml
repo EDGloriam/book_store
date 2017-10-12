@@ -5,14 +5,14 @@
       %td
         %p.font-16 Subtotal:
       %td
-        %p.font-16 &euro;#{@order.subtotal}
+        %p.font-16 &euro;#{show(order, :subtotal)}
     %tr
       %td
-        %p.font-16 Coupon:
+        %p.font-16 Shipping:
       %td
-        %p.font-16 &euro;#{@order.discount_amount}
+        %p.font-16 &euro;#{delivery_price(order)}
     %tr
       %td
         %strong.font-18 Order Total:
       %td
-        %strong.font-18 &euro;#{@order.total}
+        %strong.font-18 &euro;#{show(order, :total)}

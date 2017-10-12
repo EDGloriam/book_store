@@ -1,6 +1,5 @@
 class OrderItemsController < ApplicationController
   respond_to :html, :json
-  # include CurrentOrder
   before_action :set_order, only: [:create, :destroy]
 
   def create

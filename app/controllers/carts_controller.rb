@@ -30,5 +30,8 @@ class CartsController < ApplicationController
     def get_order_items
       return @order.order_items if cookies[:order_id].present?
       current_user.order.in_progress
+
+      # return current_user.orders.in_progress[0] if current_user
+      # @order.order_items if cookies[:order_id].present?
     end
 end

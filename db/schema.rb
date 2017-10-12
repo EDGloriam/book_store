@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170901053954) do
+ActiveRecord::Schema.define(version: 20171009111834) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,15 @@ ActiveRecord::Schema.define(version: 20170901053954) do
     t.index ["book_id"], name: "index_authors_books_on_book_id", using: :btree
   end
 
+  create_table "average_caches", force: :cascade do |t|
+    t.integer  "rater_id"
+    t.string   "rateable_type"
+    t.integer  "rateable_id"
+    t.float    "avg",           null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "books", force: :cascade do |t|
     t.string   "name"
     t.string   "photo"
@@ -58,8 +67,25 @@ ActiveRecord::Schema.define(version: 20170901053954) do
 
   create_table "coupons", force: :cascade do |t|
     t.string   "code"
-    t.boolean  "used", degault: false
+    t.boolean  "used"
     t.decimal  "discount",   precision: 6, scale: 3
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+  end
+
+  create_table "credit_cards", force: :cascade do |t|
+    t.string   "number"
+    t.string   "name"
+    t.string   "mmyy"
+    t.string   "cvv"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "deliveries", force: :cascade do |t|
+    t.string   "method"
+    t.string   "days"
+    t.decimal  "price",      precision: 6, scale: 2
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
   end
@@ -102,6 +128,41 @@ ActiveRecord::Schema.define(version: 20170901053954) do
     t.datetime "created_at",                                               null: false
     t.datetime "updated_at",                                               null: false
     t.integer  "user_id"
+    t.integer  "delivery_id"
+    t.integer  "credit_card_id"
+    t.index ["credit_card_id"], name: "index_orders_on_credit_card_id", using: :btree
+    t.index ["delivery_id"], name: "index_orders_on_delivery_id", using: :btree
+  end
+
+  create_table "overall_averages", force: :cascade do |t|
+    t.string   "rateable_type"
+    t.integer  "rateable_id"
+    t.float    "overall_avg",   null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "rates", force: :cascade do |t|
+    t.integer  "rater_id"
+    t.string   "rateable_type"
+    t.integer  "rateable_id"
+    t.float    "stars",         null: false
+    t.string   "dimension"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["rateable_id", "rateable_type"], name: "index_rates_on_rateable_id_and_rateable_type", using: :btree
+    t.index ["rater_id"], name: "index_rates_on_rater_id", using: :btree
+  end
+
+  create_table "rating_caches", force: :cascade do |t|
+    t.string   "cacheable_type"
+    t.integer  "cacheable_id"
+    t.float    "avg",            null: false
+    t.integer  "qty",            null: false
+    t.string   "dimension"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["cacheable_id", "cacheable_type"], name: "index_rating_caches_on_cacheable_id_and_cacheable_type", using: :btree
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -139,6 +200,8 @@ ActiveRecord::Schema.define(version: 20170901053954) do
   add_foreign_key "dimensions", "books"
   add_foreign_key "order_items", "books"
   add_foreign_key "order_items", "orders"
+  add_foreign_key "orders", "credit_cards"
+  add_foreign_key "orders", "deliveries"
   add_foreign_key "reviews", "books"
   add_foreign_key "reviews", "users"
 end

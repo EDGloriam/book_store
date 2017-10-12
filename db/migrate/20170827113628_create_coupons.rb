@@ -3,7 +3,7 @@ class CreateCoupons < ActiveRecord::Migration[5.0]
     create_table :coupons do |t|
       t.string :code
       t.boolean :used, default: false
-      t.decimal :discount, precision: 6, scale: 3
+      t.decimal :discount, precision: 6, scale: 2
 
       t.timestamps
     end

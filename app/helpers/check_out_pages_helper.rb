@@ -1,4 +1,47 @@
 module CheckOutPagesHelper
+  def show(obj, attr)
+    # debugger
+    obj[attr]
+  end
+
+  def delivery_price(object)
+    return 0 if object[:delivery_id].nil?
+    object.delivery.price
+  end
+
+  def credit_short(object)
+    content_tag(:p, class: 'general-address') do
+      concat("**** **** **** #{object.number[12,4]} ")
+      concat(content_tag(:a,'edit', href: wizard_path(:payment), class: 'general-edit edit'))
+      concat(tag :br)
+      concat("#{object.mmyy}")
+    end
+  end
+
+  def shipment_short(object)
+    content_tag(:p, class: 'general-address') do
+      concat("#{object.method} ")
+      concat(content_tag(:a,'edit', href: wizard_path(:delivery), class: 'general-edit edit'))
+      concat(tag :br)
+      concat("#{object.days}")
+    end
+  end
+
+  def address_short(object)
+    content_tag(:p, class: 'general-address') do
+      concat("#{object.first_name} #{object.last_name} ")
+      concat(content_tag(:a,'edit', href: wizard_path(:address), class: 'general-edit edit')) if step == :confirm
+      concat(tag :br)
+      concat("#{object.address}")
+      concat(tag :br)
+      concat("#{object.city} #{object.zip}")
+      concat(tag :br)
+      concat("#{object.country}")
+      concat(tag :br)
+      concat("Phone #{object.phone}")
+    end
+  end
+
   def progress_bar
     content_tag(:ul, class: 'steps list-inline') do
       i = 0

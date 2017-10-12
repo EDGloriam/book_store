@@ -1,6 +1,6 @@
 $(document).ready ->
   $(document).on 'change', (e) ->
-    if (e.target.nodeName == 'INPUT')
+    if (e.target.id == 'quantity')
       id = $(e.target).parents("tr").attr("order_item_id")
       $.ajax
         url: "order_items/#{id}"
