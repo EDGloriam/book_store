@@ -10,18 +10,21 @@ class OrderItem < ApplicationRecord
 
 private
   def book_present
+    puts "################################### BOOK.PRESENT ###########################################"
     if book.nil?
       errors.add(:book, "is not valid or is not active.")
     end
   end
 
   def order_present
+     puts "################################### ORDER.PRESENT ###########################################"
     if order.nil?
       errors.add(:order, "is not a valid order.")
     end
   end
 
   def finalize
+     puts "################################### BOOK.FINALIZE ###########################################"
     self.unit_price = book.price
     self.total_price = self.quantity * self.unit_price
   end

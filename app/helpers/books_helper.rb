@@ -22,4 +22,8 @@ module BooksHelper
     return "#{profile[:first_name]}, #{profile[:last_name]}" if profile
     "#{review.user.email.split('@')[0]}"
   end
+
+  def user_logo(user)
+    user.email[0].capitalize
+  end
 end

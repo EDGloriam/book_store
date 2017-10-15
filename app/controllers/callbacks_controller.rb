@@ -1,6 +1,5 @@
 class CallbacksController < Devise::OmniauthCallbacksController
   # before_action :set_order
-
   def facebook
     puts "=============CALBACK========="
     @user = User.from_omniauth(request.env["omniauth.auth"])

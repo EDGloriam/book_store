@@ -30,8 +30,6 @@ Rails.application.configure do
 
   #Added by myself
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
-  ENV['FACEBOOK_APP_ID'] = '284766715332448'
-  ENV['FACEBOOK_SECRET'] = '13e2b60e04275c75e253350ec6588900'
   config.action_mailer.delivery_method = :letter_opener
 
 

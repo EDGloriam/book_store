@@ -2,29 +2,37 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   helper_method :set_order
 
+  def access_denied(exception)
+    redirect_to root_path, alert: exception.message
+  end
+
   def set_order
+    puts "################################### S E T   O R D E R ###########################################"
     if (current_user && order_in_progress.present?)
       @order = order_in_progress[0]
-      set_order_from_cookie
+      set_cookie
     elsif cookies[:order_id].present?
       @order = Order.find_by(id: cookies[:order_id].to_i)
       attach_order if current_user
     else
       @order = Order.create
-      set_order_from_cookie
+      set_cookie
     end
   end
 
   def order_in_progress
+    puts "################################### APP ORDER IN PROGRESS ###########################################"
     current_user.orders.in_progress
   end
 
-  def set_order_from_cookie
+  def set_cookie
+    puts "################################### APP SET COOKIE ###########################################"
     cookies[:order_id] = @order.id
   end
 
   def attach_order
-    @order.update_attributes(user_id: current_user.id)
+    puts "################################### APP ORDER ATTACH ###########################################"
+    @order.update_attributes(user_id: current_user.id) if current_user #added 'if current_user' because Active Admin complained
   end
 
   def after_sign_in_path_for(resource)

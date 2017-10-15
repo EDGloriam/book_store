@@ -1,4 +1,5 @@
 class BooksController < ApplicationController
+  load_and_authorize_resource
   def index
     if params[:section].present?
       @batch_of_books = Book.where(nil)

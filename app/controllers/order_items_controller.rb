@@ -3,9 +3,10 @@ class OrderItemsController < ApplicationController
   before_action :set_order, only: [:create, :destroy]
 
   def create
-    # debugger
+    puts "################################### OI_cont.create ###########################################"
     @order_item = @order.add_book(order_item_params)
     flash_msg(@order_item.save)
+    @order.save
     redirect_back(fallback_location: books_path)
   end
 
@@ -17,6 +18,7 @@ class OrderItemsController < ApplicationController
   end
 
   def update
+    puts "################################### OI_cont.update ###########################################"
     order_item = OrderItem.find(params[:id])
     order_item.update(quantity: order_item_params[:quantity])
     render json: order_item

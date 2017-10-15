@@ -1,5 +1,4 @@
 class ReviewsController < ApplicationController
-
   def create
     # debugger
     review = Review.new(permitted_params)

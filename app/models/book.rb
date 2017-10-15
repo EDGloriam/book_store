@@ -1,5 +1,5 @@
 class Book < ApplicationRecord
-  # mount_uploader :photo, ImageUploader
+  mount_uploader :photo, ImageUploader
   has_one :dimension
   has_and_belongs_to_many :authors, optional: true
   has_many :reviews

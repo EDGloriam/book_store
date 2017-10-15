@@ -11,6 +11,10 @@ class User < ApplicationRecord
     send(address_type) || send("build_#{address_type}")
   end
 
+  def admin?
+    admin
+  end
+
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.provider = auth.provider
