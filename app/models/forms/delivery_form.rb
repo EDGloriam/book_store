@@ -12,10 +12,13 @@ class DeliveryForm
 
   def save
     order = @user.orders.in_progress[0]
-    order.update(delivery_id: @param, total: inc(order.subtotal))
+    # debugger
+    order.update_attribute(:delivery_id,  @param)
+    order.update_attribute(:total, add_delivery_to(order.total))
+
   end
 
-  def inc(value)
+  def add_delivery_to(value)
     delivery_price = Delivery.find(@param).price
     value + delivery_price
   end

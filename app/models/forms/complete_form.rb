@@ -9,7 +9,7 @@ class CompleteForm
   end
 
   def save
-    @completed_order.update( order_status: 'in_queue' )
+    @completed_order.update_attribute(:order_status, 'in_queue' )
     true
   end
 

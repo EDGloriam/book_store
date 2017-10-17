@@ -24,7 +24,7 @@ private
   end
 
   def finalize
-    debugger
+    # debugger
      puts "################################### OI BOOK.FINALIZE ###########################################"
     self.unit_price = book.price #self == #<OrderItem id: nil, book_id: 6, order_id: 9, unit_price: nil, quantity: 1...
     self.total_price = self.quantity * self.unit_price

@@ -1,8 +1,8 @@
 class Coupon < ApplicationRecord
   before_validation :set_code
 
-  def apply
-    self.update_attribute(:used, true)
+  def applied
+    update_attribute(:used, true)
     discount
   end
 

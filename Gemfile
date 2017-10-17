@@ -6,7 +6,7 @@ gem 'haml-rails'
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
 gem 'omniauth-facebook'
-gem 'activeadmin', github: 'activeadmin'
+gem 'activeadmin', '~> 1.0.0.pre2'
 gem 'ffaker'
 gem "letter_opener", :group => :development
 gem 'cancancan'
