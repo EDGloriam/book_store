@@ -1,12 +1,12 @@
 class CartsController < ApplicationController
   before_action :set_order
-  load_and_authorize_resource
+  # load_and_authorize_resource
   def show
     @order_items = get_order_items
   end
 
   def update
-    @order.update_attribute(:subtotal, @order.subtotal)
+    @order.update(subtotal: @order.subtotal)
     coupon = Coupon.find_by(code: cart_params[:coupon])
 
     if (coupon.present? && coupon.used)
@@ -17,7 +17,7 @@ class CartsController < ApplicationController
       @order.apply_coupon(coupon.apply)
     end
 
-    @order.update_attribute(:total, @order.total)
+    @order.update(total: @order.total)
     redirect_to cart_path
   end
 
@@ -30,7 +30,7 @@ class CartsController < ApplicationController
     def get_order_items
       puts "################################### carts_controller.GET OrderItems ###########################################"
       return @order.order_items if cookies[:order_id].present?
-      current_user.order.in_progress
+      current_user.orders.in_progress[0].order_items
 
       # return current_user.orders.in_progress[0] if current_user
       # @order.order_items if cookies[:order_id].present?

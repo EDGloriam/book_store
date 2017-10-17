@@ -15,11 +15,9 @@ ActiveAdmin.register Book do
   end
 
 
-# See permitted parameters documentation:
-# https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-#
+
  permit_params :name,:photo, :description, :price,
-  :active, :section, :publication, :publication, :publication, :materials
+  :active, :section, :publication, :materials
 
 #
 # or
