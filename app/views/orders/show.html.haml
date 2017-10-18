@@ -1,0 +1,46 @@
+%main.container.general-main-wrap
+  = link_to orders_path, class: 'general-back-link' do
+    %i.fa.fa-long-arrow-left.mr-15
+      back to orders
+  .row.mb-20
+    .col-sm-3
+      %h3.general-subtitle Shipping Address
+      = address_short(current_user.shipping_address)
+    .col-sm-3
+      %h3.general-subtitle Billing Address
+      = address_short(current_user.billing_address)
+    .col-sm-3
+      %h3.general-subtitle Shipments
+      = shipment_short(@order.delivery)
+    .col-sm-3
+      %h3.general-subtitle Payment Information
+      = credit_short(@order.credit_card)
+  .hidden-xs.divider-lg.pt-20
+    %table.table.table-hover
+      %thead
+        %tr
+          %th
+            %span.in-grey-600 Book
+          %th.col-method
+          %th
+            %span.in-grey-600 Price
+          %th
+            %span.in-grey-600 Quantity
+          %th
+            %span.in-grey-600 Total
+      %tbody
+      - @order.order_items.each do |order_item|
+        %tr
+          %td
+            .general-img-wrap-table
+              %img.cart-img-shadow.pull-left{src: "#{order_item.book.photo}"}
+          %td
+            %p.title= order_item.book.name
+            %p.in-grey-600.fw-300= order_item.book.description
+          %td
+            %span.font-16.in-gold-500 &euro;#{order_item.unit_price}
+          %td
+            %span.ml-30= order_item.quantity
+          %td
+            %span.font-16.in-gold-500 &euro;#{order_item.total_price}
+    = render './check_out_pages/order_summary', order: @order

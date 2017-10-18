@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+  load_and_authorize_resource
   before_action :authenticate_user!
   before_action :set_order
 
@@ -11,5 +12,9 @@ class OrdersController < ApplicationController
       end
   end
 
+  def show
+    @order = Order.find_by(id: params[:id])
+    render 'show'
+  end
 
 end

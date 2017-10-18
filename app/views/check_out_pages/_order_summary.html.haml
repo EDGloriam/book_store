@@ -11,6 +11,12 @@
         %p.font-16 Shipping:
       %td
         %p.font-16 &euro;#{delivery_price(order)}
+    - if order.discount_applied
+      %tr
+        %td
+          %p.font-16 Coupon:
+        %td
+          %p.font-16 &euro;#{order.recalculate_discount}
     %tr
       %td
         %strong.font-18 Order Total:

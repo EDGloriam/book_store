@@ -12,3 +12,10 @@ $(document).ready ->
           $( "tr[order_item_id='#{id}'] #total_price" ).text(response.total_price)
         error: (xhr, status, statusErr) ->
           console.log('not ok')
+
+  $(document).on "click", (e) ->
+    link  = $(e.target).parents("tr").attr('data-href')
+    if link != undefined
+      window.location = link
+      console.log('ok')
+

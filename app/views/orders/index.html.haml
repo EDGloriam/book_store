@@ -10,7 +10,7 @@
         %li
           = link_to orders_path(status: status), class: 'filter-link' do
             = status_to_menu_item(status)
-  .hidden-xs.mb-res-50
+  .mb-res-50
     %table.table.table-hover
       %thead
         %tr
@@ -24,7 +24,7 @@
             %span.in-grey-600 Total
       %tbody
         - @orders.each do |order|
-          %tr
+          %tr.link-to-order{ 'data-href': order_path(order) }
             %td
               %span.general-order-number
                 = order.number
