@@ -1,6 +1,5 @@
 module CheckOutPagesHelper
   def show(obj, attr)
-    # debugger
     obj[attr]
   end
 

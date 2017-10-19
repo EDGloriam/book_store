@@ -4,6 +4,8 @@ class CheckOutPagesController < ApplicationController
   require 'forms/payment_form'
   require 'forms/confirm_form'
   require 'forms/complete_form'
+  # debugger
+  before_action :return_after_signed_in, unless: :user_signed_in?
   before_action :authenticate_user!
   before_action :set_order
   include Wicked::Wizard
@@ -38,18 +40,11 @@ class CheckOutPagesController < ApplicationController
     end
   end
 
-  # def form_object
-  #   case step
-  #     when :address then address_form
-  #     when :delivery then delivery_form
-  #     when :payment then payment_form
-  #     when :confirm then confirm_form
-  #     when :complete then complete_form
-  #   end
-  # end
-
   private
-
+    def return_after_signed_in
+      cookies[:checkout] = true
+      puts "=============================cookies[:checkout]"
+    end
 
     def permitted_params
       return nil if [:confirm, :complete ,:wicked_finish].include? step

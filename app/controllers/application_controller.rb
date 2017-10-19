@@ -9,13 +9,10 @@ class ApplicationController < ActionController::Base
   def set_order
     if (current_user && order_in_progress.present?)
       @order = order_in_progress[0]
-      # set_cookie
     elsif cookies[:order_id].present?
       @order = Order.find_by(id: cookies[:order_id].to_i)
-      # attach_order
     else
       @order = Order.create
-      # @order.save
       current_user ? attach_order : set_cookie
     end
   end
@@ -35,7 +32,12 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
     set_order
     attach_order
-    root_path
+    if cookies[:checkout]
+      cookies.delete :checkout
+      check_out_pages_path
+    else
+      super
+    end
   end
 
   # def after_sign_out_path_for(resource)
