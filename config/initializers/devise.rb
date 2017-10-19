@@ -7,7 +7,7 @@ Devise.setup do |config|
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
   # config.secret_key = 'de4411a2624c878c6e00f84b2d4868504113b665b1511c8f41589e7e9e515e1a9764d8b5d738809c6c950a80da3272229ce1b61c89ff0389c246529f642835ed'
-
+  config.secret_key = '5aabcbbd937be9aaddcc424fa5a964acca3f9346ca5ee35cfdef73eaedf26d6319c95c2e1b54b77ea90bc354f51352ef5a6cbf1587f468ccbd039ed8e0ab3b30'
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
@@ -251,7 +251,7 @@ Devise.setup do |config|
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
-  config.omniauth :facebook, ENV['FACEBOOK_APP_ID'] , ENV['FACEBOOK_SECRET'], scope: 'email', info_fields: 'email, name'
+  config.omniauth :facebook,  Figaro.env.FACEBOOK_APP_ID , Figaro.envFACEBOOK_SECRET, scope: 'email', info_fields: 'email, name'
   #   callback_url: "http://localhost:3000/users/auth/facebook/callback"
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
