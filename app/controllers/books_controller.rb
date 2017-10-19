@@ -1,11 +1,13 @@
 class BooksController < ApplicationController
   load_and_authorize_resource
   def index
-    if params[:section].present?
-      @batch_of_books = Book.where(nil)
-      @batch_of_books = @batch_of_books.section(params[:section])
+    params_page = permited_params[:page] || 1
+    limit_books = params_page.to_i * 12
+
+    if permited_params[:section].present?
+      @books = Book.section(permited_params[:section]).page(params_page).per(limit_books)
     else
-      @batch_of_books = Book.all
+      @books = Book.where(nil).page(params_page).per(limit_books)
     end
   end
 
@@ -14,4 +16,9 @@ class BooksController < ApplicationController
     @reviews = Review.where(book_id: params[:id], verified: true).order(created_at: :desc)
     @review = Review.new
   end
+
+  private
+    def permited_params
+      params.permit(:section, :page)
+    end
 end

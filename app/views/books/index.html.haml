@@ -45,7 +45,7 @@
           %a{href: "#"} Price: Low to hight
   .mb-120
     .row
-      - @batch_of_books.each do |book|
+      - @books.each do |book|
         .col-xs-6.col-sm-3
           .general-thumb-wrap
             = render partial: '/shared/thumbnail_with_links', locals: {book: book}
@@ -57,6 +57,5 @@
             %span.divider-sm
             %p.lead.small
               = prepare_for_view(book.authors)
-              = book.section
     .text-center
-      %button.btn.btn-primary View More
+      = link_to_next_page @books, 'View More', class: 'btn btn-primary'
