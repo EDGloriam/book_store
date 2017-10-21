@@ -28,7 +28,7 @@ Rails.application.configure do
 
 
   #Added by meself
-
+  config.action_mailer.default_url_options = { :host => "bookstore-shop.herokuapp.com/" }
 
 
 
