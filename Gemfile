@@ -12,12 +12,11 @@ gem "letter_opener", :group => :development
 gem 'cancancan', '2.0.0'
 gem 'wicked', '1.3.2'
 gem 'virtus', '1.0.5'
-gem "reform-rails", '2.2.4'
 gem 'carrierwave', '~> 1.0'
 gem "mini_magick", '4.8.0'
 gem 'fog-aws', '1.4.1'
 gem "figaro", '1.1.1'
-gem 'kaminari', '>= 0.15, < 2.0'
+gem 'kaminari', ['>= 0.15', '< 2.0']
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.0'
 # Use postgresql as the database for Active Record
