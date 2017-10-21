@@ -1,24 +1,23 @@
-ruby "2.4.0"
 source 'https://rubygems.org'
 
 #Added by myself
-gem 'devise'
-gem 'haml-rails'
+gem 'devise', '4.3.0'
+gem 'haml-rails', '1.0.0'
 gem 'bootstrap-sass', '~> 3.2.0'
-gem 'autoprefixer-rails'
-gem 'omniauth-facebook'
+gem 'autoprefixer-rails', '7.1.2.3'
+gem 'omniauth-facebook', '4.0.0'
 gem 'activeadmin', '~> 1.0.0.pre2'
-gem 'ffaker'
+gem 'ffaker', '2.6.0'
 gem "letter_opener", :group => :development
-gem 'cancancan'
-gem 'wicked'
-gem 'virtus'
-gem "reform-rails"
+gem 'cancancan', '2.0.0'
+gem 'wicked', '1.3.2'
+gem 'virtus', '1.0.5'
+gem "reform-rails", '2.2.4'
 gem 'carrierwave', '~> 1.0'
-gem "mini_magick"
-gem 'fog-aws'
-gem "figaro"
-gem 'kaminari'
+gem "mini_magick", '4.8.0'
+gem 'fog-aws', '1.4.1'
+gem "figaro", '1.1.1'
+gem 'kaminari', '>= 0.15, < 2.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.0'
 # Use postgresql as the database for Active Record

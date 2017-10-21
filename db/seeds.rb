@@ -41,4 +41,4 @@ Delivery.create(method: 'Delivery Next Day!', days: '1 day', price: 15 )
 Delivery.create(method: 'Expressit', days: '2 to 3 days', price: 10 )
 Delivery.create(method: 'Pick Up in-Store', days: '3 to 7 days', price: 5 )
 
-AdminUser.create!(email: 'admin@bookstore.com', password: 'adminadmin', password_confirmation: 'adminadmin') if Rails.env.development?
+AdminUser.create!(email: 'admin@bookstore.com', password: 'adminadmin', password_confirmation: 'adminadmin')
