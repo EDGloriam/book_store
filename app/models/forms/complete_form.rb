@@ -1,6 +1,6 @@
 class CompleteForm
   include ActiveModel::Model
-  include Virtus
+  include Virtus.model
 
   attr_accessor :completed_order
 

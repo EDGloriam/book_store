@@ -1,6 +1,6 @@
 class AddressForm
   include ActiveModel::Model
-  include Virtus
+  include Virtus.model
 
   attr_accessor :billing
   attr_accessor :shipping

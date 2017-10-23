@@ -1,6 +1,6 @@
 class DeliveryForm
   include ActiveModel::Model
-  include Virtus
+  include Virtus.model
 
   attr_accessor :types, :delivery
 

@@ -1,6 +1,6 @@
 class ConfirmForm
   include ActiveModel::Model
-  include Virtus
+  include Virtus.model
 
   attr_accessor :shipping_address, :billing_address, :shipment, :payment
 
