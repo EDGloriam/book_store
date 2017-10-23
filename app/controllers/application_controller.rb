@@ -30,13 +30,14 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
+    puts "resoures========================== #{resource}"
     set_order
     attach_order
     if cookies[:checkout]
       cookies.delete :checkout
       check_out_pages_path
     else
-      super
+      root_path
     end
   end
 

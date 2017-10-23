@@ -30,8 +30,17 @@ Rails.application.configure do
 
   #Added by myself
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
-  # config.action_mailer.delivery_method = :letter_opener
-
+  config.action_mailer.smtp_settings = {
+      address: 'smtp.gmail.com',
+      domain: 'mail.google.com',
+      port: 587,
+      user_name: Figaro.env.GMAIL_USERNAME,
+      password: Figaro.env.GMAIL_PASSWORD,
+      authentication: 'login',
+      enable_starttls_auto: true
+    }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
 
 
   # Don't care if the mailer can't send.

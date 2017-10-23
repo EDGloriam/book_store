@@ -12,13 +12,13 @@ Devise.setup do |config|
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
-  # config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
+  config.mailer_sender = 'sender@mail.com'
 
   # Configure the class responsible to send e-mails.
-  config.mailer = 'MyMailer'
+  # config.mailer = 'MyMailer'
   # config.allow_unconfirmed_access_for = 365.day
   # Configure the parent class responsible to send e-mails.
-  # config.parent_mailer = 'ActionMailer::Base'
+   config.parent_mailer = 'ActionMailer::Base'
 
   # ==> ORM configuration
   # Load and configure the ORM. Supports :active_record (default) and
@@ -248,11 +248,14 @@ Devise.setup do |config|
   config.sign_out_via = :delete
 
   # ==> OmniAuth
-  # Add a new OmniAuth provider. Check the wiki for more information on setting
-  # up on your models and hooks.
-  # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
-  config.omniauth :facebook,  Figaro.env.FACEBOOK_APP_ID , Figaro.env.FACEBOOK_SECRET, scope: 'email', info_fields: 'email, name'
-  #   callback_url: "http://localhost:3000/users/auth/facebook/callback"
+
+  config.omniauth :facebook,
+    Figaro.env.FACEBOOK_APP_ID,
+    Figaro.env.FACEBOOK_SECRET,
+    scope: 'email',
+    info_fields: 'email, name',
+    token_params: { parse: :json } #https://stackoverflow.com/questions/16176208/rails-could-not-authenticate-you-from-facebook-because-invalid-credentials
+
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
   # change the failure app, you can configure them inside the config.warden block.
