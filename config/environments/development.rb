@@ -36,7 +36,7 @@ Rails.application.configure do
       port: 587,
       user_name: Figaro.env.GMAIL_USERNAME,
       password: Figaro.env.GMAIL_PASSWORD,
-      authentication: 'login',
+      authentication: 'plain',
       enable_starttls_auto: true
     }
   config.action_mailer.delivery_method = :smtp
