@@ -28,19 +28,19 @@ Rails.application.configure do
 
 
   #Added by meself
-  config.action_mailer.default_url_options = { host: 'bookstore-shop.herokuapp.com' }
-  config.action_mailer.smtp_settings = {
+    ActionMailer::Base.smtp_settings = {
       address: 'smtp.gmail.com',
-      domain: 'heroku.com',
+      domain: 'mail.google.com',
       port: 587,
       user_name: Figaro.env.GMAIL_USERNAME,
       password: Figaro.env.GMAIL_PASSWORD,
       authentication: 'plain',
       enable_starttls_auto: true
     }
-  config.action_mailer.delivery_method = :smtp
+    ActionMailer::Base.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
 
+  config.action_mailer.default_url_options = { host: 'bookstore-shop.herokuapp.com' }
 
 
   # `config.assets.precompile` and `config.assets.version` have moved to config/initializers/assets.rb
