@@ -105,6 +105,10 @@ GEM
       declarative-option (< 0.2.0)
       representable (>= 2.4.0, <= 3.1.0)
       uber (< 0.2.0)
+    dotenv (2.2.1)
+    dotenv-rails (2.2.1)
+      dotenv (= 2.2.1)
+      railties (>= 3.2, < 5.2)
     equalizer (0.0.11)
     erubis (2.7.0)
     excon (0.59.0)
@@ -113,8 +117,6 @@ GEM
       multipart-post (>= 1.2, < 3)
     ffaker (2.6.0)
     ffi (1.9.18)
-    figaro (1.1.1)
-      thor (~> 0.14)
     fog-aws (1.4.1)
       fog-core (~> 1.38)
       fog-json (~> 1.0)
@@ -341,8 +343,8 @@ DEPENDENCIES
   carrierwave (~> 1.0)
   coffee-rails (~> 4.2)
   devise
+  dotenv-rails
   ffaker
-  figaro
   fog-aws
   haml-rails
   jbuilder (~> 2.5)
@@ -370,4 +372,4 @@ RUBY VERSION
    ruby 2.4.0p0
 
 BUNDLED WITH
-   1.15.4
+   1.16.0.pre.3

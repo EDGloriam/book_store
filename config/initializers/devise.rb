@@ -250,8 +250,8 @@ Devise.setup do |config|
   # ==> OmniAuth
 
   config.omniauth :facebook,
-    Figaro.env.FACEBOOK_APP_ID,
-    Figaro.env.FACEBOOK_SECRET,
+    ENV['FACEBOOK_APP_ID'],
+    ENV['FACEBOOK_SECRET'],
     scope: 'email',
     info_fields: 'email, name',
     token_params: { parse: :json } #https://stackoverflow.com/questions/16176208/rails-could-not-authenticate-you-from-facebook-because-invalid-credentials
