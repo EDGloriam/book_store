@@ -31,7 +31,7 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: 'bookstore-shop.herokuapp.com' }
   config.action_mailer.smtp_settings = {
       address: 'smtp.gmail.com',
-      domain: 'mail.google.com',
+      domain: 'heroku.com',
       port: 587,
       user_name: Figaro.env.GMAIL_USERNAME,
       password: Figaro.env.GMAIL_PASSWORD,
