@@ -5,7 +5,7 @@
   = form_for @form_object.credit_card, url: wizard_path, class: "max-600 mb-80", method: 'patch' do |f|
     .form-group{ class: "#{@form_object.credit_card.errors.messages[:number].empty? ? '' : 'has-error'}" }
       = f.label :number, class: 'control-label input-label', value: 'Card Number'
-      = f.text_field :number, class:'form-control', placeholder: "Card Number"
+      = f.text_field :number, class:'form-control', placeholder: "**** **** **** ****", id: 'card-number'
       %span.help-block= error_msg(:number, @form_object.credit_card)
       / Please enter a valid credit card number
     .row
@@ -17,12 +17,12 @@
       .col-sm-3
         .form-group{ class: "#{@form_object.credit_card.errors.messages[:mmyy].empty? ? '' : 'has-error'}" }
           = f.label :mmyy, class: 'control-label input-label', value: 'MM / YY'
-          = f.text_field :mmyy, class:'form-control', placeholder: "MM / YY"
+          = f.text_field :mmyy, class:'form-control', placeholder: "MM / YY", id: 'mmyy'
           %span.help-block= error_msg(:mmyy, @form_object.credit_card)
       .col-sm-3
         .form-group.relative{ class: "#{@form_object.credit_card.errors.messages[:cvv].empty? ? '' : 'has-error'}" }
           = f.label :cvv, class: 'control-label input-label', value: 'CVV'
-          = f.text_field :cvv, class:'form-control', placeholder: "CVV"
+          = f.text_field :cvv, class:'form-control', placeholder: "***/****", id: 'cvv'
           %span.help-block= error_msg(:cvv, @form_object.credit_card)
           %i.fa.fa-question-circle.general-form-help{'data-toggle': 'tooltip', 'data-placement': :top, title: '3-digit security code, usually found on the back of your card. American Express cards has 4-digit code, located on the front'}
     = render 'order_summary', order: @order

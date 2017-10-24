@@ -173,6 +173,7 @@ GEM
       thor (>= 0.14, < 2.0)
     jquery-ui-rails (6.0.1)
       railties (>= 3.2.16)
+    jquery_mask_rails (0.1.0)
     jwt (1.5.6)
     kaminari (1.1.0)
       activesupport (>= 4.1.0)
@@ -349,9 +350,11 @@ DEPENDENCIES
   haml-rails
   jbuilder (~> 2.5)
   jquery-rails
+  jquery_mask_rails
   kaminari
   letter_opener
   listen (~> 3.0.5)
+  mail
   mini_magick
   omniauth-facebook
   pg (~> 0.18)

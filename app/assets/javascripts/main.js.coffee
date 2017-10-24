@@ -1,4 +1,7 @@
 $(document).ready ->
+  $('#card-number').mask('0000 0000 0000 0000')
+  $('#mmyy').mask('00/00')
+  $('#cvv').mask('0000')
   $(document).on 'change', (e) ->
     if (e.target.id == 'quantity')
       id = $(e.target).parents("tr").attr("order_item_id")

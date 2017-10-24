@@ -29,15 +29,15 @@ Rails.application.configure do
 
   #Added by meself
   config.action_mailer.default_url_options = { host: 'bookstore-shop.herokuapp.com' }
-  config.action_mailer.smtp_settings = {
-      address: 'smtp.gmail.com',
-      domain: 'mail.google.com',
-      port: 587,
-      user_name: ENV['GMAIL_USERNAME'],
-      password: ENV['GMAIL_PASSWORD'],
-      authentication: 'plain',
-      enable_starttls_auto: true
-    }
+  # config.action_mailer.smtp_settings = {
+  #     address: 'smtp.gmail.com',
+  #     domain: 'mail.google.com',
+  #     port: 587,
+  #     user_name: ENV['GMAIL_USERNAME'],
+  #     password: ENV['GMAIL_PASSWORD'],
+  #     authentication: 'plain',
+  #     enable_starttls_auto: true
+  #   }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
 

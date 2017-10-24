@@ -13,6 +13,8 @@
 !/log/.keep
 !/tmp/.keep
 .env
+1.rb
+swaks
 # Ignore Byebug command history file.
 .byebug_history
 

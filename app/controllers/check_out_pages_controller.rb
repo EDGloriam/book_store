@@ -43,15 +43,19 @@ class CheckOutPagesController < ApplicationController
   private
     def return_after_signed_in
       cookies[:checkout] = true
-      puts "=============================cookies[:checkout]"
     end
 
     def permitted_params
       return nil if [:confirm, :complete ,:wicked_finish].include? step
-      return params.require(:credit_card).permit(:number, :name, :mmyy, :cvv) if step == :payment
+      return payment_params if step == :payment
       return params.require(:order).permit(:delivery_id) if step == :delivery
       params.require(:user).permit(:billing_address => Address::ADDRESS_ATTRIBUTES,
         :shipping_address => Address::ADDRESS_ATTRIBUTES )
+    end
 
+    def payment_params
+      param = params.require(:credit_card).permit(:number, :name, :mmyy, :cvv)
+      param[:number].delete!(' ')
+      param
     end
 end

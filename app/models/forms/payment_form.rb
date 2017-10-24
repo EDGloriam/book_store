@@ -5,8 +5,8 @@ class PaymentForm
   attr_accessor :credit_card
 
   def initialize(user, params = nil)
-    @credit_card = user.orders.in_progress[0].credit_card || CreditCard.new(params)
-    @params = params
+    @credit_card = user.orders.in_progress[0].credit_card || CreditCard.create(params)
+    @credit_card.assign_attributes(params || {})
     @user = user
   end
 

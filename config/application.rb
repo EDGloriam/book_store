@@ -21,6 +21,15 @@ module Bookstore
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
+    ActionMailer::Base.smtp_settings = {
+      address: 'smtp.mailgun.org',
+      port: 587,
+      domain: ENV['MG_DOMAIN'],
+      user_name: ENV['MG_USERNAME'],
+      password: ENV['MG_PASSWORD'],
+      authentication: 'plain',
+      enable_starttls_auto: true
+    }
 
   end
 end
