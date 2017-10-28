@@ -28,10 +28,10 @@
               = label_tag nil, @book.price
           .col-xs-5.col-md-3
             .input-group.general-position
-              %a.input-link{href: "#"}
+              %a.input-link{href: "#", id: 'dec_value'}
                 %i.fa.fa-minus.line-height-40
               = text_field_tag 'order_item[quantity]', 1, class: "form-control quantity-input", min: 1
-              %a.input-link{href: "#"}
+              %a.input-link{href: "#", id: 'inc_value'}
                 %i.fa.fa-plus.line-height-40
           .col-xs-7.col-md-5
             = button_tag "Add to Cart", {type: 'submit', class: 'btn btn-default pull-right general-position'}

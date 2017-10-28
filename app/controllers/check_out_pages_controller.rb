@@ -4,7 +4,7 @@ class CheckOutPagesController < ApplicationController
   require 'forms/payment_form'
   require 'forms/confirm_form'
   require 'forms/complete_form'
-  # debugger
+
   before_action :return_after_signed_in, unless: :user_signed_in?
   before_action :authenticate_user!
   before_action :set_order
@@ -16,6 +16,7 @@ class CheckOutPagesController < ApplicationController
   def show
     return redirect_to finish_wizard_path if step == Wicked::FINISH_STEP
     @form_object = form_model.new(current_user)
+    step_in_order
     render_wizard
   end
 
@@ -41,6 +42,22 @@ class CheckOutPagesController < ApplicationController
   end
 
   private
+    def step_in_order
+      current_step = current_user.complete_step
+      if current_step.nil?
+        current_user.update_attribute(:complete_step, step.to_s)
+        jump_to(steps.first)
+      else
+        desired_step_index = steps.index(step) #delivery => 1
+        actual_step_index = steps.index(current_step.to_sym)+1
+        puts ">>>>>>>>>>>>>>>>>>>>#{current_step}"
+        puts ">desired_step_index>>>>>>>>>>>>>>>>>>>#{desired_step_index}"
+        puts ">actual_step_index>>>>>>>>>>>>>>>>>>>#{actual_step_index}"
+          jump_to(steps[actual_step_index]) if desired_step_index > actual_step_index
+      end
+
+    end
+
     def return_after_signed_in
       cookies[:checkout] = true
     end
@@ -53,6 +70,7 @@ class CheckOutPagesController < ApplicationController
         :shipping_address => Address::ADDRESS_ATTRIBUTES )
     end
 
+    #this needs because jQuery mask adds spase to number
     def payment_params
       param = params.require(:credit_card).permit(:number, :name, :mmyy, :cvv)
       param[:number].delete!(' ')

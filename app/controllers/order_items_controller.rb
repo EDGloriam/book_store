@@ -26,11 +26,11 @@ private
 
   def flash_msg(condition)
     return flash[:success] = 'Added to the Cart' if condition
-    flash[:danger] = 'Something wrong'
+    flash[:danger] = 'Something wrong (look OrderItemsController)'
   end
 
 
   def order_item_params
-    params.require(:order_item).permit(:book_id, :quantity)
+    params.require(:order_item).permit(:book_id, :quantity, :change_quantity)
   end
 end
