@@ -14,6 +14,7 @@ $(document).ready ->
           order_item:
             quantity: e.target.value
         success: (response) ->
+          console.log(response)
           $( "tr[order_item_id='#{id}'] #total_price" ).text(response.total_price)
         error: (xhr, status, statusErr) ->
           console.log('not ok')
