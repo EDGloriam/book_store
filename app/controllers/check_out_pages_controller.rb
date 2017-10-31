@@ -49,11 +49,8 @@ class CheckOutPagesController < ApplicationController
         jump_to(steps.first)
       else
         desired_step_index = steps.index(step) #delivery => 1
-        actual_step_index = steps.index(current_step.to_sym)+1
-        puts ">>>>>>>>>>>>>>>>>>>>#{current_step}"
-        puts ">desired_step_index>>>>>>>>>>>>>>>>>>>#{desired_step_index}"
-        puts ">actual_step_index>>>>>>>>>>>>>>>>>>>#{actual_step_index}"
-          jump_to(steps[actual_step_index]) if desired_step_index > actual_step_index
+        actual_step_index = steps.index(current_step.to_sym) + 1
+        jump_to(steps[actual_step_index]) if desired_step_index > actual_step_index
       end
 
     end

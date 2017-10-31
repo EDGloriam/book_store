@@ -18,6 +18,9 @@ class Order < ApplicationRecord
     self.order_items.collect { |oi|  oi.valid? ? (oi.quantity * oi.unit_price) : 0}.sum
   end
 
+  def display_name
+
+  end
   # def count_total
   #   return subtotal - discount_amount if discount_applied
   #   count_subtotal

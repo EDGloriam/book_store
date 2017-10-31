@@ -8,6 +8,7 @@ class OrderItem < ApplicationRecord
 
   before_save :finalize
 
+
 private
   def book_present
     puts "################################### OI BOOK.PRESENT ###########################################"

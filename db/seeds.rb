@@ -17,13 +17,12 @@ end
     description: FFaker::Book.description,
     price: 50.00+rand(0..9),
     section: SECTION[rand(0..2)],
-    publication: FFaker::Vehicle.year,
+    publicated: FFaker::Vehicle.year,
     materials: 'Hardcove, glossy paper',
-    active: 'true')
-  Book.find_by(id: i).create_dimension(
-    h: rand_float,
-    w: rand_float,
-    d: rand_float)
+    active: 'true',
+    height: rand_float,
+    weight: rand_float,
+    depth: rand_float)
 end
 
 @images = Dir.glob("./app/assets/images/covers/*.jpg")

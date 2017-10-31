@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171027150133) do
+ActiveRecord::Schema.define(version: 20171031131806) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -80,11 +80,14 @@ ActiveRecord::Schema.define(version: 20171027150133) do
     t.string   "description"
     t.decimal  "price",       precision: 6, scale: 2
     t.boolean  "active"
+    t.decimal  "height",      precision: 4, scale: 1
+    t.decimal  "weight",      precision: 4, scale: 1
+    t.decimal  "depth",       precision: 4, scale: 1
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.string   "section"
-    t.date     "publication"
     t.string   "materials"
+    t.string   "publicated"
   end
 
   create_table "coupons", force: :cascade do |t|
@@ -110,16 +113,6 @@ ActiveRecord::Schema.define(version: 20171027150133) do
     t.decimal  "price",      precision: 6, scale: 2
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
-  end
-
-  create_table "dimensions", force: :cascade do |t|
-    t.float    "h"
-    t.float    "w"
-    t.float    "d"
-    t.integer  "book_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["book_id"], name: "index_dimensions_on_book_id", using: :btree
   end
 
   create_table "order_items", force: :cascade do |t|
@@ -184,13 +177,11 @@ ActiveRecord::Schema.define(version: 20171027150133) do
     t.string   "uid"
     t.text     "image"
     t.text     "name"
-    t.boolean  "admin"
     t.string   "complete_step"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
-  add_foreign_key "dimensions", "books"
   add_foreign_key "order_items", "books"
   add_foreign_key "order_items", "orders"
   add_foreign_key "orders", "credit_cards"

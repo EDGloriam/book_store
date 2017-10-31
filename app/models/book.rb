@@ -1,7 +1,7 @@
 class Book < ApplicationRecord
   mount_uploader :photo, ImageUploader
-  has_one :dimension
   has_and_belongs_to_many :authors, optional: true
+  accepts_nested_attributes_for :authors
   has_many :reviews
   has_many :order_items
 

@@ -1,5 +1,6 @@
 class BooksController < ApplicationController
   load_and_authorize_resource
+
   def index
     params_page = permited_params[:page] || 1
     limit_books = params_page.to_i * 12

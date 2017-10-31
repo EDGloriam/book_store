@@ -12,7 +12,7 @@ class CompleteForm
   end
 
   def save
-    @user.update_attribute(:complete_step, 0)
+    @user.update_attribute(:complete_step, nil)
     @completed_order.update_attribute(:order_status, 'in_queue' )
     true
   end
