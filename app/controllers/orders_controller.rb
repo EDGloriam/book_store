@@ -8,7 +8,7 @@ class OrdersController < ApplicationController
       if params[:status].present?
         current_user.orders.status(params[:status])
       else
-        current_user.orders.where.not(order_status: nil).where.not(total: 0)
+        current_user.orders.where.not(order_status: nil).where.not(order_status: :in_progress)
       end
   end
 

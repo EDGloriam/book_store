@@ -1,11 +1,6 @@
 ActiveAdmin.register Order do
-# See permitted parameters documentation:
-# https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 
-# "order"=>{"order_status"=>"canceled", "number"=>"R100220001", "subtotal"=>"52.0", "total"=>"67.0",
-# "discount_applied"=>"0", "discount_amount"=>"0.0", "delivery_id"=>"1", "credit_card_id"=>"1"}, "commit"=>"Update Order", "id"=>"1"}
-
-permit_params order: [:order_status, :number, :subtotal, :total, :discount_applied, :discount_amount, :delivery_id, :credit_card_id, :updated_at, :id]
+permit_params order: [:order_status]
 # permit_params :id
 
 index do
@@ -24,31 +19,39 @@ index do
     actions
   end
 
-  # filter :order_status
-  # filter :current_sign_in_at
-  # filter :total
+  sidebar "Details", only: :edit do
+    attributes_table_for order do
+      row :number do |order|
+        h3 order.number
+      end
+      row :status do |order|
+        h3 order.order_status.split('_').map(&:capitalize).join(' ')
+      end
+      row :total do |order|
+        h3 order.total
+      end
+      row :discount do |order|
+        order.discount_applied
+      end
+    end
+  end
 
-  # controller do
-  #   def update
-  #     debugger
-  #   end
-  # end
 
   form do |f|
+    f.semantic_errors *f.object.errors.keys#To display a list of all validation errors
     f.inputs do
-      # f.input :user_id do |product|
-      #   debugger
-      # end
       f.input :order_status
-      f.input :number
-      f.input :subtotal
-      f.input :total
-      f.input :discount_applied
-      f.input :discount_amount
-      # f.input :delivery_id
-      # f.input :credit_card_id
     end
   f.actions
+  end
+
+
+  controller do
+    def update
+      Order.find(params[:id]).update(order_status: params[:order][:order_status])
+      flash[:noties] = "The Order has been successfully updated"
+      redirect_to admin_order_path
+    end
   end
 end
 

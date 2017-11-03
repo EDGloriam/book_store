@@ -7,9 +7,10 @@
       %i.fa.fa-angle-down.dropdown-icon.pull-right
     %ul.dropdown-menu
       - Order::ORDER_FILTERS_LIST.each do |status|
-        %li
-          = link_to orders_path(status: status), class: 'filter-link' do
-            = status_to_menu_item(status)
+        - unless status == :in_progress
+          %li
+            = link_to orders_path(status: status), class: 'filter-link' do
+              = status_to_menu_item(status)
   .mb-res-50
     %table.table.table-hover
       %thead
