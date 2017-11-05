@@ -1,7 +1,7 @@
 ActiveAdmin.register Book do
 
  permit_params :id, :name, :photo, :description, :price, :active, :section, :publicated, :materials,
-  :height,:weight, :depth, author_ids: []
+  :height,:weight, :depth, :category_id, author_ids: []
 
 
   index do
@@ -13,7 +13,10 @@ ActiveAdmin.register Book do
     column :description
     column :price
     column :active
-    column :section
+    column :category do |book|
+        category = book.category
+        category.name if category
+      end
     column :publicated
     column :materials
     column :authors do |book|
@@ -28,7 +31,9 @@ ActiveAdmin.register Book do
       column :description
       column :price
       column :active
-      column :section
+      column :category do |book|
+        book.category.name
+      end
       column :publicated
       column :materials
     end
@@ -52,7 +57,7 @@ ActiveAdmin.register Book do
       f.input :photo
       f.input :description
       f.input :price
-      f.input :section, as: :select, collection: options_for_select(%w(Mobile Development Photo Web\ Design))
+      f.input :category, as: :select, collection: Category.all.map{ |category| [category.name, category.id]}
       f.input :active
       f.input :publicated
       f.input :materials

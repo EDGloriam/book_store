@@ -1,7 +1,12 @@
 module BooksHelper
-  def category_size(section = '')
-    return Book.all.size if section.nil?
-    Book.where("section = '#{section}'").size
+
+  def all_categories
+    Category.all.map{|category| category}.unshift(nil)
+  end
+
+  def category_size(category)
+    return Book.all.size if category.nil?
+    Book.where('category_id = ?', category.id).size
   end
 
   def reviews_count(reviews)

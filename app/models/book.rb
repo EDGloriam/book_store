@@ -7,13 +7,13 @@ class Book < ApplicationRecord
   # accepts_nested_attributes_for :authors
   has_many :reviews
   has_many :order_items
-
+  belongs_to :category
   before_destroy :ensure_not_belongs_to_any_order_items
 
-  FILTERS_LIST =  [nil, 'Mobile Development', 'Photo', 'Web Design']
+  # FILTERS_LIST =  ['Mobile Development', 'Photo', 'Web Design']
 
   default_scope { where(active: true) }
-  scope :section, -> (section) { where section: section }
+  scope :category, -> (category) { where category_id: category }
 
     private
 

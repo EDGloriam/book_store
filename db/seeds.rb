@@ -1,6 +1,9 @@
 require 'ffaker'
 puts "**  Seeding Database: seeding ***\n\n"
-SECTION = ['Mobile Development', 'Photo', 'Web Design']
+
+puts "**  Creating Categories ***\n\n"
+CATEGOTIES =  %w(Mobile Development Photo Web\ Design)
+CATEGOTIES.each { |category| Category.create(name: category) }
 
 def rand_float
   rand(0.1..1.0).round 1
@@ -15,7 +18,7 @@ puts "**  Creating books ***\n\n"
     name: FFaker::Book.title,
     description: FFaker::Book.description,
     price: rand(10..50)+rand((0.1)..(0.9)).round(2),
-    section: SECTION[rand(0..2)],
+    category_id: Category.ids.sample,
     publicated: FFaker::Vehicle.year,
     materials: 'Hardcove, glossy paper',
     active: 'true',

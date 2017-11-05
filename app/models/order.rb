@@ -21,10 +21,6 @@ class Order < ApplicationRecord
   def display_name
 
   end
-  # def count_total
-  #   return subtotal - discount_amount if discount_applied
-  #   count_subtotal
-  # end
 
   def update_subtotal
     update_attribute(:subtotal, count_subtotal)

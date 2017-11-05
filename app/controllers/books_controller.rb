@@ -5,8 +5,8 @@ class BooksController < ApplicationController
     params_page = permited_params[:page] || 1
     limit_books = params_page.to_i * 12
 
-    if permited_params[:section].present?
-      @books = Book.section(permited_params[:section]).page(params_page).per(limit_books)
+    if permited_params[:category].present?
+      @books = Book.category(permited_params[:category]).page(params_page).per(limit_books)
     else
       @books = Book.where(nil).page(params_page).per(limit_books)
     end
@@ -20,6 +20,6 @@ class BooksController < ApplicationController
 
   private
     def permited_params
-      params.permit(:section, :page)
+      params.permit(:category, :page)
     end
 end
