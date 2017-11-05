@@ -3,7 +3,7 @@
     .col-sm-5
       .general-img-wrap
         = link_to book do
-          = image_tag book.photo, class: 'img, img-shadow, general-thumbnail-img', alt: "design-book"
+          = image_tag book.photo.url(:slider_size), class: 'img, img-shadow, general-thumbnail-img', alt: "design-book"
     .col-sm-7
       .mb-60
         %h1

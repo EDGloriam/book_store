@@ -6,7 +6,7 @@
     .col-sm-6
       .product-gallery
         .mb-20
-          = image_tag @book.photo, class: 'img-responsive'
+          = image_tag @book.photo.url(:show_size), class: 'img-responsive'
         .images.clearfix
           %a.img-link{href: "#"}
             = image_tag @book.photo

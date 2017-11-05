@@ -1,5 +1,5 @@
 .thumbnail.general-thumbnail
-  = image_tag book.photo, class: 'img-shadow, general-thumbnail-img', alt: "design-book"
+  = image_tag book.photo.url(:catalog_size), class: 'img-shadow, general-thumbnail-img', alt: "design-book"
   .thumb-hover
     .general-thumb-link-wrap
       = link_to book_path(book), class: 'thumb-hover-link' do
