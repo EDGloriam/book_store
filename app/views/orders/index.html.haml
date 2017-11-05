@@ -3,7 +3,7 @@
   %p.lead.small.mb-10.visible-xs Sort by
   .dropdowns.dropdown.general-order-dropdown
     %a.dropdown-toggle.lead.small{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}
-      = status_to_menu_item(request.GET[:status])
+      = selected_menu_item(request.GET[:status])
       %i.fa.fa-angle-down.dropdown-icon.pull-right
     %ul.dropdown-menu
       - Order::ORDER_FILTERS_LIST.each do |status|
