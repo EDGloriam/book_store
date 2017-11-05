@@ -9,9 +9,18 @@ class Book < ApplicationRecord
   belongs_to :category
   before_destroy :ensure_not_belongs_to_any_order_items
 
+  validates :name, :price, :description,
+            :publicated, :height, :weight, :depth,
+            :materials, :category_id, presence: true
+  validates :name, uniqueness: true
+  validates_length_of :name, maximum: 100
+  validates :price, numericality: { greater_than_or_equal_to: 0.01 }
+  validates_length_of :materials, maximum: 50
+  validates :height, :weight, :depth, numericality: { only_float: true }
+  validates_length_of :description, in: 5..2000
+
   default_scope { where(active: true) }
   scope :category, -> (category) do
-    # debugger
     if category.nil?
       where(active: true)
     else
@@ -22,9 +31,9 @@ class Book < ApplicationRecord
   scope :filter, -> (parametr) do
     return where(nil) if parametr.nil?
     case parametr
-      when 'price_low_first'
+      when 'price:_Low_first'
         order(:price)
-      when 'price_hight_first'
+      when 'price:_Hight_first'
         order(:price).reverse_order
       when 'newest_first'
         order(:created_at).reverse_order

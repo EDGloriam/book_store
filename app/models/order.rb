@@ -19,7 +19,7 @@ class Order < ApplicationRecord
   end
 
   def display_name
-
+    #for active_admin
   end
 
   def update_subtotal

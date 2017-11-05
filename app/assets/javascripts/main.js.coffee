@@ -1,8 +1,32 @@
 $(document).ready ->
+
+  showChar = 150
+  ellipsis = " ..."
+  moretext = "Read More"
+  lesstext = "Close"
+
+  $('.description').each ->
+    content = $(this).html()
+    if (content.length > showChar)
+      truncated = content.substr(0, showChar);
+      left = content.substr(showChar, content.length - showChar);
+      html = truncated + '<span class="ellipsis">' + ellipsis + '</span><span class="morecontent"><span>' + left + '</span><a href="" class="morelink in-gold-500 ml-10">' + moretext + '</a></span>'
+      $(this).html(html)
+
+  $(".morelink").on "click", (e) ->
+    if($(this).hasClass("less"))
+      $(this).removeClass("less")
+      $(this).html(moretext)
+    else
+      $(this).addClass("less")
+      $(this).html(lesstext)
+    $(this).parent().prev().toggle()
+    $(this).prev().toggle()
+    return false
+
   $('#card-number').mask('0000 0000 0000 0000')
   $('#mmyy').mask('00/00')
   $('#cvv').mask('0000')
-
 
   $(document).on 'change', (e) ->
     if (e.target.id == 'quantity')
@@ -17,7 +41,7 @@ $(document).ready ->
           console.log(response)
           $( "tr[order_item_id='#{id}'] #total_price" ).text(response.total_price)
         error: (xhr, status, statusErr) ->
-          console.log('not ok')
+          console.log('failed')
 
   $(document).on "click", (e) ->
     link = $(e.target).parents("tr").attr('data-href')

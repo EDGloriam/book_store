@@ -13,9 +13,9 @@
           %li
             = link_to 'Popular first', books_path(filter: 'popular_first')
           %li
-            = link_to 'Price: Low to hight', books_path(filter: 'price_low_first')
+            = link_to 'Price: Low to hight', books_path(filter: 'price:_low_first')
           %li
-            = link_to 'Price: Hight to low', books_path(filter: 'price_hight_first')
+            = link_to 'Price: Hight to low', books_path(filter: 'price:_hight_first')
     %ul.list-inline.pt-10.mb-25.mr-240
       - all_categories.each do |category|
         %li.mr-35

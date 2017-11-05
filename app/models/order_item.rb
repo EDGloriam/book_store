@@ -11,22 +11,14 @@ class OrderItem < ApplicationRecord
 
 private
   def book_present
-    puts "################################### OI BOOK.PRESENT ###########################################"
-    if book.nil?
-      errors.add(:book, "is not valid or is not active.")
-    end
+    errors.add(:book, "is not valid or is not active.") if book.nil?
   end
 
   def order_present
-     puts "################################### OI ORDER.PRESENT ###########################################"
-    if order.nil?
-      errors.add(:order, "is not a valid order.")
-    end
+    errors.add(:order, "is not a valid order.") if order.nil?
   end
 
   def finalize
-    # debugger
-     puts "################################### OI BOOK.FINALIZE ###########################################"
     self.unit_price = book.price #self == #<OrderItem id: nil, book_id: 6, order_id: 9, unit_price: nil, quantity: 1...
     self.total_price = self.quantity * self.unit_price
   end

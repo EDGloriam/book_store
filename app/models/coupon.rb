@@ -1,5 +1,8 @@
 class Coupon < ApplicationRecord
   before_validation :set_code
+  validates :code, presence: true
+  validates :discount, presence: true
+  validates :discount, numericality: { only_float: true, greater_than_or_equal_to: 0.01}
 
   def applied
     update_attribute(:used, true)
