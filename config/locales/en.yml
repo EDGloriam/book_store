@@ -20,23 +20,23 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  hello: 'Hello world'
   time:
     formats:
       sample: '%Y.%m.%d'
   errors:
     attributes:
       first_name:
-        blank: "Please enter your first name"
+        blank: 'Please enter your first name'
       last_name:
-        blank: "Please enter your last name"
+        blank: 'Please enter your last name'
       address:
-        blank: "Please enter your address"
+        blank: 'Please enter your address'
       city:
-        blank: "Please enter your city"
+        blank: 'Please enter your city'
       country:
-        blank: "Please enter your country"
+        blank: 'Please enter your country'
       zip:
-        blank: "Please enter your zip"
+        blank: 'Please enter your zip'
       phone:
-        blank: "Please enter your phone"
+        blank: 'Please enter your phone'

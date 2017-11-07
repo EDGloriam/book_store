@@ -1,9 +1,7 @@
 Rails.application.routes.draw do
-
   root 'pages#index'
 
-
-  devise_for :users, controllers: { omniauth_callbacks: "callbacks" }
+  devise_for :users, controllers: { omniauth_callbacks: 'callbacks' }
   get '/users/auth/facebook/callback', to: 'pages#index'
 
   devise_for :admin_users, ActiveAdmin::Devise.config
