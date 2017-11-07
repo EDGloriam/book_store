@@ -1,9 +1,7 @@
 ActiveAdmin.register Order do
+  permit_params order: [:order_status]
 
-permit_params order: [:order_status]
-# permit_params :id
-
-index do
+  index do
     column :id
     column :user_id
     column :order_status
@@ -19,37 +17,25 @@ index do
     actions
   end
 
-  sidebar "Details", only: :edit do
+  sidebar 'Details', only: :edit do
     attributes_table_for order do
-      row :number do |order|
-        h3 order.number
-      end
-      row :status do |order|
-        h3 order.order_status.split('_').map(&:capitalize).join(' ')
-      end
-      row :total do |order|
-        h3 order.total
-      end
-      row :discount do |order|
-        order.discount_applied
-      end
+      row :number { |order| h3 order.number }
+      row :status { |order| h3 order.order_status.split('_').map(&:capitalize).join(' ') }
+      row :total { |order| h3 order.total }
+      row :discount { |order| order.discount_applied }
     end
   end
-
 
   form do |f|
-    f.semantic_errors *f.object.errors.keys#To display a list of all validation errors
-    f.inputs do
-      f.input :order_status
-    end
-  f.actions
+    f.semantic_errors *f.object.errors.keys
+    f.inputs { f.input :order_status }
+    f.actions
   end
-
 
   controller do
     def update
       Order.find(params[:id]).update(order_status: params[:order][:order_status])
-      flash[:noties] = "The Order has been successfully updated"
+      flash[:noties] = 'The Order has been successfully updated'
       redirect_to admin_order_path
     end
   end

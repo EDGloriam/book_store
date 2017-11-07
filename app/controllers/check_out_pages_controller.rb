@@ -48,7 +48,7 @@ class CheckOutPagesController < ApplicationController
         current_user.update_attribute(:complete_step, step.to_s)
         jump_to(steps.first)
       else
-        desired_step_index = steps.index(step) #delivery => 1
+        desired_step_index = steps.index(step)
         actual_step_index = steps.index(current_step.to_sym) + 1
         jump_to(steps[actual_step_index]) if desired_step_index > actual_step_index
       end
@@ -67,7 +67,7 @@ class CheckOutPagesController < ApplicationController
         :shipping_address => Address::ADDRESS_ATTRIBUTES )
     end
 
-    #this needs because jQuery mask adds spase to number
+    #this needs because jQuery mask adds spases to number
     def payment_params
       param = params.require(:credit_card).permit(:number, :name, :mmyy, :cvv)
       param[:number].delete!(' ')

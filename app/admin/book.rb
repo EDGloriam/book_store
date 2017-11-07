@@ -1,6 +1,6 @@
 ActiveAdmin.register Book do
 
- permit_params :id, :name, :photo, :description, :price, :active, :section, :publicated, :materials,
+ permit_params :id, :name, :photo, :description, :price, :active, :publicated, :materials,
   :height,:weight, :depth, :category_id, author_ids: []
 
 
@@ -51,7 +51,7 @@ ActiveAdmin.register Book do
   end
 
   form do |f|
-    f.semantic_errors *f.object.errors.keys #To display a list of all validation errors
+    f.semantic_errors *f.object.errors.keys
     f.inputs do
       f.input :name
       f.input :photo
