@@ -38,16 +38,16 @@
                   %td
                     %p.font-16 Subtotal:
                   %td
-                    %p.font-16 &euro;#{@order.subtotal}
+                    %p.font-16=add_currency_to(@order.subtotal)
                 %tr
                   %td
                     %p.font-16 Coupon:
                   %td
-                    %p.font-16 &euro;#{@order.recalculate_discount}
+                    %p.font-16=add_currency_to(@order.recalculate_discount)
                 %tr
                   %td
                     %strong.font-18 Order Total:
                   %td
-                    %strong.font-18 &euro;#{@order.total}
+                    %strong.font-18=add_currency_to(@order.total)
               = link_to 'Checkout', check_out_pages_path, class: 'btn btn-default mb-20 visible-xs-inline-block'
       = link_to 'Checkout', check_out_pages_path, class: 'btn btn-default mb-20 hidden-xs-inline-block'

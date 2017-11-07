@@ -25,7 +25,7 @@
           = hidden_field_tag 'order_item[unit_price]', @book.price
           .col-xs-12.col-md-4
             %p.h1.in-gold-500.mt-10
-              = label_tag nil, @book.price
+              = label_tag nil, add_currency_to(@book.price)
           .col-xs-5.col-md-3
             .input-group.general-position
               %a.input-link{ href: '#', id: 'dec_value' }

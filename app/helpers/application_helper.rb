@@ -1,4 +1,7 @@
 module ApplicationHelper
+  def add_currency_to(price)
+    "&#8364;#{price}".html_safe
+  end
 
   def selected_menu_item(value)
     return 'All' unless value
