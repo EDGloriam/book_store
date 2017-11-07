@@ -10,6 +10,7 @@ class Coupon < ApplicationRecord
   end
 
   private
+
     def set_code
       coupon_code = generate_code
       unic?(coupon_code) ? self.code = coupon_code : set_code

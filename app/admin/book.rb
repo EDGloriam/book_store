@@ -14,9 +14,9 @@ ActiveAdmin.register Book do
     column :price
     column :active
     column :category do |book|
-        category = book.category
-        category.name if category
-      end
+      category = book.category
+      category.name if category
+    end
     column :publicated
     column :materials
     column :authors do |book|
@@ -67,7 +67,7 @@ ActiveAdmin.register Book do
     end
     f.inputs do
       f.input :authors, as: :select, collection: Author.all.map{ |author| [author.name, author.id]}
-      end
+    end
     f.actions
   end
 

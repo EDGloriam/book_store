@@ -16,7 +16,7 @@ module BooksHelper
 
   def show_stars(number)
     content_tag(:div, class: 'mb-15') do
-     1.upto(number) do
+      1.upto(number) do
         concat content_tag(:i, '',class: %w(fa fa-star rate-star))
       end
     end

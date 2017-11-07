@@ -46,9 +46,9 @@ module CheckOutPagesHelper
       i = 0
       wizard_steps.collect do |every_step|
         i += 1
-        class_str = "step"
-        class_str.concat(" active")  if every_step == step
-        class_str.concat(" done") if past_step?(every_step)
+        class_str = 'step'
+        class_str.concat(' active')  if every_step == step
+        class_str.concat(' done') if past_step?(every_step)
         concat(
           content_tag(:li, class: class_str) do
             link_to wizard_path(every_step) do
@@ -62,7 +62,7 @@ module CheckOutPagesHelper
           end +
           (content_tag(:li, '', class: 'step-divider') unless every_step == :complete)
         )
-       end
+      end
     end
   end
 end

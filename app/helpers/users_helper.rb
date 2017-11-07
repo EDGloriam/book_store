@@ -1,4 +1,4 @@
-#Needs this because I use Devise form outside from Devise controller
+# Needs this because I use Devise form outside from Devise controller
 # https://stackoverflow.com/a/6393151/8226738
 module UsersHelper
   def resource_name

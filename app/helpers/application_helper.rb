@@ -6,8 +6,7 @@ module ApplicationHelper
   end
 
   def generate_link_for_category(category, its_header_menu = false)
-    content_tag(:a, nil,
-      href: books_path(category: "#{category.nil? ? '' : category.id}" ),
+    content_tag(:a, nil, href: books_path(category: "#{category.nil? ? '' : category.id}" ),
       class: "#{its_header_menu ? 'collapse-link' : 'filter-link'}") do
         concat("#{category.nil? ? 'All' : category.name}")
         concat(content_tag(:span, "#{category_size(category)}", class: 'badge general-badge')) unless its_header_menu
@@ -20,9 +19,9 @@ module ApplicationHelper
   end
 
   def books_in_cart
-    order =  current_user.present? ? current_user.orders.in_progress[0] : Order.find_by(id: cookies[:order_id])
+    order = current_user.present? ? current_user.orders.in_progress[0] : Order.find_by(id: cookies[:order_id])
     return unless order
-    count = order.order_items.collect { |item| item.quantity }.sum
+    count = order.order_items.collect(&:quantity).sum
     "<span class='shop-quantity'>#{count}</span>".html_safe unless count.zero?
   end
 end

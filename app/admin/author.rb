@@ -5,7 +5,7 @@ ActiveAdmin.register Author do
     id_column
     column :name
     column :books do |author|
-      author.books.map {|book| book.name}.join(', ')
+      author.books.map(&:name).join(', ')
     end
     actions
   end

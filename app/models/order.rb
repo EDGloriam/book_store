@@ -1,5 +1,5 @@
 class Order < ApplicationRecord
-  ORDER_FILTERS_LIST =  [nil, :in_progress, :in_queue, :in_delivery, :delivered, :canceled]
+  ORDER_FILTERS_LIST = [nil, :in_progress, :in_queue, :in_delivery, :delivered, :canceled]
   enum order_status: ORDER_FILTERS_LIST[1, 5]
 
   belongs_to :credit_card, optional: true
@@ -11,15 +11,15 @@ class Order < ApplicationRecord
   after_create :generate_number, :set_order_status
 
 
-  scope :status, -> (status) { where order_status: status }
+  scope :status, ->(status) { where order_status: status }
   # scope :in_progress, -> {where(order_status: 'in_progress')}   # doesn't neeb, because  in_progress already exist(enum)
 
   def count_subtotal
-    self.order_items.collect { |oi|  oi.valid? ? (oi.quantity * oi.unit_price) : 0}.sum
+    order_items.collect { |oi| oi.valid? ? (oi.quantity * oi.unit_price) : 0 }.sum
   end
 
   def display_name
-    #for active_admin
+    # for active_admin
   end
 
   def update_subtotal

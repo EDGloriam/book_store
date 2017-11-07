@@ -30,7 +30,7 @@ class ApplicationController < ActionController::Base
     @order.update_attributes(user_id: current_user.id) if current_user
   end
 
-  def after_sign_in_path_for(resource)
+  def after_sign_in_path_for(_resource)
     set_order
     attach_order
     if cookies[:checkout]

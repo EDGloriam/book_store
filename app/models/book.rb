@@ -28,16 +28,16 @@ class Book < ApplicationRecord
     end
   end
 
-  scope :filter, -> (parametr) do
+  scope :filter, ->(parametr) do
     return where(nil) if parametr.nil?
     case parametr
-      when 'price:_Low_first'
-        order(:price)
-      when 'price:_Hight_first'
-        order(:price).reverse_order
-      when 'newest_first'
-        order(:created_at).reverse_order
-      when 'popular_first'
+    when 'price:_Low_first'
+      order(:price)
+    when 'price:_Hight_first'
+      order(:price).reverse_order
+    when 'newest_first'
+      order(:created_at).reverse_order
+    when 'popular_first'
 
       end
   end
@@ -46,10 +46,10 @@ class Book < ApplicationRecord
 
     def ensure_not_belongs_to_any_order_items
       if order_items.empty?
-        return true
+        true
       else
         errors.add(:base, 'belongs to existent order_item')
-        return false
+        false
       end
     end
 
