@@ -12,7 +12,6 @@ class CheckOutPagesController < ApplicationController
 
   steps :address, :delivery, :payment, :confirm, :complete
 
-
   def show
     return redirect_to finish_wizard_path if step == Wicked::FINISH_STEP
     @form_object = form_model.new(current_user)

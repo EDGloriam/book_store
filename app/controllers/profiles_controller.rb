@@ -1,6 +1,7 @@
 class ProfilesController < ApplicationController
   before_action :authenticate_user!
   before_action :get_current_user
+
   def show
     @billing_address = @user.find_or_init(:billing_address)
     @shipping_address = @user.find_or_init(:shipping_address)

@@ -2,18 +2,17 @@ class CartsController < ApplicationController
   before_action :set_order
 
   def show
-    @order.valid? #needs when coupon has added and order items are changing
+    @order.valid? #needs when coupon has already added and order item is changing
     @order_items = get_order_items
   end
 
   def update
-    # @order.update_subtotal
     coupon = Coupon.find_by(code: cart_params[:coupon])
     if coupon.present?
       if coupon.used
-        flash[:danger] = "This coupon has been already used"
+        flash[:danger] = 'This coupon has been already used'
       elsif @order.discount_applied
-        flash[:danger] = "You can apply one coupon only"
+        flash[:danger] = 'You can apply one coupon only'
       else
         @order.apply_coupon(coupon.applied)
       end

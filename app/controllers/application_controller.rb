@@ -26,11 +26,11 @@ class ApplicationController < ActionController::Base
   end
 
   def attach_order
-    @order.update_attributes(user_id: current_user.id) if current_user #added 'if current_user' because Active Admin complained
+    #added 'if current_user' because Active Admin complained
+    @order.update_attributes(user_id: current_user.id) if current_user
   end
 
   def after_sign_in_path_for(resource)
-    puts "resoures========================== #{resource}"
     set_order
     attach_order
     if cookies[:checkout]
@@ -40,10 +40,4 @@ class ApplicationController < ActionController::Base
       root_path
     end
   end
-
-  # def after_sign_out_path_for(resource)
-  #   root_path
-  # end
-
-
 end

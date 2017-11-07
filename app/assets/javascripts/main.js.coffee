@@ -1,5 +1,6 @@
 $(document).ready ->
 
+  #=============================== Read More link =====================================
   showChar = 150
   ellipsis = " ..."
   moretext = "Read More"
@@ -24,10 +25,12 @@ $(document).ready ->
     $(this).prev().toggle()
     return false
 
+  #=============================== Mask =====================================
   $('#card-number').mask('0000 0000 0000 0000')
   $('#mmyy').mask('00/00')
   $('#cvv').mask('0000')
 
+  #=============================== Update price of a single order item =====================================
   $(document).on 'change', (e) ->
     if (e.target.id == 'quantity')
       id = $(e.target).parents("tr").attr("order_item_id")
@@ -43,12 +46,13 @@ $(document).ready ->
         error: (xhr, status, statusErr) ->
           console.log('failed')
 
+  #=============================== link to single order =====================================
   $(document).on "click", (e) ->
     link = $(e.target).parents("tr").attr('data-href')
     if link != undefined
       window.location = link
 
-
+  #=============================== [-] quantity [+] =====================================
   $('#dec_value').on 'click', (e)->
     e.preventDefault()
     book_quantity = parseInt( $(this).next()[0].value, 10 )
