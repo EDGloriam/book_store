@@ -28,8 +28,8 @@ class Book < ApplicationRecord
     end
   end
 
-  scope :filter, ->(parametr) do
-    return where(nil) if parametr.nil?
+  scope :filter, -> (parametr) do
+    where(nil) if parametr.nil?
     case parametr
     when 'price:_Low_first'
       order(:price)
