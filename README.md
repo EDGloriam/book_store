@@ -1,1 +1,1 @@
-https://bookstore-shop.herokuapp.com/
+https://book-stor.herokuapp.com/
