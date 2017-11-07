@@ -1,7 +1,7 @@
 %main.container
   %h1.general-title-margin Checkout
   = progress_bar
-  = form_for current_user, url: wizard_path, method: "patch", class: 'res-mb-100' do |form|
+  = form_for current_user, url: wizard_path, method: 'patch', class: 'res-mb-100' do |form|
     .hidden-xs.hidden-sm
       .row
         .col-md-5
@@ -21,17 +21,10 @@
         = render 'shared/addresses',  address_obj: @form_object.shipping, f: form
         .form-group.checkbox
           = form.label :user_use_billing, class: 'checkbox-label' do
-            = form.check_box :user_use_billing, class: 'checkbox-input', name: "use_billing", type: "checkbox", hidden: "true", checked: false
+            = form.check_box :user_use_billing, class: 'checkbox-input', name: 'use_billing', type: 'checkbox', hidden: 'true', checked: false
             %span.checkbox-icon
               %i.fa.fa-check
             %span.checkbox-text Use Billing Adress
     = render 'order_summary', order: @order
     .text-center
       = form.submit :save, class: 'btn btn-default mb-20', value: 'Save and Continue'
-
-
-
-    / %select#country.form-control{name: "country", placeholder: "Select a country"}
-    /         %option London
-    /         %option London
-    /         %option London

@@ -1,11 +1,11 @@
 .thumbnail.general-thumbnail
-  = image_tag book.photo.url(:catalog_size), class: 'img-shadow, general-thumbnail-img', alt: "design-book"
+  = image_tag book.photo.url(:catalog_size), class: 'img-shadow, general-thumbnail-img', alt: 'design-book'
   .thumb-hover
     .general-thumb-link-wrap
       = link_to book_path(book), class: 'thumb-hover-link' do
-        %i.fa.fa-eye.thumb-icon{'aria-hidden': "true"}
+        %i.fa.fa-eye.thumb-icon{'aria-hidden': 'true'}
       = form_tag (order_items_path)  do
-        = hidden_field_tag "order_item[book_id]", "#{book.id}"
-        = hidden_field_tag "order_item[quantity]", 1
+        = hidden_field_tag 'order_item[book_id]',"#{book.id}"
+        = hidden_field_tag 'order_item[quantity]', 1
         = button_tag type: 'submit', class: 'thumb-hover-link' do
           %i.fa.fa-shopping-cart.thumb-icon

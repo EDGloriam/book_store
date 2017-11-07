@@ -11,11 +11,11 @@ class OrderItem < ApplicationRecord
 
 private
   def book_present
-    errors.add(:book, "is not valid or is not active.") if book.nil?
+    errors.add(:book, 'is not valid or is not active.') if book.nil?
   end
 
   def order_present
-    errors.add(:order, "is not a valid order.") if order.nil?
+    errors.add(:order, 'is not a valid order.') if order.nil?
   end
 
   def finalize

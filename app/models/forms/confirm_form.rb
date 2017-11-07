@@ -22,5 +22,4 @@ class ConfirmForm
   def has_completed?
     @complete
   end
-
 end

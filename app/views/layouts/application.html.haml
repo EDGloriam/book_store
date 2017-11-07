@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 %html
   %head
-    %meta{charset: "UTF-8"}
-    %meta{name: "viewport", content: "width=device-width"}
-    %link{href: "https://fonts.googleapis.com/css?family=Open+Sans", rel: "stylesheet"}
-    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{charset: 'UTF-8'}
+    %meta{name: 'viewport', content: 'width=device-width'}
+    %link{href: 'https://fonts.googleapis.com/css?family=Open+Sans', rel: 'stylesheet'}
+    %meta{:content => 'text/html; charset=UTF-8', 'http-equiv' => 'Content-Type'}/
     %title Bookstore
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
@@ -13,43 +13,43 @@
     %header.navbar.navbar-default
       .container
         .navbar-header
-          %button.navbar-toggle.pull-left{type: "button", 'data-toggle': "collapse", 'data-target': "#navbar"}
+          %button.navbar-toggle.pull-left{type: 'button', 'data-toggle': 'collapse', 'data-target': '#navbar'}
             %span.sr-only
             %span.icon-bar
             %span.icon-bar
             %span.icon-bar
           %a.navbar-brand Bookstore
-        = link_to  cart_path, class: "shop-link pull-right visible-xs" do
+        = link_to  cart_path, class: 'shop-link pull-right visible-xs' do
           %span.shop-icon= books_in_cart
-        = link_to  cart_path, class: "shop-link pull-right hidden-xs" do
+        = link_to  cart_path, class: 'shop-link pull-right hidden-xs' do
           %span.shop-icon= books_in_cart
-        #navbar.navbar-collapse.collapse.pl-30{'aria-expanded': "false"}
+        #navbar.navbar-collapse.collapse.pl-30{'aria-expanded': 'false'}
           .hidden-xs
             %ul.nav.navbar-nav
               %li
                 =link_to('Home', root_path)
               %li.dropdown
-                %a.dropdown-toggle{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"} Shop
+                %a.dropdown-toggle{href: '#', 'data-toggle': 'dropdown', role: 'button', 'aria-haspopup': 'true', 'aria-expanded': 'false'} Shop
                 %ul.dropdown-menu
                   - all_categories.each do |category|
                     %li
                       = generate_link_for_category(category, true)
                 - if user_signed_in?
                   %li.dropdown
-                    %a.dropdown-toggle{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"} My account
+                    %a.dropdown-toggle{href: '#', 'data-toggle': 'dropdown', role: 'button', 'aria-haspopup': 'true', 'aria-expanded': 'false'} My account
                     %ul.dropdown-menu
                       %li
-                        = link_to "Settings", settings_path
+                        = link_to 'Settings', settings_path
                       %li
-                        = link_to "Orders", orders_path
-                      %li.divider{role: "separator"}
+                        = link_to 'Orders', orders_path
+                      %li.divider{role: 'separator'}
                         %li
-                          =link_to("Log out", destroy_user_session_path, method: :delete)
+                          =link_to('Log out', destroy_user_session_path, method: :delete)
                 - else
                   %li
-                    = link_to("Sign up", new_user_registration_path, class: 'in-gold-500')
+                    = link_to('Sign up', new_user_registration_path, class: 'in-gold-500')
                   %li
-                    = link_to("Log in",  new_user_session_path, class: 'in-gold-500')
+                    = link_to('Log in',  new_user_session_path, class: 'in-gold-500')
     %h1.cart-text
     = render './layouts/flash'
     = yield
@@ -59,30 +59,30 @@
           .col-sm-9
             %ul.list-inline.general-align.mb-25
               %li
-                %a.nav-link{href: "#"} Home
+                %a.nav-link{href: '#'} Home
               %li
-                %a.nav-link{href: "#"} Shop
+                %a.nav-link{href: '#'} Shop
               -if user_signed_in?
                 %li
-                  = link_to "Orders", orders_path, class: 'nav-link'
+                  = link_to 'Orders', orders_path, class: 'nav-link'
                 %li
-                  = link_to "Settings",  settings_path, class: 'nav-link'
+                  = link_to 'Settings',  settings_path, class: 'nav-link'
           .col-sm-3
             %p.general-nav-mail support@bookstore.com
             %p.general-nav-number (555)-555-5555
             %ul.list-inline.general-align
               %li
-                %a.nav-link{href: "#"}
-                  %i.fa.fa-facebook{'aria-hidden': "true"}
+                %a.nav-link{href: '#'}
+                  %i.fa.fa-facebook{'aria-hidden': 'true'}
               %li
-                %a.nav-link{href: "#"}
-                  %i.fa.fa-twitter{'aria-hidden': "true"}
+                %a.nav-link{href: '#'}
+                  %i.fa.fa-twitter{'aria-hidden': 'true'}
               %li
-                %a.nav-link{href: "#"}
-                  %i.fa.fa-google-plus{'aria-hidden': "true"}
+                %a.nav-link{href: '#'}
+                  %i.fa.fa-google-plus{'aria-hidden': 'true'}
               %li
-                %a.nav-link{href: "#"}
-                  %i.fa.fa-instagram{'aria-hidden': "true"}
-    %script{src: "https://use.fontawesome.com/67602d7308.js"}
-    / %script{src: "../../javascripts/jquery.js"}
-    / %script{src: "../../javascripts/bootstrap.js"}
+                %a.nav-link{href: '#'}
+                  %i.fa.fa-instagram{'aria-hidden': 'true'}
+    %script{src: 'https://use.fontawesome.com/67602d7308.js'}
+    / %script{src: '../../javascripts/jquery.js'}
+    / %script{src: '../../javascripts/bootstrap.js'}

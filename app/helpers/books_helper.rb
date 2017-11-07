@@ -1,17 +1,4 @@
 module BooksHelper
-  # def trancate_and_paste_link(description)
-  #   text = description
-  #   truncated_text = text[0...130]
-  #   left = text[130..text.size]
-  #   content_tag(:span, '') do
-  #     concat(truncated_text)
-  #     concat(content_tag(:span, '...', class: 'ellipsis' ))
-  #     concat(content_tag(:span, '', class: 'morecontent' ) do
-  #       concat(content_tag(:span, "#{left}"))
-  #     end)
-  #     concat(content_tag(:a, 'Read more', href: '#', class: 'morelink in-gold-500 ml-10'))
-  #   end
-  # end
 
   def all_categories
     Category.all.map{|category| category}.unshift(nil)
@@ -23,7 +10,7 @@ module BooksHelper
   end
 
   def reviews_count(reviews)
-    return "Write the first review" if reviews.count.zero?
+    return 'Write the first review' if reviews.count.zero?
     "Reviews (#{reviews.count})"
   end
 

@@ -44,4 +44,4 @@
               %span.font-16.in-gold-500 &euro;#{order_item.total_price}
   = render 'order_summary', order: @order
   .text-center
-    = link_to "Place Order", wizard_path, method: 'patch', class: 'btn btn-default mb-20'
+    = link_to 'Place Order', wizard_path, method: 'patch', class: 'btn btn-default mb-20'

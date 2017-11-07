@@ -24,12 +24,12 @@
           .col-sm-4
             .input-group.general-input-group
               %label.input-label Enter Your Coupon Code
-              = text_field_tag "cart[coupon]", nil,class: 'form-control mb-30', type: "text", placeholder: "Enter Your Coupon Code "
+              = text_field_tag 'cart[coupon]', nil,class: 'form-control mb-30', type: 'text', placeholder: 'Enter Your Coupon Code '
               - if @order.discount_applied
                 %p.in-gold-500.font-18 Your coupon successful applied
               %div
                 %button.btn.btn-primary.mr-5.mb-15.visible-xs-inline-block Apply Coupon
-                = button_tag "Update cart", {type: 'submit', class: 'btn btn-primary mb-15 res-block'}
+                = button_tag 'Update cart', {type: 'submit', class: 'btn btn-primary mb-15 res-block'}
           .col-sm-8
             .res-mr-200.text-center.general-text-right
               %p.in-gold-500.font-18 Order Summary

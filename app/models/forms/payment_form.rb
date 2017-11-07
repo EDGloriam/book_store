@@ -27,5 +27,4 @@ class PaymentForm
   def has_completed?
     @complete
   end
-
 end

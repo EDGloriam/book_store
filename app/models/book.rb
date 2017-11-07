@@ -42,15 +42,15 @@ class Book < ApplicationRecord
       end
   end
 
-    private
+  private
 
-      def ensure_not_belongs_to_any_order_items
-        if order_items.empty?
-          return true
-        else
-          errors.add(:base, 'belongs to existent order_item')
-          return false
-        end
+    def ensure_not_belongs_to_any_order_items
+      if order_items.empty?
+        return true
+      else
+        errors.add(:base, 'belongs to existent order_item')
+        return false
       end
+    end
 
 end

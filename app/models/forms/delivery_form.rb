@@ -21,13 +21,12 @@ class DeliveryForm
 
   end
 
-  def has_completed?
-    @complete
-  end
-
   def add_delivery_to(value)
     delivery_price = Delivery.find(@param).price
     value + delivery_price
   end
 
+  def has_completed?
+    @complete
+  end
 end

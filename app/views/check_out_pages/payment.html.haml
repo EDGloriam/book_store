@@ -7,7 +7,6 @@
       = f.label :number, class: 'control-label input-label', value: 'Card Number'
       = f.text_field :number, class:'form-control', placeholder: "**** **** **** ****", id: 'card-number'
       %span.help-block= error_msg(:number, @form_object.credit_card)
-      / Please enter a valid credit card number
     .row
       .col-sm-6
         .form-group{ class: "#{@form_object.credit_card.errors.messages[:name].empty? ? '' : 'has-error'}" }
