@@ -1,4 +1,4 @@
-$(document).ready ->
+$(document).on "turbolinks:load", ->
 
   #=============================== Read More link =====================================
   showChar = 150
