@@ -1,7 +1,6 @@
 module ProfilesHelper
   def find_attribute_in(attr, address_type)
-    return address_type[attr] if address_type[attr].present?
-    default_placeholder(attr)
+    address_type[attr].presence || default_placeholder(attr)
   end
 
   def default_placeholder(attr)

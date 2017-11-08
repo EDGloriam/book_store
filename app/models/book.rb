@@ -20,16 +20,8 @@ class Book < ApplicationRecord
   validates_length_of :description, in: 5..2000
 
   default_scope { where(active: true) }
-  scope :category, -> (category) do
-    if category.nil?
-      where(active: true)
-    else
-      where category_id: category
-    end
-  end
-
+  scope :category, -> (category) { category.nil? ? all : where(category_id: category) }
   scope :filter, -> (parametr) do
-    where(nil) if parametr.nil?
     case parametr
     when 'price:_Low_first'
       order(:price)
@@ -38,8 +30,9 @@ class Book < ApplicationRecord
     when 'newest_first'
       order(:created_at).reverse_order
     when 'popular_first'
-
-      end
+    else
+      all
+    end
   end
 
   private

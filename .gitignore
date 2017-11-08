@@ -13,7 +13,9 @@
 !/log/.keep
 !/tmp/.keep
 .env
-1.rb
+npm-debug.log
+public/assets/*
+public/uploads/*
 swaks
 # Ignore Byebug command history file.
 .byebug_history

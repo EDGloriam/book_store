@@ -43,9 +43,7 @@ module CheckOutPagesHelper
 
   def progress_bar
     content_tag(:ul, class: 'steps list-inline') do
-      i = 0
-      wizard_steps.collect do |every_step|
-        i += 1
+      wizard_steps.collect.with_index do |every_step, index|
         class_str = 'step'
         class_str.concat(' active')  if every_step == step
         class_str.concat(' done') if past_step?(every_step)
@@ -55,7 +53,7 @@ module CheckOutPagesHelper
               if class_str.include? 'done'
                 content_tag(:span, content_tag(:i, '', class: 'fa fa-check step-icon'), class: 'step-number')
               else
-                content_tag(:span, i, class: 'step-number')
+                content_tag(:span, index + 1, class: 'step-number')
               end +
               content_tag(:span, every_step.to_s.capitalize, class: 'step-text hidden-xs')
             end

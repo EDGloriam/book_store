@@ -13,12 +13,7 @@ class Coupon < ApplicationRecord
 
     def set_code
       coupon_code = generate_code
-      unic?(coupon_code) ? self.code = coupon_code : set_code
-    end
-
-    def unic?(code)
-      return false if Coupon.find_by(code: code)
-      true
+      Coupon.exists?(code: coupon_code) ? set_code : self.code = coupon_code
     end
 
     def generate_code

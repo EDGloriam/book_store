@@ -31,6 +31,7 @@
               = book.name
             %p.font-16.in-gold-500
               = add_currency_to(book.price)
+              = book.category.name
             %span.divider-sm
             %p.lead.small
               = prepare_for_view(book.authors)

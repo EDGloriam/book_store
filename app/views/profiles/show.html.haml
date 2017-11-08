@@ -48,7 +48,7 @@
           %p.in-gold-500.font-18.mb-25 Remove Account
           %form
             .general-settings-btn
-              = button_to 'Please Remove My Account', registration_path(@user), class: 'btn mb-20', data: { confirm: 'Are you sure?' }, method: :delete
+              = button_to 'Please Remove My Account', registration_path(current_user), class: 'btn mb-20', data: { confirm: 'Are you sure?' }, method: :delete
             .form-group.checkbox.general-settings-checkbox
               %label.checkbox-label
                 %input.checkbox-input{ type: 'checkbox', hidden: 'true' }

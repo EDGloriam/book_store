@@ -5,11 +5,10 @@ class BooksController < ApplicationController
     params_page = permited_params[:page] || 1
     limit_books = params_page.to_i * 12
 
-    session[:category] = permited_params[:category] if permited_params[:category].present?
+    session[:category_id] = permited_params[:category] if permited_params[:category].present?
     session[:filter] = permited_params[:filter] if permited_params[:filter].present?
-    session.delete(:category) if permited_params[:category].nil? || permited_params[:category].empty?
-
-    @books = Book.category(session[:category]).filter(session[:filter]).page(params_page).per(limit_books)
+    session.delete(:category_id) if permited_params[:category].nil? || permited_params[:category].empty?
+    @books = Book.category(session[:category_id]).filter(session[:filter]).page(params_page).per(limit_books)
   end
 
   def show
