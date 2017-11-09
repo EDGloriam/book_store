@@ -48,6 +48,7 @@ en:
     up: 'Sign up'
     in: 'Log in'
     all: 'All'
+    save_and_continue: 'Save and continue'
 
   books:
     show:

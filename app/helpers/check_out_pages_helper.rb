@@ -12,14 +12,14 @@ module CheckOutPagesHelper
     object.delivery.price
   end
 
-  def edit_link
-    content_tag(:a, t('edit'), href: wizard_path(:payment), class: 'general-edit edit')
+  def edit_link(step_to_edit)
+    content_tag(:a, t('edit'), href: wizard_path(step_to_edit), class: 'general-edit edit')
   end
 
   def credit_short(object)
     content_tag(:p, class: 'general-address') do
       concat("**** **** **** #{object.number[12,4]} ")
-      concat(edit_link) if respond_to? :step
+      concat(edit_link(:payment)) if respond_to? :step
       concat(tag :br)
       concat("#{object.mmyy}")
     end
@@ -28,7 +28,7 @@ module CheckOutPagesHelper
   def shipment_short(object)
     content_tag(:p, class: 'general-address') do
       concat("#{object.method} ")
-      concat(edit_link) if respond_to? :step
+      concat(edit_link(:delivery)) if respond_to? :step
       concat(tag :br)
       concat("#{object.days}")
     end
@@ -37,7 +37,7 @@ module CheckOutPagesHelper
   def address_short(object)
     content_tag(:p, class: 'general-address') do
       concat("#{object.first_name} #{object.last_name} ")
-      concat(edit_link) if respond_to? :step
+      concat(edit_link(:address)) if respond_to? :step
       concat(tag :br)
       concat("#{object.address}")
       concat(tag :br)
