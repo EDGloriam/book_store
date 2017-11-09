@@ -34,8 +34,8 @@ class OrderItemsController < ApplicationController
 private
 
   def flash_msg(condition)
-    return flash[:success] = 'Added to the Cart' if condition
-    flash[:danger] = 'Something wrong (look OrderItemsController)'
+    return flash[:success] = I18n.t('controllers.order_items.added') if condition
+    flash[:danger] = I18n.t('controllers.order_items.error')
   end
 
 

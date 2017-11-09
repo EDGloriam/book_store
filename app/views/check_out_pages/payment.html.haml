@@ -1,29 +1,29 @@
 %main.container.mb-res-50
-  %h1.general-title-margin Checkout
+  %h1.general-title-margin= t('checkout_title')
   = progress_bar
-  %h3.general-subtitle Credit Card
+  %h3.general-subtitle= t('.card')
   = form_for @form_object.credit_card, url: wizard_path, class: "max-600 mb-80", method: 'patch' do |f|
     .form-group{ class: "#{@form_object.credit_card.errors.messages[:number].empty? ? '' : 'has-error'}" }
-      = f.label :number, class: 'control-label input-label', value: 'Card Number'
+      = f.label :number, class: 'control-label input-label', value: t('.number')
       = f.text_field :number, class:'form-control', placeholder: "**** **** **** ****", id: 'card-number'
       %span.help-block= error_msg(:number, @form_object.credit_card)
     .row
       .col-sm-6
         .form-group{ class: "#{@form_object.credit_card.errors.messages[:name].empty? ? '' : 'has-error'}" }
-          = f.label :name, class: 'control-label input-label', value: 'Name on Card'
+          = f.label :name, class: 'control-label input-label', value: t('.name')
           = f.text_field :name, class:'form-control', placeholder: "Name on Card"
           %span.help-block= error_msg(:name, @form_object.credit_card)
       .col-sm-3
         .form-group{ class: "#{@form_object.credit_card.errors.messages[:mmyy].empty? ? '' : 'has-error'}" }
-          = f.label :mmyy, class: 'control-label input-label', value: 'MM / YY'
-          = f.text_field :mmyy, class:'form-control', placeholder: "MM / YY", id: 'mmyy'
+          = f.label :mmyy, class: 'control-label input-label', value: t('.mmyy')
+          = f.text_field :mmyy, class:'form-control', placeholder: t('.mmyy'), id: 'mmyy'
           %span.help-block= error_msg(:mmyy, @form_object.credit_card)
       .col-sm-3
         .form-group.relative{ class: "#{@form_object.credit_card.errors.messages[:cvv].empty? ? '' : 'has-error'}" }
-          = f.label :cvv, class: 'control-label input-label', value: 'CVV'
+          = f.label :cvv, class: 'control-label input-label', value: t('.cvv')
           = f.text_field :cvv, class:'form-control', placeholder: "***/****", id: 'cvv'
           %span.help-block= error_msg(:cvv, @form_object.credit_card)
-          %i.fa.fa-question-circle.general-form-help{'data-toggle': 'tooltip', 'data-placement': :top, title: '3-digit security code, usually found on the back of your card. American Express cards has 4-digit code, located on the front'}
+          %i.fa.fa-question-circle.general-form-help{'data-toggle': 'tooltip', 'data-placement': :top, title: t('.hint')}
     = render 'order_summary', order: @order
     .text-center
-      = f.submit :save, class: 'btn btn-default mb-20', value: 'Save and Continue'
+      = f.submit t('button.save_and_continue'), class: 'btn btn-default mb-20'

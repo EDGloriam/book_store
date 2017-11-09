@@ -10,9 +10,9 @@ class CartsController < ApplicationController
     coupon = Coupon.find_by(code: cart_params[:coupon])
     if coupon.present?
       if coupon.used
-        flash[:danger] = 'This coupon has been already used'
+        flash[:danger] = I18n.t('controllers.carts.coupon_used')
       elsif @order.discount_applied
-        flash[:danger] = 'You can apply one coupon only'
+        flash[:danger] = I18n.t('controllers.carts.just_one')
       else
         @order.apply_coupon(coupon.applied)
       end

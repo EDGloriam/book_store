@@ -1,6 +1,6 @@
 %main.container.general-main-wrap
-  %h1.mt-0.mb-25 My Orders
-  %p.lead.small.mb-10.visible-xs Sort by
+  %h1.mt-0.mb-25= t('.my_order')
+  %p.lead.small.mb-10.visible-xs= t('.sort_by')
   .dropdowns.dropdown.general-order-dropdown
     %a.dropdown-toggle.lead.small{href: '#', 'data-toggle': 'dropdown', role: 'button', 'aria-haspopup': 'true', 'aria-expanded': 'false'}
       = selected_menu_item(request.GET[:status])
@@ -16,13 +16,13 @@
       %thead
         %tr
           %th
-            %span.in-grey-600 Number
+            %span.in-grey-600= t('.number')
           %th
-            %span.in-grey-600 Completed at
+            %span.in-grey-600= t('.complited_at')
           %th
-            %span.in-grey-600 Status
+            %span.in-grey-600= t('.status')
           %th
-            %span.in-grey-600 Total
+            %span.in-grey-600= t('.total')
       %tbody
         - @orders.each do |order|
           %tr.link-to-order{ 'data-href': order_path(order) }
@@ -31,9 +31,9 @@
                 = order.number
             %td
               %span.in-grey-900.font-16.fw-300
-                = order.updated_at.strftime('%Y-%m-%d')
+                = l(order.updated_at, format: :short)
             %td
               %span.font-16.in-grey-900.fw-300
                 = order.order_status
             %td
-              %strong.font-16 &euro;#{order[:total]}
+              %strong.font-16= add_currency_to(order[:total])

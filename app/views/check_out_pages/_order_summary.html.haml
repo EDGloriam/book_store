@@ -1,24 +1,24 @@
 .general-text-align
-  %p.in-gold-500.font-18 Order Summary
+  %p.in-gold-500.font-18= t('order_summary.summary')
   %table.general-summary-table
     %tr
       %td
-        %p.font-16 Subtotal:
+        %p.font-16= t('order_summary.sub_total')
       %td
         %p.font-16 &euro;#{show(order, :subtotal)}
     %tr
       %td
-        %p.font-16 Shipping:
+        %p.font-16= t('order_summary.shipping')
       %td
         %p.font-16 &euro;#{delivery_price(order)}
     - if order.discount_applied
       %tr
         %td
-          %p.font-16 Coupon:
+          %p.font-16= t('order_summary.coupon')
         %td
           %p.font-16 &euro;#{order.recalculate_discount}
     %tr
       %td
-        %strong.font-18 Order Total:
+        %strong.font-18= t('order_summary.total')
       %td
         %strong.font-18 &euro;#{show(order, :total)}

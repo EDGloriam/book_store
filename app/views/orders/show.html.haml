@@ -1,33 +1,32 @@
 %main.container.general-main-wrap
   = link_to orders_path, class: 'general-back-link' do
-    %i.fa.fa-long-arrow-left.mr-15
-      back to orders
+    %i.fa.fa-long-arrow-left.mr-15= t('.link.back')
   .row.mb-20
     .col-sm-3
-      %h3.general-subtitle Shipping Address
+      %h3.general-subtitle= t('.shipping')
       = address_short(current_user.shipping_address)
     .col-sm-3
-      %h3.general-subtitle Billing Address
+      %h3.general-subtitle= t('.billing')
       = address_short(current_user.billing_address)
     .col-sm-3
-      %h3.general-subtitle Shipments
+      %h3.general-subtitle= t('.shipments')
       = shipment_short(@order.delivery)
     .col-sm-3
-      %h3.general-subtitle Payment Information
+      %h3.general-subtitle= t('.payment')
       = credit_short(@order.credit_card)
   .hidden-xs.divider-lg.pt-20
     %table.table.table-hover
       %thead
         %tr
           %th
-            %span.in-grey-600 Book
+            %span.in-grey-600= t('.book')
           %th.col-method
           %th
-            %span.in-grey-600 Price
+            %span.in-grey-600= t('.price')
           %th
-            %span.in-grey-600 Quantity
+            %span.in-grey-600= t('.quantity')
           %th
-            %span.in-grey-600 Total
+            %span.in-grey-600= t('.total')
       %tbody
       - @order.order_items.each do |order_item|
         %tr
@@ -42,5 +41,5 @@
           %td
             %span.ml-30= order_item.quantity
           %td
-            %span.font-16.in-gold-500 &euro;#{order_item.total_price}
+            %span.font-16.in-gold-500= add_currency_to(order_item.total_price)
     = render './check_out_pages/order_summary', order: @order

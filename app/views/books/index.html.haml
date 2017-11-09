@@ -1,6 +1,6 @@
 %h1
 %main.container
-  %h1.general-title-margin Сatalog
+  %h1.general-title-margin= t('.catalog')
   .clearfix
     .dropdowns.pull-right
       .dropdown.width-240
@@ -9,13 +9,13 @@
           %i.fa.fa-angle-down.dropdown-icon.pull-right
         %ul.dropdown-menu
           %li
-            = link_to 'Newest first', books_path(filter: 'newest_first')
+            = link_to t('button.newest_first'), books_path(filter: 'newest_first')
           %li
-            = link_to 'Popular first', books_path(filter: 'popular_first')
+            = link_to t('button.popular_first'), books_path(filter: 'popular_first')
           %li
-            = link_to 'Price: Low to hight', books_path(filter: "price:_Low_first")
+            = link_to t('button.low_to_hight'), books_path(filter: "price:_Low_first")
           %li
-            = link_to 'Price: Hight to low', books_path(filter: "price:_Hight_first")
+            = link_to t('button.hight_to_low'), books_path(filter: "price:_Hight_first")
     %ul.list-inline.pt-10.mb-25.mr-240
       - all_categories.each do |category|
         %li.mr-35
@@ -36,4 +36,4 @@
             %p.lead.small
               = prepare_for_view(book.authors)
     .text-center
-      = link_to_next_page @books, 'View More', class: 'btn btn-primary'
+      = link_to_next_page @books, t('.link.more'), class: 'btn btn-primary'

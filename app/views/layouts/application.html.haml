@@ -19,7 +19,7 @@
             %span.icon-bar
             %span.icon-bar
             %span.icon-bar
-          %a.navbar-brand Bookstore
+          %a.navbar-brand= t('links.title')
         = link_to  cart_path, class: 'shop-link pull-right visible-xs' do
           %span.shop-icon= books_in_cart
         = link_to  cart_path, class: 'shop-link pull-right hidden-xs' do
@@ -28,29 +28,29 @@
           .hidden-xs
             %ul.nav.navbar-nav
               %li
-                =link_to('Home', root_path)
+                =link_to t('links.home'), root_path
               %li.dropdown
-                %a.dropdown-toggle{href: '#', 'data-toggle': 'dropdown', role: 'button', 'aria-haspopup': 'true', 'aria-expanded': 'false'} Shop
+                %a.dropdown-toggle{href: '#', 'data-toggle': 'dropdown', role: 'button', 'aria-haspopup': 'true', 'aria-expanded': 'false'}= t('links.shop')
                 %ul.dropdown-menu
                   - all_categories.each do |category|
                     %li
                       = generate_link_for_category(category, true)
                 - if user_signed_in?
                   %li.dropdown
-                    %a.dropdown-toggle{href: '#', 'data-toggle': 'dropdown', role: 'button', 'aria-haspopup': 'true', 'aria-expanded': 'false'} My account
+                    %a.dropdown-toggle{href: '#', 'data-toggle': 'dropdown', role: 'button', 'aria-haspopup': 'true', 'aria-expanded': 'false'}= t('links.account')
                     %ul.dropdown-menu
                       %li
-                        = link_to 'Settings', settings_path
+                        = link_to t('links.settings'), settings_path
                       %li
-                        = link_to 'Orders', orders_path
+                        = link_to t('links.orders'), orders_path
                       %li.divider{role: 'separator'}
                         %li
-                          =link_to('Log out', destroy_user_session_path, method: :delete)
+                          =link_to t('links.log_out'), destroy_user_session_path, method: :delete
                 - else
                   %li
-                    = link_to('Sign up', new_user_registration_path, class: 'in-gold-500')
+                    = link_to t('links.up'), new_user_registration_path, class: 'in-gold-500'
                   %li
-                    = link_to('Log in',  new_user_session_path, class: 'in-gold-500')
+                    = link_to t('links.in'),  new_user_session_path, class: 'in-gold-500'
     %h1.cart-text
     = render './layouts/flash'
     = yield
@@ -60,14 +60,14 @@
           .col-sm-9
             %ul.list-inline.general-align.mb-25
               %li
-                %a.nav-link{href: '#'} Home
+                =link_to t('links.home'), root_path, class: 'nav-link'
               %li
-                %a.nav-link{href: '#'} Shop
+                = link_to t('links.shop'), books_path, class: 'nav-link'
               -if user_signed_in?
                 %li
-                  = link_to 'Orders', orders_path, class: 'nav-link'
+                  = link_to t('links.orders'), orders_path, class: 'nav-link'
                 %li
-                  = link_to 'Settings',  settings_path, class: 'nav-link'
+                  = link_to t('links.settings'),  settings_path, class: 'nav-link'
           .col-sm-3
             %p.general-nav-mail support@bookstore.com
             %p.general-nav-number (555)-555-5555

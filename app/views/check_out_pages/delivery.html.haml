@@ -1,18 +1,18 @@
 %main.container.general-main-wrap
-  %h1.general-title-margin Checkout
+  %h1.general-title-margin= t('checkout_title')
   = progress_bar
-  %h3.general-subtitle Credit Card
+  %h3.general-subtitle= t('.methods')
   .hidden-xs.mb-res-50
   = form_for @order, url: wizard_path do |f|
     %table.table.table-hover
       %thead
         %tr
           %th.col-method
-            %span.in-grey-600.ml-40 Method
+            %span.in-grey-600.ml-40t= t('.mathod')
           %th
-            %span.in-grey-600 Days
+            %span.in-grey-600= t('.days')
           %th
-            %span.in-grey-600 Price
+            %span.in-grey-600= t('.price')
       %tbody
         = f.collection_radio_buttons :delivery_id, Delivery.all, :id, :id do |b|
           %tr
@@ -28,4 +28,4 @@
               %span.font-16.in-gold-500 &euro;#{b.object.price}
     = render 'order_summary', order: @order
     .text-center
-      = f.submit 'Save and Continue', class: 'btn btn-default mb-20'
+      = f.submit t('button.save_and_continue'), class: 'btn btn-default mb-20'

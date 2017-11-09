@@ -1,7 +1,6 @@
 %main.container
   = link_to books_path, class: 'general-back-link' do
-    %i.fa.fa-long-arrow-left.mr-15
-      Back to results
+    %i.fa.fa-long-arrow-left.mr-15= t('.link.back')
   .row
     .col-sm-6
       .product-gallery
@@ -34,24 +33,24 @@
               %a.input-link{ href: '#', id: 'inc_value' }
                 %i.fa.fa-plus.line-height-40
           .col-xs-7.col-md-5
-            = button_tag 'Add to Cart', { type: 'submit', class: 'btn btn-default pull-right general-position' }
+            = button_tag t('.button.add_to_cart'), { type: 'submit', class: 'btn btn-default pull-right general-position' }
       .general-info-wrap.divider-lg
-        %p Description
+        %p= t('.description')
         %p.lead.small.line-height-2.description
           = @book.description
       .general-info-wrap.divider-lg
         .clearfix
-          %p.pull-left Year of publication
+          %p.pull-left= t('.published_at')
           %p.lead.small.pull-right
             = @book.publicated
       .general-info-wrap.divider-lg
         .clearfix
-          %p.pull-left Dimensions
+          %p.pull-left= t('.demension')
           %p.lead.small.pull-right
             = "H: #{@book.height} x W: #{@book.weight} x D: #{@book.depth}"
       .general-info-wrap.divider-lg
         .clearfix
-          %p.pull-left Materials
+          %p.pull-left= t('.materials')
           %p.lead.small.pull-right
             = @book.materials
   .mb-80
@@ -66,7 +65,7 @@
               .general-message-date.hidden-xs
 
               .max-240
-                .general-message-verified Verified Reviewer
+                .general-message-verified= t('.verified_review')
                 .general-message-name
                   = reviewer_name(review)
             = show_stars(review.rate_stars)
@@ -77,14 +76,14 @@
         = f.text_field :user_id, hidden: true, name: 'review[user_id]', value: current_user.id, type: 'text'
         = f.text_field  :book_id, hidden: true, name: 'review[book_id]', value: @book.id, type: 'text'
         .form-group
-          = f.label :score, value: 'Score', class: 'control-label input-label'
+          = f.label :score, value: t('.form.score'), class: 'control-label input-label'
           .mb-15
             = f.select :rate_stars, (1..5)
         .form-group
-          = f.label :review, value: 'Review', class: 'control-label input-label'
+          = f.label :review, value: t('.form.review'), class: 'control-label input-label'
           = f.text_area :text, rows: '4', id: 'review', class: 'form-control', name:"review[text]", type: "text"
         .text-center.general-text-align
-          = f.submit  class: 'btn btn-default pull-right', value: 'Post'
+          = f.submit  class: 'btn btn-default pull-right', value: t('.form.post')
     - else
-      %p Sign up in order to comment
+      %p= t(sign_up_to_comment)
 

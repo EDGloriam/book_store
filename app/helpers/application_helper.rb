@@ -11,7 +11,7 @@ module ApplicationHelper
   def generate_link_for_category(category, its_header_menu = false)
     content_tag(:a, nil, href: books_path(category: "#{category.nil? ? '' : category.id}" ),
       class: "#{its_header_menu ? 'collapse-link' : 'filter-link'}") do
-        concat("#{category.nil? ? 'All' : category.name}")
+        concat("#{category.nil? ? I18n.t('links.all') : category.name}")
         concat(content_tag(:span, "#{category_size(category)}", class: 'badge general-badge')) unless its_header_menu
       end
   end

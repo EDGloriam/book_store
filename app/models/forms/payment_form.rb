@@ -10,7 +10,6 @@ class PaymentForm
     @complete = false
     @user = user
     @credit_card = user.orders.in_progress[0].credit_card || CreditCard.new(params)
-    @credit_card.assign_attributes(params || {})
   end
 
   def save

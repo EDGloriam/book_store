@@ -2,9 +2,9 @@ class ReviewsController < ApplicationController
   def create
     review = Review.new(permitted_params)
     if review.save
-      flash[:success] = 'Thanks for Review. It will be published as soon as Admin will approve it'
+      flash[:success] = I18n.t('controllers.reviews.thanks')
     else
-      flash[:danger] = 'Write a review'
+      flash[:danger] = I18n.t('controllers.reviews.error')
     end
     redirect_back(fallback_location: books_path)
   end
