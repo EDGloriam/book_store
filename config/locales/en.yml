@@ -23,6 +23,17 @@ en:
       phone:
         blank: 'Please enter your phone'
 
+  controllers:
+    carts:
+      coupon_used: 'This coupon has been already used'
+      just_one: 'You can apply one coupon only'
+    order_items:
+      added: 'Added to the Cart'
+      error: 'Something wrong (look OrderItemsController)'
+    reviews:
+      thanks: 'Thanks for Review. It will be published as soon as Admin will approve it'
+      error: 'Write a review'
+
   edit: 'edit'
   checkout_title: 'Checkout'
 
