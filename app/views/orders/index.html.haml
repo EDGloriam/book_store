@@ -34,6 +34,6 @@
                 = l(order.updated_at, format: :short)
             %td
               %span.font-16.in-grey-900.fw-300
-                = order.order_status
+                = order.order_status.titleize
             %td
               %strong.font-16= add_currency_to(order[:total])

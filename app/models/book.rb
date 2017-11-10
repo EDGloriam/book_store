@@ -4,8 +4,10 @@ class Book < ApplicationRecord
   has_many :author_books, dependent: :nullify
   has_many :authors, through: :author_books
 
-  has_many :reviews
   has_many :order_items
+  has_many :orders, through: :order_items
+
+  has_many :reviews
   belongs_to :category
   before_destroy :ensure_not_belongs_to_any_order_items
 
@@ -29,7 +31,14 @@ class Book < ApplicationRecord
       order(:price).reverse_order
     when 'newest_first'
       order(:created_at).reverse_order
+    when 'title:_A-Z'
+      order(:name)
+    when 'title:_Z-A'
+      order(name: :desc)
     when 'popular_first'
+      joins(orders: [:order_items])
+        .group(:id)
+        .order('SUM(order_items.quantity) desc')
     else
       all
     end
