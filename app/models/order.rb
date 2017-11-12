@@ -12,10 +12,14 @@ class Order < ApplicationRecord
   before_validation :update_subtotal, :update_total
   after_create :generate_number, :set_order_status
 
-
   scope :status, ->(status) { where order_status: status }
   scope :all_possible, -> { where.not(order_status: nil).where.not(order_status: :in_progress) }
   # scope :in_progress, -> {where(order_status: 'in_progress')}   # doesn't neeb, because  in_progress already exist(enum)
+
+  def finalize
+    update_subtotal
+    update_total
+  end
 
   def count_subtotal
     order_items.collect { |oi| oi.valid? ? (oi.quantity * oi.unit_price) : 0 }.sum
@@ -34,9 +38,10 @@ class Order < ApplicationRecord
     update_attribute(:total, subtotal)
   end
 
-  def apply_coupon(discount)
+  def apply_coupon(coupon)
+    coupon.update_column(:used, true)
     update_attribute(:discount_applied, true)
-    update_attribute(:discount_amount, discount)
+    update_attribute(:discount, coupon.discount)
     update_total
   end
 
@@ -44,12 +49,12 @@ class Order < ApplicationRecord
     discount_amount * subtotal
   end
 
-  def add_book(book)
-    current_item = order_items.find_by(book_id: book[:book_id])
+  def add_order_item(order_item_params)
+    current_item = order_items.find_by(book_id: order_item_params[:book_id])
     if current_item
-      current_item.quantity += book[:quantity].to_i
+      current_item.quantity += order_item_params[:quantity].to_i
     else
-      current_item = order_items.build(book)
+      current_item = order_items.build(order_item_params)
     end
     current_item
   end

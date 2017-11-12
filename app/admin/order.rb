@@ -1,8 +1,23 @@
 ActiveAdmin.register Order do
   permit_params order: [:order_status]
 
+  scope("All") do |order|
+    order.all
+  end
+
+  scope("In progress") do |order|
+    order.in_progress
+  end
+
+   scope("Delivered") do |order|
+    order.delivered
+  end
+
+   scope("Canceled") do |order|
+    order.canceled
+  end
+
   index do
-    column :id
     column :user_id
     column :order_status
     column :number

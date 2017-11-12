@@ -3,9 +3,9 @@ class OrderItemsController < ApplicationController
   before_action :set_order, only: [:create, :destroy]
 
   def create
-    @order_item = @order.add_book(order_item_params)
+    @order_item = @order.add_order_item(order_item_params)
     flash_msg(@order_item.save)
-    @order.valid?
+    @order.finalize
     redirect_back(fallback_location: books_path)
   end
 
@@ -24,13 +24,12 @@ class OrderItemsController < ApplicationController
     end
   end
 
-private
+  private
 
   def flash_msg(condition)
     return flash[:success] = I18n.t('controllers.order_items.added') if condition
     flash[:danger] = I18n.t('controllers.order_items.error')
   end
-
 
   def order_item_params
     params.require(:order_item).permit(:book_id, :quantity, :change_quantity)
