@@ -1,10 +1,6 @@
 class PaymentForm
-  include ActiveModel::Model
-  include Virtus.model
-
   attr_accessor :credit_card
   attr_reader :user
-  attr_accessor :complete
 
   def initialize(user, params = nil)
     @complete = false
@@ -21,9 +17,5 @@ class PaymentForm
     else
       false
     end
-  end
-
-  def has_completed?
-    @complete
   end
 end

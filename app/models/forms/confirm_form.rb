@@ -1,7 +1,4 @@
 class ConfirmForm
-  include ActiveModel::Model
-  include Virtus.model
-
   attr_accessor :shipping_address, :billing_address, :shipment, :payment
   attr_reader :user
 
@@ -17,9 +14,5 @@ class ConfirmForm
   def save
     @user.update_attribute(:complete_step, 'confirm')
     true
-  end
-
-  def has_completed?
-    @complete
   end
 end

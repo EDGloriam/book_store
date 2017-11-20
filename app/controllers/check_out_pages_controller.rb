@@ -62,8 +62,10 @@ class CheckOutPagesController < ApplicationController
       return nil if [:confirm, :complete ,:wicked_finish].include? step
       return payment_params if step == :payment
       return params.require(:order).permit(:delivery_id) if step == :delivery
-      params.require(:user).permit(:billing_address => Address::ADDRESS_ATTRIBUTES,
-        :shipping_address => Address::ADDRESS_ATTRIBUTES )
+      params.require(:user).permit(
+        :billing_address => Address::ADDRESS_ATTRIBUTES,
+        :shipping_address => Address::ADDRESS_ATTRIBUTES
+      )
     end
 
     #this needs because jQuery mask adds spases to number

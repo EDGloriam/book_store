@@ -1,10 +1,7 @@
 class DeliveryForm
-  include ActiveModel::Model
-  include Virtus.model
-
   attr_accessor :types, :delivery
-  attr_accessor :complete
   attr_reader :user
+
   def initialize(user, params = nil)
     @complete = false
     @types = Delivery.all
@@ -24,9 +21,5 @@ class DeliveryForm
   def add_delivery_to(value)
     delivery_price = Delivery.find(@param).price
     value + delivery_price
-  end
-
-  def has_completed?
-    @complete
   end
 end

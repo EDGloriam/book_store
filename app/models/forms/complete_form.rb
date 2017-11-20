@@ -1,7 +1,4 @@
 class CompleteForm
-  include ActiveModel::Model
-  include Virtus.model
-
   attr_accessor :completed_order
   attr_reader :user
 
@@ -15,9 +12,5 @@ class CompleteForm
     @user.update_attribute(:complete_step, nil)
     @completed_order.update_attribute(:order_status, 'in_queue' )
     true
-  end
-
-  def has_completed?
-    @complete
   end
 end
