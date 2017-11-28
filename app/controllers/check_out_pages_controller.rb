@@ -1,5 +1,5 @@
 class CheckOutPagesController < ApplicationController
-  require 'forms/address_form'
+  require 'forms/address_step_form'
   require 'forms/delivery_form'
   require 'forms/payment_form'
   require 'forms/confirm_form'
@@ -14,14 +14,14 @@ class CheckOutPagesController < ApplicationController
 
   def show
     return redirect_to finish_wizard_path if step == Wicked::FINISH_STEP
-    @form_object = form_model.new(current_user)
+    @form_object = form_model
     step_in_order
     render_wizard
   end
 
 
   def update
-    @form_object = form_model.new(current_user, permitted_params)
+    @form_object = form_model.new(params)
     cookies.delete :order_id if step == :complete
     render_wizard @form_object
   end
@@ -32,7 +32,7 @@ class CheckOutPagesController < ApplicationController
 
   def form_model
     case step
-      when :address then AddressForm
+      when :address then AddressStepForm.new(shipping: {}, billing: {})
       when :delivery then DeliveryForm
       when :payment then PaymentForm
       when :confirm then ConfirmForm
@@ -58,15 +58,15 @@ class CheckOutPagesController < ApplicationController
       cookies[:checkout] = true
     end
 
-    def permitted_params
-      return nil if [:confirm, :complete ,:wicked_finish].include? step
-      return payment_params if step == :payment
-      return params.require(:order).permit(:delivery_id) if step == :delivery
-      params.require(:user).permit(
-        :billing_address => Address::ADDRESS_ATTRIBUTES,
-        :shipping_address => Address::ADDRESS_ATTRIBUTES
-      )
-    end
+    # def permitted_params
+    #   return nil if [:confirm, :complete ,:wicked_finish].include? step
+    #   return payment_params if step == :payment
+    #   return params.require(:order).permit(:delivery_id) if step == :delivery
+    #   # params.require(:user).permit(
+    #   #   :billing_address => Address::ADDRESS_ATTRIBUTES,
+    #   #   :shipping_address => Address::ADDRESS_ATTRIBUTES
+    #   # )
+    # end
 
     #this needs because jQuery mask adds spases to number
     def payment_params
