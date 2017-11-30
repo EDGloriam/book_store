@@ -1,7 +1,7 @@
 %main.container
   %h1.general-title-margin= t('checkout_title')
   = progress_bar
-  = form_for current_user, url: wizard_path, method: 'patch', class: 'res-mb-100' do |form|
+  = form_for current_user, url: wizard_path, method: 'patch', class: 'res-mb-100' do |f|
     .hidden-xs.hidden-sm
       .row
         .col-md-5
@@ -14,17 +14,19 @@
         .visible-xs.visible-sm
           %h3.general-subtitle= t('.billing')
           %p.general-info-text= t('.required_fields')
-        = render 'shared/addresses',  address_obj: @form_object.billing, f: form
+        = f.fields_for :billing do |ff|
+          = render 'shared/addresses',  address_obj: @form_object.billing, ff: ff
       .col-md-5.col-md-offset-1.mb-60
         .visible-xs.visible-sm
           %h3.general-subtitle= t('.shipping')
-        = render 'shared/addresses',  address_obj: @form_object.shipping, f: form
+        = f.fields_for :shipping do |ff|
+          = render 'shared/addresses',  address_obj: @form_object.shipping, ff: ff
         .form-group.checkbox
-          = form.label :user_use_billing, class: 'checkbox-label' do
-            = form.check_box :user_use_billing, class: 'checkbox-input', name: 'use_billing', type: 'checkbox', hidden: 'true', checked: false
+          = f.label :user_use_billing, class: 'checkbox-label' do
+            = f.check_box :user_use_billing, class: 'checkbox-input', name: 'use_billing', type: 'checkbox', hidden: 'true', checked: false
             %span.checkbox-icon
               %i.fa.fa-check
             %span.checkbox-text= t('.use_billing')
     = render 'order_summary', order: @order
     .text-center
-      = form.submit t('links.save_and_continue'), class: 'btn btn-default mb-20'
+      = f.submit t('links.save_and_continue'), class: 'btn btn-default mb-20'

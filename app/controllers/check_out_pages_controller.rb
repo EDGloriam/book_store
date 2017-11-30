@@ -21,7 +21,7 @@ class CheckOutPagesController < ApplicationController
 
 
   def update
-    @form_object = form_model.new(params)
+    @form_object = form_model.fill_with(params)
     cookies.delete :order_id if step == :complete
     render_wizard @form_object
   end

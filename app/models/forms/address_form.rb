@@ -1,6 +1,7 @@
 class AddressForm
-  include Virtus.model
   include ActiveModel::Model
+  include Virtus.model
+
 
   attribute :zip_code, String
   attribute :first_name, String
@@ -19,4 +20,7 @@ class AddressForm
   validates :phone, format: { with: /\A[+]?\d+\z/ }
   validates :phone, length: { is: 15 }
 
+  # def initialize(params)
+  #   att
+  # end
 end
