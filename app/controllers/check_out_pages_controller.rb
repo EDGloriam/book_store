@@ -14,14 +14,14 @@ class CheckOutPagesController < ApplicationController
 
   def show
     return redirect_to finish_wizard_path if step == Wicked::FINISH_STEP
-    @form_object = form_model
+    @form_object = form_model.new(params)
     step_in_order
     render_wizard
   end
 
 
   def update
-    @form_object = form_model.fill_with(params)
+    @form_object = form_model.new(params)
     cookies.delete :order_id if step == :complete
     render_wizard @form_object
   end
@@ -32,7 +32,7 @@ class CheckOutPagesController < ApplicationController
 
   def form_model
     case step
-      when :address then AddressStepForm.new(shipping: {}, billing: {})
+      when :address then AddressStepForm
       when :delivery then DeliveryForm
       when :payment then PaymentForm
       when :confirm then ConfirmForm

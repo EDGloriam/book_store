@@ -2,8 +2,6 @@ class AddressForm
   include ActiveModel::Model
   include Virtus.model
 
-
-  attribute :zip_code, String
   attribute :first_name, String
   attribute :last_name, String
   attribute :address, String
