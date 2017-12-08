@@ -1,7 +1,7 @@
 %main.container
   %h1.general-title-margin= t('checkout_title')
   = progress_bar
-  = form_for current_user, url: wizard_path, method: 'patch', class: 'res-mb-100' do |f|
+  = form_for :address, url: wizard_path, method: 'patch', class: 'res-mb-100' do |f|
     .hidden-xs.hidden-sm
       .row
         .col-md-5
