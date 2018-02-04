@@ -7,20 +7,10 @@ class AddressStepForm
   attribute :billing, AddressForm
 
   def initialize(user, params = {})
-    # debugger
     params.merge!(user: user)
-
-    @shipping = AddressForm.new(params, :shipping)
-    @billing = AddressForm.new(params, :billing)
-
-    # @billing.set_user(user)
-    # @shipping.set_user(user)
-
+    shipping = AddressForm.new(params, :shipping)
+    billing = AddressForm.new(params, :billing)
   end
-
-  # def find_or_init(address)
-  #   @user.send("#{address}_address") || AddressForm.new(user: @user)
-  # end
 
   def save
    shipping.save && billing.save

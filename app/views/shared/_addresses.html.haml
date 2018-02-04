@@ -2,6 +2,7 @@
   %h3.general-subtitle.mt-0
     = form_title(address_obj)
 .form-group{ class: "#{address_obj.errors.messages[:first_name].empty? ? '' : 'has-error'}" }
+  =debugger
   = ff.label :first_name, value: t('settings.first_name'), class: 'control-label input-label'
   = ff.text_field :first_name, class: 'form-control', type: "text", placeholder: "#{find_attribute_in(:first_name, address_obj)}"
   %span.help-block= error_msg(:first_name, address_obj)
