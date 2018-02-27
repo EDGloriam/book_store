@@ -1,0 +1,37 @@
+%main.container
+  #slider.carousel.slide{ 'data-ride': 'carousel' }
+    %ol.carousel-indicators
+      %li.active{ 'data-target': '#slider', 'data-slide-to': '0' }
+      %li{ 'data-target': '#slider', 'data-slide-to': '1' }
+      %li{ 'data-target': '#slider', 'data-slide-to': '2' }
+    .carousel-inner{ role: 'listbox'}
+      - @newest_books.each_with_index do |book, index|
+        = render partial: 'carousel_books', locals: { book: book, index: index }
+    %a.left.carousel-control{ href: '#slider', role: 'button', 'data-slide': 'prev' }
+      %span.icon-prev{ 'aria-hidden': 'true'}
+      %span.sr-only= t('.prev')
+    %a.right.carousel-control{ href: '#slider', role: 'button', 'data-slide': 'next' }
+      %span.icon-next{ 'aria-hidden': 'true'}
+      %span.sr-only= t('.next')
+.container
+  .jumbotron.text-center.mb-0
+    %h2.h1= t('.greeting')
+    .mb-res-50
+      %p= t('.text')
+    = link_to t('.get_start'), books_path, class: 'btn btn-default'
+  .mb-35
+    %h3= t('.best_sellers')
+    .row
+      - @books.each do |book|
+        .col-sm-6.col-md-3
+          .general-thumb-wrap
+            = render partial: '/shared/thumbnail_with_links', locals: {book: book}
+          .mb-35
+            .clearfix
+              %p.pull-right.font-16.in-gold-500
+                = add_currency_to(book.price)
+              %p.title.mr-55
+                = book.name
+            %span.divider-sm
+            %p.lead.small
+              = prepare_for_view(book.authors)

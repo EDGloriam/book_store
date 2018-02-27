@@ -1,0 +1,32 @@
+.visible-xs.visible-sm
+  %h3.general-subtitle.mt-0
+    = form_title(address_obj)
+.form-group{ class: "#{address_obj.errors.messages[:first_name].empty? ? '' : 'has-error'}" }
+  =debugger
+  = ff.label :first_name, value: t('settings.first_name'), class: 'control-label input-label'
+  = ff.text_field :first_name, class: 'form-control', type: "text", placeholder: "#{find_attribute_in(:first_name, address_obj)}"
+  %span.help-block= error_msg(:first_name, address_obj)
+.form-group{ class: "#{address_obj.errors.messages[:last_name].empty? ? '' : 'has-error'}" }
+  = ff.label :last_name, value: t('settings.last_name'), class: 'control-label input-label'
+  = ff.text_field :last_name, class: 'form-control', type: "text", placeholder: "#{find_attribute_in(:last_name, address_obj)}"
+  %span.help-block= error_msg(:last_name, address_obj)
+.form-group{ class: "#{address_obj.errors.messages[:address].empty? ? '' : 'has-error'}" }
+  = ff.label :address, value: t('settings.address'), class: 'control-label input-label'
+  = ff.text_field :address, class: 'form-control', type: "text", placeholder: "#{find_attribute_in(:address, address_obj)}"
+  %span.help-block= error_msg(:address, address_obj)
+.form-group{ class: "#{address_obj.errors.messages[:city].empty? ? '' : 'has-error'}" }
+  = ff.label :city, value: t('settings.city'), class: 'control-label input-label'
+  = ff.text_field :city, class: 'form-control', type: "text", placeholder: "#{find_attribute_in(:city, address_obj)}"
+  %span.help-block= error_msg(:city, address_obj)
+.form-group{ class: "#{address_obj.errors.messages[:zip].empty? ? '' : 'has-error'}" }
+  = ff.label :zip, value: t('settings.zip'), class: 'control-label input-label'
+  = ff.text_field :zip, class: 'form-control', type: "text", placeholder: "#{find_attribute_in(:zip, address_obj)}"
+  %span.help-block= error_msg(:zip, address_obj)
+.form-group{ class: "#{address_obj.errors.messages[:country].empty? ? '' : 'has-error'}" }
+  = ff.label :country, value: t('settings.country'), class: 'control-label input-label'
+  = ff.text_field :country, class: 'form-control', type: "text", placeholder: "#{find_attribute_in(:country, address_obj)}"
+  %span.help-block= error_msg(:country, address_obj)
+.form-group{ class: "#{address_obj.errors.messages[:phone].empty? ? '' : 'has-error'}" }
+  = ff.label :phone, value: t('settings.phone'), class: 'control-label input-label'
+  = ff.text_field :phone, class: 'form-control', type: "text", placeholder: "#{find_attribute_in(:phone, address_obj)}"
+  %span.help-block= error_msg(:phone, address_obj)

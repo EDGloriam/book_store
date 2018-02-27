@@ -1,0 +1,39 @@
+%main.container.general-main-wrap
+  %h1.mt-0.mb-25= t('.my_order')
+  %p.lead.small.mb-10.visible-xs= t('.sort_by')
+  .dropdowns.dropdown.general-order-dropdown
+    %a.dropdown-toggle.lead.small{href: '#', 'data-toggle': 'dropdown', role: 'button', 'aria-haspopup': 'true', 'aria-expanded': 'false'}
+      = selected_menu_item(request.GET[:status])
+      %i.fa.fa-angle-down.dropdown-icon.pull-right
+    %ul.dropdown-menu
+      - Order::ORDER_FILTERS_LIST.each do |status|
+        - unless status == :in_progress
+          %li
+            = link_to orders_path(status: status), class: 'filter-link' do
+              = status_to_menu_item(status)
+  .mb-res-50
+    %table.table.table-hover
+      %thead
+        %tr
+          %th
+            %span.in-grey-600= t('.number')
+          %th
+            %span.in-grey-600= t('.complited_at')
+          %th
+            %span.in-grey-600= t('.status')
+          %th
+            %span.in-grey-600= t('.total')
+      %tbody
+        - @orders.each do |order|
+          %tr.link-to-order{ 'data-href': order_path(order) }
+            %td
+              %span.general-order-number
+                = order.number
+            %td
+              %span.in-grey-900.font-16.fw-300
+                = l(order.updated_at, format: :short)
+            %td
+              %span.font-16.in-grey-900.fw-300
+                = order.order_status.titleize
+            %td
+              %strong.font-16= add_currency_to(order[:total])

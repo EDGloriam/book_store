@@ -12,6 +12,13 @@
 /tmp/*
 !/log/.keep
 !/tmp/.keep
-
+.env
+npm-debug.log
+public/assets/*
+public/uploads/*
+swaks
 # Ignore Byebug command history file.
 .byebug_history
+
+# Ignore application configuration
+/config/application.yml

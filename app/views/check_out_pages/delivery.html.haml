@@ -1,0 +1,31 @@
+%main.container.general-main-wrap
+  %h1.general-title-margin= t('checkout_title')
+  = progress_bar
+  %h3.general-subtitle= t('.methods')
+  .hidden-xs.mb-res-50
+  = form_for @order, url: wizard_path do |f|
+    %table.table.table-hover
+      %thead
+        %tr
+          %th.col-method
+            %span.in-grey-600.ml-40t= t('.mathod')
+          %th
+            %span.in-grey-600= t('.days')
+          %th
+            %span.in-grey-600= t('.price')
+      %tbody
+        = f.collection_radio_buttons :delivery_id, Delivery.all, :id, :id do |b|
+          %tr
+            %td
+              .form-group.radio.mt-0.mb-0
+                = b.label(class: 'radio-label') do
+                  = b.radio_button(class: 'radio-input', hidden: 'true', checked: true)
+                  %span.radio-icon
+                  %span.radio-text= b.object.method
+            %td
+              %span= b.object.days
+            %td
+              %span.font-16.in-gold-500 &euro;#{b.object.price}
+    = render 'order_summary', order: @order
+    .text-center
+      = f.submit t('links.save_and_continue'), class: 'btn btn-default mb-20'

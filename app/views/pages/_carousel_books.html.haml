@@ -1,0 +1,19 @@
+.item{class: "#{index.zero? ? 'active' : '' }"}
+  .row
+    .col-sm-5
+      .general-img-wrap
+        = link_to book do
+          = image_tag book.photo.url(:slider_size), class: 'img, img-shadow, general-thumbnail-img', alt: "design-book"
+    .col-sm-7
+      .mb-60
+        %h1
+          = book.name
+        %p.lead
+          = book.description
+        %p.lead.small
+          = prepare_for_view(book.authors)
+        .general-align
+          = form_tag (order_items_path)  do
+            = hidden_field_tag 'order_item[book_id]', "#{book.id}"
+            = hidden_field_tag 'order_item[quantity]', 1
+            = button_tag 'Buy Now', type: 'submit', class: 'btn btn-default'

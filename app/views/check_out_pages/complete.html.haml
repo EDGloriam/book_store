@@ -1,0 +1,43 @@
+%main.container.general-main-wrap
+  %h1.general-title-margin= t('checkout_title')
+  = progress_bar
+  .text-center.mb-40
+    %h3.general-subtitle= t('.thanks')
+    %p.fw-300= t('.has_been_sent_to') + "#{current_user.email}"
+  .row.mb-20
+    .col-sm-6
+      = address_short(current_user.shipping_address)
+    .col-sm-6.hidden-xs.text-right
+      %p.general-order-number.mb-0= t('.order') + " #{@form_object.completed_order.number}"
+      %p.general-address.mb-30= l(@form_object.completed_order.updated_at, format: :short)
+  .hidden-xs.divider-lg.pt-20
+    %table.table.table-hover
+      %thead
+        %tr
+          %th
+            %span.in-grey-600= t('.book')
+          %th.col-method
+          %th
+            %span.in-grey-600= t('.price')
+          %th
+            %span.in-grey-600= t('.quantity')
+          %th
+            %span.in-grey-600= t('.total')
+      %tbody
+      - @order.order_items.each do |order_item|
+        %tr
+          %td
+            .general-img-wrap-table
+              %img.cart-img-shadow.pull-left{src: "#{order_item.book.photo}"}
+          %td
+            %p.title= order_item.book.name
+            %p.in-grey-600.fw-300= order_item.book.description
+          %td
+            %span.font-16.in-gold-500 &euro;#{order_item.unit_price}
+          %td
+            %span.ml-30= order_item.quantity
+          %td
+            %span.font-16.in-gold-500 &euro;#{order_item.total_price}
+  = render 'order_summary', order: @order
+  .text-center
+    = link_to t('.link.save'), wizard_path, method: 'patch', class: 'btn btn-default mb-20'

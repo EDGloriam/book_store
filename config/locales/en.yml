@@ -1,23 +1,200 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
 #     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
 #     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
-
 en:
-  hello: "Hello world"
+  hello: 'Hello world'
+  time:
+    formats:
+      sample: '%Y.%m.%d'
+      short: '%Y-%m-%d'
+  errors:
+    attributes:
+      first_name:
+        blank: 'Please enter your first name'
+      last_name:
+        blank: 'Please enter your last name'
+      address:
+        blank: 'Please enter your address'
+      city:
+        blank: 'Please enter your city'
+      country:
+        blank: 'Please enter your country'
+      zip:
+        blank: 'Please enter your zip'
+      phone:
+        blank: 'Please enter your phone'
+
+  controllers:
+    carts:
+      coupon_used: 'This coupon has been already used'
+      just_one: 'You can apply one coupon only'
+    order_items:
+      added: 'Added to the Cart'
+      error: 'Something wrong (look OrderItemsController)'
+    reviews:
+      thanks: 'Thanks for Review. It will be published as soon as Admin will approve it'
+      error: 'Write a review'
+
+  edit: 'edit'
+  checkout_title: 'Checkout'
+
+  links:
+    title: 'Bookstore'
+    shop: 'Shop'
+    home: 'Home'
+    account: 'My account'
+    settings: 'Settings'
+    orders: 'Orders'
+    log_out: 'Log out'
+    up: 'Sign up'
+    in: 'Log in'
+    all: 'All'
+    save_and_continue: 'Save and continue'
+
+  books:
+    show:
+      description: 'Description'
+      materials: 'Materials'
+      dimension: 'Dimensions'
+      published_at: 'Year of publication'
+      verified_review: 'Verified Reviewer'
+      sign_up_to_comment: 'Sign up in order to comment'
+      link:
+        back: 'Back to results'
+      button:
+        add_to_cart: 'Add to Cart'
+      form:
+        post: 'Post'
+        review: 'Review'
+        score: 'Score'
+    index:
+      by_category: 'Filter by category'
+      sort_by: 'Sort by'
+      catalog: 'Catalog'
+      button:
+        all: 'All'
+        newest_first: 'Newest first'
+        popular_first: 'Popular first'
+        low_to_hight: "Price: Low to hight"
+        hight_to_low: "Price: Hight to low"
+        title_A-Z: 'Title A - Z'
+        title_Z-A: 'Title Z - A'
+      link:
+        more: 'View More'
+
+  carts:
+    show:
+      cart: 'Cart'
+      when_cart_is_empty: 'The cart is empty'
+      product: 'Product'
+      price: 'Price'
+      quantity: 'Quantity'
+      subtotal: 'SubTotal'
+      form:
+        coupon: 'Enter Your Coupon Code'
+        apply_coupon: 'Apply Coupon'
+        update: 'Update cart'
+      button:
+        checkout: 'Checkout'
+
+  order_summary:
+    shipping: 'Shipping:'
+    summary: 'Order Summary'
+    sub_total: 'Subtotal:'
+    coupon: 'Coupon:'
+    total: 'Order Total:'
+
+  check_out_pages:
+    address:
+      required_fields: 'all fields are required'
+      billing: 'Billing Address'
+      shipping: 'Shipping Address'
+      use_billing: 'Use Billing Adress'
+    delivery:
+      methods: 'Delivery methods'
+      method: 'Method'
+      days: 'Days'
+      price: 'Price'
+    payment:
+      card: 'Credit Card'
+      number: 'Card Number'
+      name: 'Name on Card'
+      mmyy: 'MM / YY'
+      cvv: 'CVV'
+      hint: '3-digit security code, usually found on the back of your card. American Express cards has 4-digit code, located on the front'
+    confirm:
+      shipments: 'Shipments'
+      payment: 'Payment Information'
+      billing: 'Billing Address'
+      shipping: 'Shipping Address'
+      book: 'Book'
+      price: 'Price'
+      quantity: 'Quantity'
+      total: 'Total'
+      link:
+        save: 'Place Order'
+    complete:
+      order: 'Order'
+      thanks: 'Thank You for your Order!'
+      has_been_sent_to: 'An order confirmation has been sent to '
+      book: 'Book'
+      price: 'Price'
+      quantity: 'Quantity'
+      total: 'Total'
+      link:
+        save: 'Back to Store'
+
+  orders:
+    index:
+      my_orders: 'My Orders'
+      sort_by: 'Sort by'
+      number: 'Number'
+      complited_at: 'Completed at'
+      status: 'Status'
+      total: 'Total'
+    show:
+      shipments: 'Shipments'
+      payment: 'Payment Information'
+      billing: 'Billing Address'
+      shipping: 'Shipping Address'
+      link:
+        back: 'Back to orders'
+      book: 'Book'
+      price: 'Price'
+      quantity: 'Quantity'
+      total: 'Total'
+
+  pages:
+    index:
+      prev: 'Previous'
+      next: 'Next'
+      greeting: 'Welcome to our amazing Bookstore!'
+      text: 'We pore through hundreds of new books each month and select the five best we can find to share with our members'
+      best_sellers: 'Best Sellers'
+      get_start: 'Get Started'
+
+  settings:
+    settings: 'Settings'
+    address: 'Address'
+    privacy: 'Privacy'
+    billing: 'Billing Address'
+    shipping: 'Shipping Address'
+    use_billing: 'Use Billing Adress'
+    save: 'Save'
+    e_mail: 'Email'
+    enter_e_mail: 'Enter Email'
+    enter_your_e_mail: 'Enter your email'
+    password: 'Password'
+    old_password: 'Old Password'
+    new_password: 'New Password'
+    confirm_password: 'Confirm Password'
+    remove_account: 'Remove Account'
+    please_remove_account: 'Please Remove My Account'
+    im_agree_lost_all_data: 'I understand that all data will be lost'
+    settings.confirm_alert: 'Are you sure?'
+    first_name: 'First Name'
+    last_name: 'Last Name'
+    city: 'City'
+    zip: 'Zip'
+    country: 'Country'
+    phone: 'Phone'
+    country_select: 'Select a country'

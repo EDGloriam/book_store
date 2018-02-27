@@ -1,0 +1,8 @@
+.container.main
+  .row
+    .col-md-12
+      - flash.each do |name, message|
+        .alert{class: "alert-#{name}"}
+          = message
+          %button.close{'aria-label' => 'Close', 'data-dismiss' => 'alert', :type => 'button'}
+            %span{'aria-hidden' => 'true'} &times;
